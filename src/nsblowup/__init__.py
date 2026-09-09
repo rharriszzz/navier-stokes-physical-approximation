@@ -1,0 +1,1 @@
+"""CPU-first diagnostics for finite approximations of a published flow."""

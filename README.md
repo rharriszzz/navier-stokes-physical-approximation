@@ -187,3 +187,32 @@ Prefer:
 Avoid premature optimization and premature 3-D complexity.
 
 A finite approximation that ultimately fails can still be scientifically valuable if we can measure **how** and **where** it fails.
+
+## First-pass implementation
+
+The current code implements the paper's **explicit Appendix B comparison**,
+similarity geometry, and tested cylindrical divergence. It does **not** yet
+implement the nonlinear core, its exterior pressure datum, or its momentum
+residual. See [first-pass findings](notes/experiment-log.md),
+[equation map](notes/equation-map.md), and
+[numerical method](notes/numerical-method.md) for the exact scope and limitations.
+
+Run in WSL2 Ubuntu with Python 3.11 or newer (the local environment uses 3.12):
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e '.[dev]'
+pytest
+python scripts/environment.py
+python scripts/plot_profiles.py
+```
+
+For the already configured workspace, start with `source .venv/bin/activate`.
+The plot driver reads [configs/nondimensional.yaml](configs/nondimensional.yaml)
+and creates a new timestamped directory under `results/`, containing seven plots
+and a JSON summary with configuration, metrics, convergence, hardware, versions,
+and source hashes. Use `--config` and `--output` to specify alternatives; output
+directories must not already exist. Generated results are ignored by Git.
+The optional `paper` dependency group adds `pypdf` for reading the source PDF;
+it is not needed for numerical runs. No GPU software is required.

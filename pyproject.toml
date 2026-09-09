@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nsblowup"
+version = "0.1.0"
+description = "Finite, source-grounded concentrating-core diagnostics"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "scipy>=1.11", "matplotlib>=3.8", "PyYAML>=6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+paper = ["pypdf>=5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"

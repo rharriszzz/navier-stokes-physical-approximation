@@ -1,0 +1,13 @@
+model: appendix_b_explicit_comparison_not_nonlinear_core
+comparison:
+  h: 0.005
+  radial_parameter: 32.0
+  sigma: 0.2
+  axial_offset: 0.025
+  swirl_peak: 1.0
+times_to_singularity: [1.0, 0.01, 0.0001, 0.000001]
+grid: [129, 257]
+scaled_radial_extent: 4.0
+eta_extent: 0.12
+divergence_grids: [[33, 65], [65, 129], [129, 257]]
+viscosity_reference: 1.0
