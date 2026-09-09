@@ -214,5 +214,8 @@ and creates a new timestamped directory under `results/`, containing seven plots
 and a JSON summary with configuration, metrics, convergence, hardware, versions,
 and source hashes. Use `--config` and `--output` to specify alternatives; output
 directories must not already exist. Generated results are ignored by Git.
+The selected baseline plots and summary in
+[results/core-comparison](results/core-comparison) are an explicit exception
+and are published with the repository; temporary runs remain ignored.
 The optional `paper` dependency group adds `pypdf` for reading the source PDF;
 it is not needed for numerical runs. No GPU software is required.

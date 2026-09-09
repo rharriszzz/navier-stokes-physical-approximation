@@ -92,8 +92,10 @@ All artifacts are in [results/core-comparison](../results/core-comparison).
 - [Machine-readable summary](../results/core-comparison/summary.json)
 
 The earlier plotting smoke run remains separately in `results/profile-check`.
-Generated artifacts are ignored by Git. These links work locally; regenerate
-plots on a fresh clone. The committed-sized record is this report.
+The seven baseline PNG plots and JSON summary in `results/core-comparison`
+are published in Git so these links also work on GitHub and fresh clones.
+Other generated runs remain ignored. The summary retains the original run's
+commit, dirty status, and source hashes; publishing does not rewrite provenance.
 
 ## 7. Test and environment results
 

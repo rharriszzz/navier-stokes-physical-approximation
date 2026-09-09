@@ -1,0 +1,459 @@
+{
+  "environment": {
+    "date_utc": "2026-09-09T23:31:34.112034+00:00",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "executable": "/home/rharris/git/navier-stokes-physical-approximation/.venv/bin/python",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "machine": "daisy",
+    "cpu": "Intel(R) Core(TM) i7-14700F",
+    "memory": {
+      "MemTotal": "7983812 kB",
+      "MemAvailable": "4890832 kB"
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Ti, 610.60, 8188 MiB",
+    "compute_backend": "CPU",
+    "packages": {
+      "PyYAML": "6.0.3",
+      "Pygments": "2.21.0",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "fonttools": "4.64.0",
+      "iniconfig": "2.3.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.1",
+      "nsblowup": "0.1.0",
+      "numpy": "2.5.3",
+      "packaging": "26.3",
+      "pillow": "12.3.0",
+      "pip": "25.0.1",
+      "pluggy": "1.6.0",
+      "pyparsing": "3.3.2",
+      "pypdf": "6.18.0",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "scipy": "1.18.1",
+      "six": "1.17.0"
+    },
+    "git_commit": "29e462cc98409431011c4caa9f50e19cf31041df",
+    "git_status": "?? .gitignore\n?? configs/\n?? notes/\n?? pyproject.toml\n?? scripts/\n?? src/\n?? tests/",
+    "source_sha256": {
+      "configs/nondimensional.yaml": "5e28c30f5247ca14bc6e646317731435504ab5b57036de00886bfc3167303ff9",
+      "pyproject.toml": "f933e8a9534746b995c99ea29494214c24c7b6842044af6936799be72a19ff17",
+      "scripts/environment.py": "eae24485a70ed3c40f7314693d7ccbcec4cb792a29a3d920ca2d16d8c239a25f",
+      "scripts/plot_profiles.py": "909137c387649c9d10455cd3d10812b7ada648686c893d794f98d0e2486f2e87",
+      "src/nsblowup/__init__.py": "cb1badb5f801bde80b0be9fdc4a7aace3779ddc0e485da0fbd2dd6a762db36f7",
+      "src/nsblowup/coordinates.py": "fc7bdd9869b7b714043f83104b386a46ead2f2e0f14ba2f526dc442404a256e4",
+      "src/nsblowup/io.py": "c713477f6e47323b73361d43403882f25f3d00d653b6086b0945941a46c41ce0",
+      "src/nsblowup/operators_axisymmetric.py": "fa306fab9a20f1e53d8db1952f28ae76cc95deabc8d9a3cc021d4cad9fc848cd",
+      "src/nsblowup/profiles.py": "4a32113d159f080db629c926e0251b019a51a9f02ff46e405fe035758cf12b2a",
+      "tests/test_coordinates.py": "5001254f333519e90858483f2b5c8739068fc55d569309b8db6c133512247160",
+      "tests/test_environment.py": "f1c3a4f6f46be71e97f345166c16c6678491bd3ca79b37e8e6f6e538509a1840",
+      "tests/test_operators.py": "27ad7b2c81f7ea3d035f49e01b78518c02b09404c2df3ffd49d27ecab4f0981c",
+      "tests/test_profiles.py": "d4bd99ff14567f935362b17f08952f5a2758521c47c91ecd005d246460f05c66",
+      "tests/test_workflow.py": "14c92b4444c80b34694d7aca38778b9b46a9418fb734622e3f2a43332949eab3"
+    }
+  },
+  "configuration": {
+    "model": "appendix_b_explicit_comparison_not_nonlinear_core",
+    "comparison": {
+      "h": 0.005,
+      "radial_parameter": 32.0,
+      "sigma": 0.2,
+      "axial_offset": 0.025,
+      "swirl_peak": 1.0
+    },
+    "times_to_singularity": [
+      1.0,
+      0.01,
+      0.0001,
+      1e-06
+    ],
+    "grid": [
+      129,
+      257
+    ],
+    "scaled_radial_extent": 4.0,
+    "eta_extent": 0.12,
+    "divergence_grids": [
+      [
+        33,
+        65
+      ],
+      [
+        65,
+        129
+      ],
+      [
+        129,
+        257
+      ]
+    ],
+    "viscosity_reference": 1.0
+  },
+  "comparison_parameters": {
+    "h": 0.005,
+    "radial_parameter": 32.0,
+    "sigma": 0.2,
+    "axial_offset": 0.025,
+    "swirl_peak": 1.0
+  },
+  "precision": "float64",
+  "grid_type": "uniform (X, eta), mapped to a curved physical window",
+  "time_step_strategy": "none: independent prescribed snapshots",
+  "solver_tolerances": {
+    "coordinate_bisections": 56,
+    "axis_quadrature_epsabs": 1e-12,
+    "axis_quadrature_epsrel": 1e-12
+  },
+  "r_core_definition": "r at X=Y_max/Lambda, eta=0; prescribed window boundary, not a measured swirl maximum",
+  "metrics": [
+    {
+      "tau": 1.0,
+      "r_core": 0.5,
+      "axial_half_extent": 0.12086467876475404,
+      "U_max": 1.1179921574247624,
+      "tangential_max": 0.501314464445461,
+      "swirl_max": 0.4999873990929204,
+      "axial_max": 0.5013144569351959,
+      "radial_max": 1.000003720701237,
+      "kinetic_energy_in_window": 0.05535129671074494
+    },
+    {
+      "tau": 0.01,
+      "r_core": 0.05,
+      "axial_half_extent": 0.012367997879423729,
+      "U_max": 11.232489936630435,
+      "tangential_max": 5.129915783960195,
+      "swirl_max": 5.11633601720466,
+      "axial_max": 5.129915707108179,
+      "radial_max": 10.00003720701237,
+      "kinetic_energy_in_window": 0.005706481844209897
+    },
+    {
+      "tau": 0.0001,
+      "r_core": 0.005,
+      "axial_half_extent": 0.001265608555855753,
+      "U_max": 112.8727336592439,
+      "tangential_max": 52.49406872716899,
+      "swirl_max": 52.355107925591525,
+      "axial_max": 52.49406794074769,
+      "radial_max": 100.00037207012369,
+      "kinetic_energy_in_window": 0.000588485934565776
+    },
+    {
+      "tau": 1e-06,
+      "r_core": 0.0005,
+      "axial_half_extent": 0.00012950883661777573,
+      "U_max": 1134.4355109575622,
+      "tangential_max": 537.1681266481631,
+      "swirl_max": 535.746150503604,
+      "axial_max": 537.1681186007692,
+      "radial_max": 1000.0037207012368,
+      "kinetic_energy_in_window": 6.0706428075866277e-05
+    }
+  ],
+  "slopes_vs_core_radius": {
+    "U_max": -1.0021136172033824,
+    "tangential_max": -1.0099999999999998,
+    "swirl_max": -1.01,
+    "axial_max": -1.0099999999999998,
+    "radial_max": -0.9999999999999997
+  },
+  "divergence": {
+    "comparison": [
+      {
+        "tau": 1.0,
+        "grid": [
+          33,
+          65
+        ],
+        "r_bounds": [
+          0.0,
+          0.5
+        ],
+        "z_bounds": [
+          -0.12086467876475404,
+          0.12086467876475404
+        ],
+        "divergence_linf": 9.923596734262574e-05,
+        "divergence_axis_linf": 9.923596733063533e-05,
+        "divergence_volume_rms": 5.5495100168723295e-05,
+        "relative_linf": 2.4808991835656435e-05,
+        "gradient_scale": 4.0,
+        "observed_order": null
+      },
+      {
+        "tau": 1.0,
+        "grid": [
+          65,
+          129
+        ],
+        "r_bounds": [
+          0.0,
+          0.5
+        ],
+        "z_bounds": [
+          -0.12086467876475404,
+          0.12086467876475404
+        ],
+        "divergence_linf": 2.47233973409422e-05,
+        "divergence_axis_linf": 2.472339733561313e-05,
+        "divergence_volume_rms": 1.3742028197654759e-05,
+        "relative_linf": 6.180841783445355e-06,
+        "gradient_scale": 4.0000048872244,
+        "observed_order": 2.004987868875639
+      },
+      {
+        "tau": 1.0,
+        "grid": [
+          129,
+          257
+        ],
+        "r_bounds": [
+          0.0,
+          0.5
+        ],
+        "z_bounds": [
+          -0.12086467876475404,
+          0.12086467876475404
+        ],
+        "divergence_linf": 6.170053327370084e-06,
+        "divergence_axis_linf": 6.170053272747111e-06,
+        "divergence_volume_rms": 3.4191256848103717e-06,
+        "relative_linf": 1.5425082635407317e-06,
+        "gradient_scale": 4.000013143013646,
+        "observed_order": 2.0025251173410803
+      },
+      {
+        "tau": 0.01,
+        "grid": [
+          33,
+          65
+        ],
+        "r_bounds": [
+          0.0,
+          0.05
+        ],
+        "z_bounds": [
+          -0.012367997879423729,
+          0.012367997879423729
+        ],
+        "divergence_linf": 0.009923596736825857,
+        "divergence_axis_linf": 0.009923596736427953,
+        "divergence_volume_rms": 0.005549510016841343,
+        "relative_linf": 2.4808991842064643e-05,
+        "gradient_scale": 400.0,
+        "observed_order": null
+      },
+      {
+        "tau": 0.01,
+        "grid": [
+          65,
+          129
+        ],
+        "r_bounds": [
+          0.0,
+          0.05
+        ],
+        "z_bounds": [
+          -0.012367997879423729,
+          0.012367997879423729
+        ],
+        "divergence_linf": 0.002472339744144847,
+        "divergence_axis_linf": 0.0024723397428374483,
+        "divergence_volume_rms": 0.0013742028199147274,
+        "relative_linf": 6.1808418085718915e-06,
+        "gradient_scale": 400.0004887224401,
+        "observed_order": 2.004987863383404
+      },
+      {
+        "tau": 0.01,
+        "grid": [
+          129,
+          257
+        ],
+        "r_bounds": [
+          0.0,
+          0.05
+        ],
+        "z_bounds": [
+          -0.012367997879423729,
+          0.012367997879423729
+        ],
+        "divergence_linf": 0.000617005295225681,
+        "divergence_axis_linf": 0.0006170052939182824,
+        "divergence_volume_rms": 0.0003419125681426759,
+        "relative_linf": 1.5425081697627213e-06,
+        "gradient_scale": 400.00131430136463,
+        "observed_order": 2.002525210915755
+      },
+      {
+        "tau": 0.0001,
+        "grid": [
+          33,
+          65
+        ],
+        "r_bounds": [
+          0.0,
+          0.005
+        ],
+        "z_bounds": [
+          -0.001265608555855753,
+          0.001265608555855753
+        ],
+        "divergence_linf": 0.9923596735316096,
+        "divergence_axis_linf": 0.9923596732260194,
+        "divergence_volume_rms": 0.5549510016788967,
+        "relative_linf": 2.480899183829024e-05,
+        "gradient_scale": 40000.0,
+        "observed_order": null
+      },
+      {
+        "tau": 0.0001,
+        "grid": [
+          65,
+          129
+        ],
+        "r_bounds": [
+          0.0,
+          0.005
+        ],
+        "z_bounds": [
+          -0.001265608555855753,
+          0.001265608555855753
+        ],
+        "divergence_linf": 0.24723397385969292,
+        "divergence_axis_linf": 0.24723397367051803,
+        "divergence_volume_rms": 0.13742028198198772,
+        "relative_linf": 6.180841794702114e-06,
+        "gradient_scale": 40000.048872244006,
+        "observed_order": 2.004987866401315
+      },
+      {
+        "tau": 0.0001,
+        "grid": [
+          129,
+          257
+        ],
+        "r_bounds": [
+          0.0,
+          0.005
+        ],
+        "z_bounds": [
+          -0.001265608555855753,
+          0.001265608555855753
+        ],
+        "divergence_linf": 0.061700530859525315,
+        "divergence_axis_linf": 0.061700530437519774,
+        "divergence_volume_rms": 0.03419125681982333,
+        "relative_linf": 1.542508203186542e-06,
+        "gradient_scale": 40000.13143013646,
+        "observed_order": 2.002525176417334
+      },
+      {
+        "tau": 1e-06,
+        "grid": [
+          33,
+          65
+        ],
+        "r_bounds": [
+          0.0,
+          0.0005
+        ],
+        "z_bounds": [
+          -0.00012950883661777573,
+          0.00012950883661777573
+        ],
+        "divergence_linf": 99.23596732737496,
+        "divergence_axis_linf": 99.23596732318401,
+        "divergence_volume_rms": 55.49510016891145,
+        "relative_linf": 2.480899183184374e-05,
+        "gradient_scale": 4000000.0,
+        "observed_order": null
+      },
+      {
+        "tau": 1e-06,
+        "grid": [
+          65,
+          129
+        ],
+        "r_bounds": [
+          0.0,
+          0.0005
+        ],
+        "z_bounds": [
+          -0.00012950883661777573,
+          0.00012950883661777573
+        ],
+        "divergence_linf": 24.723397485911846,
+        "divergence_axis_linf": 24.723397478461266,
+        "divergence_volume_rms": 13.742028199262526,
+        "relative_linf": 6.180841819687722e-06,
+        "gradient_scale": 4000004.887224401,
+        "observed_order": 2.0049878601944466
+      },
+      {
+        "tau": 1e-06,
+        "grid": [
+          129,
+          257
+        ],
+        "r_bounds": [
+          0.0,
+          0.0005
+        ],
+        "z_bounds": [
+          -0.00012950883661777573,
+          0.00012950883661777573
+        ],
+        "divergence_linf": 6.170053154230118,
+        "divergence_axis_linf": 6.170053124427795,
+        "divergence_volume_rms": 3.4191256845769566,
+        "relative_linf": 1.5425082202558823e-06,
+        "gradient_scale": 4000013.1430136464,
+        "observed_order": 2.002525166284513
+      }
+    ],
+    "manufactured": [
+      {
+        "grid": [
+          33,
+          65
+        ],
+        "linf": 0.00421842272679851
+      },
+      {
+        "grid": [
+          65,
+          129
+        ],
+        "linf": 0.0010571075505658722
+      },
+      {
+        "grid": [
+          129,
+          257
+        ],
+        "linf": 0.00026443346562987635
+      }
+    ],
+    "normalization": "Linf(div u) / Linf(V0/(X q)); denominator is the exact radial divergence term",
+    "boundary_policy": "all points included; second-order one-sided edges and analytic smooth-axis limit"
+  },
+  "expected_tangential_slope": -1.01,
+  "radial_concentration_factor": 1000.0,
+  "velocity_amplification": 1014.7079328093644,
+  "pressure_and_residual": "not evaluated: exterior pressure datum and nonlinear core not constructed",
+  "vorticity": "not evaluated in Tasks 1-6",
+  "limitations": "Explicit B.13 comparison only; finite parameter hierarchy not certified; no annulus, cutoffs, pulses, or time integration",
+  "plots": [
+    "physical_profiles.png",
+    "similarity_profiles.png",
+    "physical_fields.png",
+    "similarity_fields.png",
+    "scaling.png",
+    "divergence_convergence.png",
+    "divergence_field.png"
+  ],
+  "stopping_reason": "all configured snapshots evaluated"
+}

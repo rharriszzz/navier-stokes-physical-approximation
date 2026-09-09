@@ -104,8 +104,9 @@ Each run saves the complete configuration, runtime package versions, machine,
 WSL kernel, CPU, available RAM, detected GPU (unused), float precision, Git
 commit/status, and hashes of source/config/test files. Uncommitted source is
 identified honestly by the dirty status and hashes. New run directories cannot
-overwrite earlier output. Generated files are ignored by Git; compact findings
-are preserved in [experiment-log.md](experiment-log.md).
+overwrite earlier output. Generated files are ignored by Git except for the
+selected baseline PNG plots and summary in `results/core-comparison`.
+Compact findings are preserved in [experiment-log.md](experiment-log.md).
 
 No time step is taken. Invalid input or a nonfinite field raises an error.
 Successful runs record `all configured snapshots evaluated`. Failed runs raise
