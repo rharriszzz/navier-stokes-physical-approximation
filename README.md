@@ -246,3 +246,24 @@ Result: modest first corrections are accessible after pressure-amplitude
 compression, but retained radial schedules still span 141-196 decades in X.
 See the [third-milestone report](notes/experiment-log.md#third-milestone-relaxed-scheduled-pressure-2026-09-10-utc).
 Work stops for scientific review before any nonlinear (B.15) solve.
+
+## Schedule compression and sacrifice audit
+
+The fourth milestone preserves the relaxed reference and adds a separate
+**compressed, NOT theorem-admissible** length-only model. The
+[source audit](notes/compression-audit.md) distinguishes bump-support minima,
+moment and stress estimates, and reserved regions for later corrections.
+
+```bash
+python scripts/compressed_not_theorem_admissible.py
+```
+
+The [config](configs/compressed_not_theorem_admissible.yaml) runs ten
+one-at-a-time changes and three combined candidates. Radius separation falls
+from 70.44 to 8.78 decades with about 1.5e-11 relative change in Z_star,
+but substantial support and slope guarantees are sacrificed. Q matching
+remains conditional on prescribed moment data, not verified global moments.
+Three radius decades are blocked by the unchanged early stages alone.
+See the [fourth-milestone report](notes/experiment-log.md#fourth-milestone-schedule-compression-2026-09-10-utc)
+and its linked plots, condition table and reference summary. No nonlinear
+solve, dynamical concentration, or physical realizability is claimed.

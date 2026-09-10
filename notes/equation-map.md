@@ -152,3 +152,13 @@ independently checked; omitting the angular bumps does NOT justify computing
 the initial Q from the uncorrected scheduled swirl. The prescribed initial
 value `(lambda-h)/(1-lambda)` is retained from the moment-corrected construction,
 whose realization is not certified in this relaxed experiment.
+
+## Fourth milestone: length compression audit
+
+Before changing numerical code, the stage-by-stage source dependencies,
+support minima, proof margins, conditional Q interpretation and selected
+length-only experiments are recorded in [compression-audit.md](compression-audit.md).
+The new models are modified finite schedules, not applications of Lemma A.5
+to unchanged paper intervals. Its proof's factorization and integrable-tail
+argument still apply to their A.21-style integral. No unchanged datum or
+global moment identity is inferred from a small numerical pressure difference.

@@ -1,0 +1,44 @@
+model: compressed_not_theorem_admissible
+reference_config: configs/relaxed_not_theorem_admissible.yaml
+targets_radius_decades: [30, 10, 3]
+radial_parameters: [128, 512]
+cases:
+  - name: intermediate_26
+    group: one_at_a_time
+    lengths: {intermediate_power: 26}
+  - name: intermediate_1
+    group: one_at_a_time
+    lengths: {intermediate_power: 1}
+  - name: pulse_59
+    group: one_at_a_time
+    lengths: {axial_pulse_swirl_interval: 59}
+  - name: pulse_1
+    group: one_at_a_time
+    lengths: {axial_pulse_swirl_interval: 1}
+  - name: angular_4
+    group: one_at_a_time
+    lengths: {angular_bump_interval_unbumped: 4}
+  - name: angular_1
+    group: one_at_a_time
+    lengths: {angular_bump_interval_unbumped: 1}
+  - name: interpolation_56
+    group: one_at_a_time
+    lengths: {profile_interpolation: 56}
+  - name: interpolation_8
+    group: one_at_a_time
+    lengths: {profile_interpolation: 8}
+  - name: release_half
+    group: one_at_a_time
+    factors: {release_hold: 0.5}
+  - name: release_2
+    group: one_at_a_time
+    lengths: {release_hold: 2}
+  - name: principal_support
+    group: combined
+    lengths: {intermediate_power: 1, axial_pulse_swirl_interval: 59, angular_bump_interval_unbumped: 4, profile_interpolation: 56, release_hold: 2}
+  - name: local_slope
+    group: combined
+    lengths: {intermediate_power: 1, axial_pulse_swirl_interval: 1, angular_bump_interval_unbumped: 1, profile_interpolation: 56, release_hold: 2}
+  - name: aggressive
+    group: combined
+    lengths: {intermediate_power: 1, axial_pulse_swirl_interval: 1, angular_bump_interval_unbumped: 1, profile_interpolation: 8, release_hold: 2}

@@ -312,3 +312,43 @@ The metadata now includes `architecture` and Python address bits. On macOS
 it queries `sysctl hw.memsize` for total RAM, reports available memory as
 unavailable rather than inventing a value, and queries the CPU brand. A mocked
 macOS branch test is not an actual iMac numerical run.
+
+## Fourth milestone: explicitly modified lengths
+
+[Compression audit](compression-audit.md) records the source dependency matrix
+and the choices made before code changes. The independent model in
+[compressed_not_theorem_admissible.py](../src/nsblowup/compressed_not_theorem_admissible.py)
+inherits RelaxedSchedule, intercepting only insertion of the five authorized
+stage lengths. The original class, formulas, reference config and reference
+artifacts remain unchanged. No zero-length stage or Q-hold override is allowed.
+Changing the release hold propagates to its actual Q endpoint and the derived
+Q stopping hold, rather than reusing the baseline hold. Original, modified,
+ratio, retained, sacrificed and unchecked fields accompany each override.
+
+The workflow reuses the third-milestone validation routine and its tolerances,
+513-point eta grid, independent integrating-factor checks, and 97-point
+finite-difference derivative check. A failed interpolation-slope check is
+accepted only in a branch whose metadata explicitly sacrifices that bound;
+the raw failed check stays visible in the summary. All other validation
+failures stop the run. A relative local-data change of 0.1 also stops further
+compression, a conservative numerical review threshold rather than a theorem.
+
+Normalized changes compare the tightened modified calculation against the
+tightened original RelaxedSchedule. For Pi0 the denominator is its baseline
+maximum; for derivatives and Z_star it is max(1,baseline maximum). In these
+runs the Pi0 maximum exceeds one, so the common denominator implementation
+agrees with that definition. Maxima are sampled, not certified suprema.
+One-at-a-time differences round to zero in the total float64 values; those
+are unresolved changes, not exact pressure conservation. Stagewise log
+integrals still record the changed late contributions. The aggressive
+change around 1e-11 is larger than the observed 2.68e-14 quadrature refinement
+floor; its final digits are not rigorous error-certified.
+
+Run `python scripts/compressed_not_theorem_admissible.py`. The config uses
+source-chosen lengths or explicit factors, resolved to actual lengths against
+the reference at runtime. All output directories must be new. The final
+reference summary, three plots and condition table are selected for version
+control; reconstructible NPZ arrays and temporary runs remain ignored.
+The table's support flags concern geometry only; global moment and stress
+verification flags remain false even for the relaxed baseline. Conditional
+terminal Q identities do not remove that qualification.

@@ -139,3 +139,46 @@ Decision: archive and publish this receipt before execution; perform the
 fourth milestone subject to its source-audit and numerical stop conditions;
 record findings separately and stop for review. This receipt is authorization,
 not evidence that the proposed compression preserves any mathematical property.
+
+### Local fourth-milestone outcome
+
+Recorded 2026-09-10 UTC. Prompt/receipt publication: `be32c4b`. Source audit
+preceded implementation. The separate compressed model leaves RelaxedSchedule
+unchanged. Ten OAT modifications and three combined candidates were measured;
+all 70 tests pass. Combined radius spans are 32.446819, 19.200838 and
+8.777770 decades versus 70.444541 baseline. Aggressive relative Z_star change
+is 1.45065e-11; specific support, slope and proof estimates are sacrificed.
+Conditional Q endpoints still pass, but actual global moments and stress are
+not established. See the [fourth report](experiment-log.md#fourth-milestone-schedule-compression-2026-09-10-utc).
+
+Local recommendation: option B, a later core-only B.15 diagnostic using the
+aggressive datum with the relaxed datum as control, subject to scientific
+review. This is Copilot's recommendation from measured results, not an
+instruction received from the other AI. No B.15 solve was performed. Results
+are local pending publication; no further web-AI response is recorded yet.
+
+## Exchange 005: fourth-milestone publication and review handoff
+
+Following the fourth-milestone report, the user explicitly requested:
+
+> I will let the other ai review.  please add commit and push, and include your response to the other ai.  thanks!
+
+Decision: publish the completed implementation, source audit, report, selected
+reference plots, condition table and JSON summary together with this handoff.
+The unpublished status above records the earlier state. Git history identifies
+the subsequent publication commit; original run provenance is not rewritten.
+No response to this handoff has been received yet.
+
+### Copilot to Web ChatGPT
+
+> The fourth milestone is complete. Please review the [report](https://github.com/rharriszzz/navier-stokes-physical-approximation/blob/master/notes/experiment-log.md#fourth-milestone-schedule-compression-2026-09-10-utc), its linked source dependency audit, condition table, plots and reference summary. The original RelaxedSchedule and its reference artifacts remain unchanged. All 70 tests pass on Daisy.
+>
+> Ten one-at-a-time length changes and three combined schedules were evaluated. Combined radius spans are 32.446819 decades with principal pulse/bump supports retained, 19.200838 with the interpolation-slope bound retained but those supports sacrificed, and 8.777770 with that slope bound also sacrificed, versus 70.444541 baseline. Support retention is not moment solvability.
+>
+> For the aggressive case, relative changes are 1.61e-11 in Pi0, 2.24e-11 in Pi0_eta, 2.37e-11 in Pi0_etaeta and 1.45e-11 in Z_star. First-correction maxima remain approximately 0.398812 at Lambda=128 and 0.099703 at Lambda=512. These are first-term diagnostics, not nonlinear errors. Most other changes are below numerical resolution, not proven exactly zero.
+>
+> All modified schedules retain smooth positive swirl formulas, convergent infinite ends, validated pressure derivatives and conditional Q endpoint identities. The aggressive case sacrifices reserved supports, principal pulse/angular-bump supports, the A.10 slope bound, and the published suppression estimates. Actual global moments, pressure-preserving bump realization and stress cones remain unverified. In particular, release Q is imposed from the moment-corrected construction; it is not derived from the unbumped compressed field.
+>
+> Under the retained early stages and conditional Q construction, conservative lower bounds are 30.415393 radius decades when principal supports and the eta slope bound are retained, 16.322970 when retaining the eta slope bound alone, and 4.281770 from fixed stages alone. Thus the 3-decade target cannot be reached within this five-length-only scope. Please independently check these bounds and the support-versus-estimate classification.
+>
+> My recommendation is option B: a later core-only B.15 diagnostic using the aggressive compressed datum, with the original relaxed datum as control. Please assess whether this is scientifically worthwhile or whether actual moment/stress compatibility should come first, then supply a narrowly scoped next prompt. Near-identical local data do not demonstrate a globally matched, dynamically concentrating or physically realizable flow. All models remain NOT theorem-admissible; no B.15 solve, time integration or stress realization was attempted.

@@ -610,3 +610,253 @@ Artifacts: [summary and full validation](../results/relaxed_not_theorem_admissib
 The NPZ arrays are local, reconstructible output and remain ignored. Request
 scientific review of this finite-pressure versus scale-separation tradeoff
 before any nonlinear correction implementation.
+
+---
+
+# Fourth milestone: schedule compression, 2026-09-10 UTC
+
+## Outcome and provenance
+
+The user supplied [FOURTH_PROMPT.md](../FOURTH_PROMPT.md) and authorized the
+archive/publish/execute/review pattern. The unchanged prompt and exchange
+receipt were committed and pushed as `be32c4b` before execution. Source roles,
+support thresholds and forfeited estimates were audited before mathematical
+code changes. This is a **modified finite model, NOT theorem-admissible**.
+The original RelaxedSchedule, its config and published outputs are unchanged.
+
+Ten one-at-a-time compressions and three combined cases were evaluated against
+the baseline. The most compressed case reduces separation from **70.444541
+to 8.777770 radius decades** with relative changes of order 1e-11 in local
+data. This does not preserve the full Appendix A construction. No B.15 solve,
+stress realization, time integration, dimensionalization or GPU work was done.
+
+## 1. Stage-condition dependency matrix
+
+The complete twelve-stage matrix is in [compression-audit.md](compression-audit.md).
+It identifies paper equations/pages and P/M/S/R/T roles for every stage, with
+the distinction between moment closure, S-pulse amplitude, conditional Q
+matching, stress estimates, four reserved patches, heat compensation and
+higher-order/background/phase-averaged corrections. Directly read Appendix
+A.2-A.5, pp129-137, A.1-A.3 pp127-128, and B.1-B.3 pp144-147 from the
+same PDF digest. No dominant length formula remains ambiguous for this
+experiment; optimal finite estimates and actual moment/stress conditions
+remain unchecked rather than being assumed.
+
+## 2. Hard constraints and margins
+
+- T_w>25 keeps the four paper-positioned patches inside the interval. The
+  factor 60 also supplies amplitude/transient suppression in A.14 and A.27;
+  it is not merely reserved blank space.
+- The principal pulse ends at 11/lambda. The two .3-wide axial bumps fit
+  strictly after it if T_p>11/lambda+3.15=58.15. Room for these bumps does
+  not retain the exponential smallness or the A.19 amplitude-root argument.
+- Two .3-wide angular bumps fit at the stated centers if T_a>3.15. The
+  original 30 log(1/lambda) also suppresses the r_I discrepancy for the
+  nonlinear pressure-preserving correction. Lemma A.2 smallness is unchecked.
+- T_f>=80 log(2)=55.45177444 preserves A.10's slope bound. T_f=56 passes;
+  T_f=8 deliberately fails it while retaining smooth eta removal.
+- Shortening the release hold replaces h^8 and h^6 by exp(-2T) and
+  exp(-1.5T). The Q stopping hold is recomputed, never overridden.
+
+The paper's moment-weight slopes both exceeding .4 already fails at the
+relaxed lambda=.2 (the slopes are .3 and .1). Thus even the baseline's
+principal supports are not a certificate of the small-correction argument.
+All earlier relaxed hierarchy violations continue to apply.
+
+## 3. One-at-a-time results
+
+All use M_d=1, P_star=2, lambda=.2, h=.005, j0=.025, c_o=.025 and
+the unchanged reference unless the named length is overridden. Each entry
+has full original/modified/ratio and sacrifice metadata in the summary.
+For every OAT case the computed relative changes in Pi0, both derivatives
+and Z_star round to zero in the tightened float64 totals. Report this as
+**unresolved at the observed numerical precision**, not exactly invariant.
+
+| Case | Modified log length | Delta y | X decades | Radius decades | Additional sacrificed structure |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Baseline | none | 324.409099 | 140.889082 | 70.444541 | None beyond relaxed baseline's unverified guarantees |
+| intermediate_26 | 26 | 253.842825 | 110.242538 | 55.121269 | Paper transient/amplitude margins; reserved supports fit |
+| intermediate_1 | 1 | 228.842825 | 99.385176 | 49.692588 | Also four reserved supports |
+| pulse_59 | 59 | 318.409099 | 138.283315 | 69.141657 | Original pulse integral/separation estimates; supports fit |
+| pulse_1 | 1 | 260.409099 | 113.094235 | 56.547117 | Also main pulse and separated axial bump supports |
+| angular_4 | 4 | 280.125962 | 121.657160 | 60.828580 | lambda^28 discrepancy estimate; bump supports fit |
+| angular_1 | 1 | 277.125962 | 120.354276 | 60.177138 | Also angular bump supports |
+| interpolation_56 | 56 | 316.409099 | 137.414726 | 68.707363 | Original duration; explicit slope bound retained |
+| interpolation_8 | 8 | 268.409099 | 116.568591 | 58.284295 | Also A.10 slope bound |
+| release_half | 10.596635 | 313.170118 | 136.008054 | 68.004027 | Original h^8/h^6 suppression estimates |
+| release_2 | 2 | 303.272537 | 131.709589 | 65.854795 | Same estimates, more aggressively |
+
+Corrections at Lambda=128 and 512 are 0.398812030180 and 0.099703007545
+to displayed precision for all OAT cases. Intermediate and pulse intervals
+are adjacent with identical constant slopes and eta factors: they can trade
+length without changing the combined exponential segment except at its far
+end. That is one reason the OAT pressure sensitivity is so small.
+
+## 4. Combined candidates
+
+All stages remain positive; no pulse implementation or zero-length deletion
+was introduced. Length columns are in local log radius. All fixed transitions
+and early axial reduction remain unchanged; Q hold is derived separately.
+
+| Candidate | T_w | T_p | T_a | T_f | Release hold | Delta y | X decades | Radius decades |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| principal_support | 1 | 59 | 4 | 56 | 2 | 149.423125 | 64.893639 | 32.446819 |
+| local_slope | 1 | 1 | 1 | 56 | 2 | 88.423125 | 38.401675 | 19.200838 |
+| aggressive | 1 | 1 | 1 | 8 | 2 | 40.423125 | 17.555540 | 8.777770 |
+
+The first label means support-aware, NOT moment-solved. The second is an
+A.21-style local-data experiment, NOT an exactly pressure-preserving edit.
+The last is a diagnostic aggressive analogue, NOT a physical realization.
+
+## 5. Sacrifice matrix
+
+| Property | Baseline | principal_support | local_slope | aggressive |
+| --- | --- | --- | --- | --- |
+| Positive smooth swirl, same formulas, convergent infinite ends | Retained | Retained | Retained | Retained |
+| Four paper-positioned reserved patches | Fit | Lost | Lost | Lost |
+| Main axial pulse and separated end-bump supports | Fit | Fit | Lost | Lost |
+| Principal angular-bump supports | Fit | Fit | Lost | Lost |
+| A.10 interpolation slope bound | Retained | Retained | Retained | Sacrificed |
+| Original h^8/h^6 release factors | Retained | Lost | Lost | Lost |
+| Published lambda-power suppression estimates | Unverified at relaxed parameters | No longer asserted | No longer asserted | No longer asserted |
+| Scalar Q endpoint identities with imposed initial Q | Verified | Verified | Verified | Verified |
+| Actual M,J,S,I moments and pressure-preserving bumps | Unchecked | Unchecked | No supporting construction asserted | No supporting construction asserted |
+| Stress cone, heat compensation, inner matching, later corrections | Unchecked | Not asserted | Not asserted | Not asserted |
+| Theorem admissibility | No | No | No | No |
+
+The full per-case [condition table](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_conditions.md)
+and per-override JSON metadata preserve this distinction. A "yes" support
+flag is geometry, not proof of coefficient existence or acceptable stress.
+
+## 6. Geometry targets and constraints
+
+- **30 radius decades:** local_slope reaches 19.20. Retaining the original
+  principal pulse/bump supports AND the eta slope bound cannot reach 30
+  under the fixed early stages and conditional Q construction: conservative
+  lower bound 30.415393. Derivation in the source audit uses nonnegative
+  Q source and at most exp(-2) damping across the two unit ramps; the
+  required Q hold is at least 3.598005 log units.
+- **10 radius decades:** aggressive reaches 8.78, but sacrifices the eta
+  slope bound. Even with the other adjustable lengths and Q hold set to
+  zero as a lower-bound argument, retaining that slope bound costs at least
+  16.322970 radius decades. This is not a proposed zero-length run.
+- **3 radius decades:** impossible in this length-only scope. The unchanged
+  early stages, two release ramps and collar alone cost 4.281770 radius
+  decades, before any adjustable interval or Q hold. No unrelated parameter
+  or formula was altered to force the target.
+
+These are bounds for the stated retained structure, not general impossibility
+claims for every possible finite model. The aggressive case saves 61.666771
+radius decades, about 87.54% of the reference span, yet 8.78 decades still
+does not imply a laboratory-scale flow.
+
+## 7. Local data and first corrections
+
+Changes use baseline Linf denominators (at least one for derivatives and Z).
+The original Pi0 and derivative maxima exceed one. Grid: 513 points on
+[-1,1]. Maxima are sampled, not certified continuous suprema.
+
+| Candidate | Relative Pi0 change | Relative Pi0_eta change | Relative Pi0_etaeta change | Relative Z_star change |
+| --- | ---: | ---: | ---: | ---: |
+| principal_support | unresolved (rounded 0) | unresolved | unresolved | unresolved |
+| local_slope | 5.36e-16 | 5.18e-16 | 5.36e-16 | 5.58e-16 |
+| aggressive | 1.61147e-11 | 2.23900e-11 | 2.37055e-11 | 1.45065e-11 |
+
+Local_slope differences are below the observed numerical refinement floor
+and are unresolved. Aggressive differences exceed it; their last digits are
+not certified. Aggressive maxima are 13.2584902225006 for abs(Pi0),
+13.7252027360771 for abs(Pi0_eta), 53.0339608895996 for abs(Pi0_etaeta),
+and 25.4776976095575 for abs(Z_star). Both pressure sign structure and the
+positive Z_star at the negative H_star root survive these tests.
+
+| Model | max abs(delta U1), Lambda128 | Lambda512 | Root abs(delta U1), Lambda128 | Lambda512 |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline | 0.398812030180 | 0.099703007545 | 0.006913728454 | 0.001728432113 |
+| Aggressive | 0.398812030174 | 0.099703007544 | 0.006913728454 | 0.001728432113 |
+
+The maximum absolute correction change over eta is 5.78e-12 at Lambda128
+and 1.45e-12 at Lambda512. Relative to max abs(U_star)=4.025, aggressive
+corrections are 0.0990837342 and 0.0247709336. These remain **first explicit
+terms only**, not computed nonlinear errors or evidence of concentration.
+
+## 8. Q and numerical validation
+
+Q release initial value remains (lambda-h)/(1-lambda)=0.24375, conditional
+on A.11. It is NOT the global moment of the unbumped compressed field.
+Q_p=0.000919549105438 is unchanged because h and the collar are unchanged.
+The release_2 and combined cases have Q_start=1.96342734277 and a derived
+Q hold of 7.70484291584, compared with 13.5755211792 and 9.64813604875
+for baseline. The half-release Q hold is 9.005790. All collar endpoints
+are approximately 1.30e-17; independent integrating-factor checks pass.
+
+Every case retains C2 joins with maximum log-value mismatch 2.85e-14 and
+zero measured derivative mismatch at joins. Pressure and derivative relative
+changes on tightening quadrature/ODE tolerances are at most 2.68e-14;
+per-stage log-integral changes are at most 1.31e-12. Analytic derivatives
+agree with independent pressure finite differences at second order; finest
+relative errors are about 1.93e-6 and 1.50e-6. Symmetry and strict sign tests
+pass. No instability, Q failure, or order-one local-data change occurred.
+
+For T_f=8 the measured minimum l is -0.893147, below the required -0.3.
+This is an explicit sacrificed check, preserved as false in the summary,
+not hidden by changing the validation criterion or slope formula. T_f=56
+has minimum -0.299021 and passes. All other required checks must pass.
+
+## 9. Remaining dominant geometry
+
+For principal_support, T_p=59 and T_f=56 dominate. For local_slope, T_f=56
+dominates. In aggressive, T_d=12.718282, T_f=8 and Q hold=7.704843 together
+account for about 70.3% of Delta y. Further substantial compression would
+need to revisit early axial reduction, the eta-removal condition, or the
+terminal construction, beyond the present five-length audit. Tiny pressure
+change alone says nothing about whether the missing global moments or stress
+can be restored on the remaining short supports.
+
+## 10. Suitability for a core-only B.15 diagnostic
+
+**Recommendation B: use the aggressive compressed datum for a later core-only
+nonlinear diagnostic, with the original relaxed datum as a control.** It
+reduces geometry dramatically while preserving the tested local pressure,
+derivatives, sign structure and Z_star to approximately 1e-11. The retained
+factorization E=c(y)f^theta and integrable ends support the same analytic
+datum argument; no new pressure fit was introduced.
+
+This recommends a numerical experiment, not invoking Proposition B.2 with
+certified thresholds. Sigma_star, the analytic neighborhood, C0(Lambda),
+nonlinear residual convergence and finite-Lambda accuracy still need their
+own validation. Near-identical datum should not be sold as a dynamically
+validated or globally realizable compressed mechanism. Any claim about an
+actual exterior must first address missing moment closure and stress; scalar
+conditional Q alone cannot supply those missing facts.
+
+## 11. Next milestone and review stop
+
+Stop here for review, as requested. A next prompt could authorize only a
+core-only B.15 formulation and convergence experiment using this specific
+compressed datum, with a baseline-datum control and no global matching claims.
+Alternatively the scientific review may prioritize actual angular moment and
+stress compatibility; that is a different next task, not performed here.
+
+Run date 2026-09-10T00:59:13 UTC, Daisy/WSL2, Python 3.12.14, CPU float64,
+x86_64 i7-14700F. Fourteen total cases took 18.98 seconds. WSL reported
+7,983,812 kB total and 5,069,128 kB available RAM. No iMac run is claimed.
+The summary records parent commit `be32c4b`, dirty status, full configs,
+versions and source hashes; that parent alone does not contain new code.
+
+Validation: all **70 tests pass**, including the original 61, eight new
+model tests and one workflow/no-overwrite test. Unit compression reproduces
+RelaxedSchedule exactly; invalid lengths and Q overrides fail explicitly.
+Editor diagnostics show no errors. All three plots were inspected; the first
+run's crowded labels were fixed and the final reference regenerated to a
+new directory, preserving the initial output rather than overwriting it.
+
+Reproduce with `.venv/bin/python scripts/compressed_not_theorem_admissible.py`
+and `.venv/bin/python -m pytest -q`. No time step is taken. New results and
+implementation are local pending review/publication; only the prompt receipt
+has been published at this point. Earlier baseline artifacts are untouched.
+
+Final artifacts: [summary and validation](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_summary.json),
+[cumulative stage geometry](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_stages.png),
+[Pi0 and Z_star comparison](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_local_data.png),
+[local error versus geometry saved](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_tradeoff.png),
+[condition table](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_conditions.md).
