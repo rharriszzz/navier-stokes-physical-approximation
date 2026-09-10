@@ -142,3 +142,184 @@ existing Appendix B comparison under radial/axial refinement. Quantify the
 leading tangential residual before and after the correction. Only then attempt
 annular matching and a full finite-truncation residual. Do not proceed to time
 integration, pulse simulation, or 3-D DNS yet.
+
+---
+
+# Second milestone: source-audit stop, 2026-09-09
+
+## Outcome
+
+Read and committed `SECOND_PROMPT.md` as `0b72ac8` before the audit. Re-read
+the project guidance, inspected the existing code/tests/configuration and
+published baseline, and read the pressure dependencies directly in the PDF.
+The PDF SHA-256 still matches the first-milestone source.
+
+**Stopped after source grounding, before constructing Pi0 or attempting a
+nonlinear solve. Tasks 2-4 are not complete.** The requested stop for a
+materially under-specified finite construction applies at the proposed
+baseline: its h is incompatible with the prescribed exterior hierarchy,
+and no alternative admissible finite schedule and normalization have been
+established. A conservative axial-correction bound gives an additional reason
+not to treat the suggested Lambda sweep as a small-correction regime.
+
+This is not a claim that the paper is inconsistent or that no finite schedule
+can be constructed. Section A.2 specifies a family with selectable constants;
+Lemma A.5 even removes several otherwise expensive dependencies from Pi0.
+What remains unresolved is a concrete admissible, useful finite member of that
+family. No arbitrary pressure replacement or silent hierarchy relaxation was made.
+
+## 1. Newly implemented equations
+
+None in production code. The source map now traces (4.31) through (A.5)-(A.23)
+and the pressure-preserving heat replacement in (A.39)-(A.43). It also records
+(B.1), (B.12)-(B.15) and a derived necessary lower bound. A scalar diagnostic
+evaluated that bound; it did not implement Pi0, Z_star for a particular datum,
+or a corrected profile. The diagnostic is reproducible from the snippet in
+[numerical-method.md](numerical-method.md#independent-necessary-check-before-a-nonlinear-solve).
+
+## 2. Numerical assumptions and unresolved choices
+
+The scheduled-pressure calculation needs `(M_d, P_star, lambda, h, T_f, c_o)`;
+the constant-slope Q hold ends at the stopping value Q_p in (A.13), rather
+than after an arbitrary chosen length. T_d and T_w are derived. The full
+dependency inventory and explicit/existential distinctions are in
+[equation-map.md](equation-map.md#schedule-dependency-inventory).
+
+Lemma 4.8 / (A.6) require T_d=exp(M_d)+10, P_star>exp(T_d), and
+h<exp(-T_d). Therefore even the weaker necessary conditions are
+
+```text
+h < 4.5399929762484854e-5
+P_star > 22026.465794806718
+```
+
+Every suggested h (0.01, 0.005, 0.0025) fails this necessary schedule test.
+Also, h=0.01 is the excluded upper endpoint in the existing comparison API.
+This does not invalidate the first milestone's comparison-only calculations;
+it prevents treating their config as an admissible exterior/core construction.
+Ordinary choices of smoothing functions can be made explicitly, but cannot
+repair this particular hierarchy mismatch. No new mathematical configuration
+was installed, and the existing comparison configuration was not changed.
+
+## 3. How Pi0 would be obtained
+
+Use the complete scheduled integral (A.21). The angular bumps in (A.11)
+preserve its total value and can be omitted from this calculation. Proposition
+A.7 shows that the compensated heat replacement also leaves Pi0 unchanged.
+There is therefore no need to implement the whole heat exterior or axial
+moment closure merely to integrate a specified schedule.
+
+The inner contribution `-(5/2) P_star^2/(1+eta^2)^2` is exact but is only
+part of that integral. It must not be substituted for the full Pi0. The
+interpolation duration, terminal coefficient and Q event affect the remaining
+integral. Numerical Pi0, Pi0_eta, interpolation, and their errors remain
+uncomputed. No pressure plot was produced.
+
+## 4. Nonlinear inner correction
+
+Not solved. The exact axial datum needed is
+`Z_star=-A(1-2 eta U_star)U_star-H_star U_star_eta-d Pi0_eta+4A eta Pi0`.
+The first explicit correction is `-Y Z_star/(2 L Lambda)`. Without Pi0,
+assigning numerical values to this formula would conceal an unresolved input.
+No optimizer or nonlinear solver was launched, so this is not solver failure.
+
+## 5. Residuals and convergence
+
+No nonlinear residual or convergence result is available. The one scalar
+H_star root solve used `brentq`, bracket [-0.01,0], absolute tolerance 1e-15
+and default relative tolerance; it converged in 5 iterations and
+|H_star(eta0)| was 8.67e-19. This checks
+the location used for the analytical bound, not the nonlinear equations.
+
+## 6. Corrected-versus-comparison errors
+
+No epsilon_U, epsilon_E, radial-velocity error, or corrected-field norms
+were measured. At eta0<0 with H_star=0, the sign of Pi0_eta and (A.22) give
+
+$$
+Z_*(\eta_0)\ge 10A|\eta_0|e^{20}f(\eta_0)^2
+-A(1-2\eta_0 U_*)U_*.
+$$
+
+For the illustrative h=1e-6, j0=0.025, eta0=-0.005555537737779095,
+the lower bound is 1.3475962855866544e7. This h passes only the weakest
+necessary test; it is NOT a certified admissible schedule. The use of exp(20)
+weakens the bound; it does NOT choose P_star or replace Pi0 by its bound.
+Sigma does not enter H_star or this bound.
+
+## 7. Derivative information
+
+Any regular solution of (B.15) must have
+`U_Y(0,eta0)=-Z_star/(2 L Lambda)`; the comparison has U_Y=0.
+The resulting lower bounds on absolute derivative discrepancy are in the
+table below. No derivative-convergence test or second-derivative computation
+was performed. A large axis derivative does not by itself prove a large
+finite-domain field error, nor does the first explicit term control all
+higher corrections at the proposed finite Lambda values.
+
+## 8. Parameter diagnostic, not a solved-profile sweep
+
+| Lambda | Lower bound on abs(U_Y at axis) | Lower bound on first explicit abs(delta U) at Y=4 |
+| --- | ---: | ---: |
+| 16 | 421123.839 | 1684495.36 |
+| 32 | 210561.920 | 842247.679 |
+| 64 | 105280.960 | 421123.839 |
+| 128 | 52640.480 | 210561.920 |
+
+These are conditional necessary bounds under the published datum constraints,
+NOT computed nonlinear profile differences. They show why merely sweeping
+Lambda=16..128 cannot make this explicit first correction small while retaining
+those constraints and j0=0.025 at this illustrative h. No sigma sweep or
+nonlinear h sweep was run. The paper fixes the pressure data before taking
+Lambda large; its constants need not be modest in the earlier parameters.
+
+## 9. Resolution and practical cost
+
+No nonlinear grid, iteration history, runtime scaling, or memory estimate was
+measured. The bound used float64 arithmetic and a single scalar root solve.
+The schedule contains exp(M_d), P_star>exp(exp(M_d)+10), pulse length
+13/lambda in log radius, and later radial derivative scale Lambda. These
+are clear conditioning/scale-separation risks but do not prove that a
+logarithmic, normalized numerical representation is computationally impossible.
+No resource exhaustion occurred; an adequate grid cannot yet be specified.
+
+## 10. Does the comparison approach the corrected core accessibly?
+
+Unanswered for the actual nonlinear profile. The suggested baseline is not
+an admissible pressure/core parameter set under the stated schedule, and
+the necessary-bound diagnostic warns that the first axial correction is far
+from small for modest Lambda if the pressure hierarchy is retained. There
+is no evidence here of convergence of corrected profiles toward the comparison.
+
+## 11. Is a meaningful momentum residual now possible?
+
+No. Neither a consistent numerical pressure datum nor the nonlinear inner
+solution has been produced. Full and leading tangential residuals were not
+computed. Existing baseline plots and their provenance were not overwritten.
+The required new pressure/correction/residual plots are unavailable because
+their inputs were not constructed before this stop.
+
+## 12. Recommended next decision and experiment
+
+Decide explicitly between implementing an admissible Appendix A schedule
+with revised h, j0, Lambda and normalization, versus studying a declared
+relaxation of the hierarchy as a different finite experiment. Neither choice
+should be disguised as the existing validated core. For the faithful path,
+the next bounded task is a schedule-only feasibility calculation: choose and
+validate the six inputs, Q stopping event, pressure integral and its first two
+eta derivatives, then quantify Z_star before budgeting the nonlinear solve.
+Keep the current comparison unchanged as a reference, but do not use its
+four-parameter config as the missing exterior datum.
+
+### Validation and portability
+
+No source, tests, dependencies, configuration, or result artifacts changed in
+this audit; only documentation was extended after the prompt commit. The
+existing test suite passed unchanged: **45 passed in 2.65 s** with
+`python -m pytest -q`. The reproduction snippet above was executed directly
+from the method document and reproduced the table; `git diff --check` passed.
+The scalar audit is
+NumPy/SciPy-only and its reproduction snippet works without Linux-specific
+APIs; actual execution was on Daisy/WSL2, Python 3.12.14. No iMac test is
+claimed. Existing macOS memory metadata is incomplete and remains a follow-up
+before substantive cross-machine calculations.

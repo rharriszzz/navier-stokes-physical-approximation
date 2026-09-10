@@ -111,3 +111,112 @@ Compact findings are preserved in [experiment-log.md](experiment-log.md).
 No time step is taken. Invalid input or a nonfinite field raises an error.
 Successful runs record `all configured snapshots evaluated`. Failed runs raise
 before a success summary is written; partial plots can remain in their directory.
+
+## Second milestone: source-audit stop (2026-09-09)
+
+No nonlinear numerical formulation has been adopted or implemented. The source
+audit encountered a material gap between the proposed finite baseline and the
+exterior schedule required for its pressure data. The existing solver-free
+comparison implementation and all baseline artifacts are unchanged.
+
+### What the pressure calculation would require
+
+The exact shortcut is (A.21), not a generic pressure fit: integrate the full
+scheduled squared swirl over logarithmic radius, omitting only the
+pressure-preserving angular bumps. The schedule in Section A.2 is explicit
+once its finite choices and stopping event have been fixed. For example, its
+reference inner contribution integrates analytically to
+`-(5/2) P_star^2/(1+eta^2)^2`; all later intervals and the infinite tail must
+still be included. The scheduled tail can also be integrated analytically
+once its starting amplitude is known. Log-amplitude storage and stage-local
+integration would be important, since physical radii can be enormous.
+
+Required finite choices are `(M_d, P_star, lambda, h, T_f, c_o)` with the
+constraints and Q stopping rule enumerated in [equation-map.md](equation-map.md).
+Selecting these choices was authorized, but installing an inconsistent tuple
+would not provide the required datum. In particular, the existing h=0.005
+cannot satisfy the necessary condition h<exp(-10), regardless of the other
+choices. No value of Pi0 or Pi0_eta has been supplied to the code, and no
+quadrature convergence, interpolation consistency, or pressure smoothness test
+has been claimed.
+
+### Independent necessary check before a nonlinear solve
+
+At the negative zero eta0 of H_star, the term -H_star U_star_eta in (B.1)
+vanishes. Because Pi0_eta<0 there, -d Pi0_eta is nonnegative. The remaining
+pressure term has the rigorous lower bound given by (A.22). This yields the
+Z_star bound in the equation map without specifying a pressure function.
+Use P_star^2>exp(20) to obtain a deliberately weak, schedule-independent bound.
+
+For any regular solution of (B.15), at X=0 the terms proportional to X vanish,
+so S_n=Z_star and
+
+$$
+U_X(0,\eta_0)=-\frac{Z_*(\eta_0)}{2L(\eta_0)},\qquad
+U_Y(0,\eta_0)=-\frac{Z_*(\eta_0)}{2L(\eta_0)\Lambda}.
+$$
+
+The existing comparison has U_X=U_Y=0. Thus the lower bound also diagnoses
+a potentially very large absolute first-derivative discrepancy. It does NOT
+bound the actual finite-Y nonlinear field error. Likewise
+`Y Z_star/(2 L Lambda)` is the size of the first explicit term in (B.13),
+not an estimate justified at Lambda=16..128 when the asymptotic hypotheses
+have not been verified. Higher nonlinear terms could be comparable.
+
+The following reproduces the scalar audit on either WSL or macOS, in an
+environment installed from the same project. It uses float64 NumPy/SciPy,
+no grid, GPU, pressure surrogate, or nonlinear solver. The h=1e-6 point is
+illustrative and passes ONLY the weakest necessary h test; it is not a
+certified finite schedule. P_star=exp(10) is used only to evaluate a lower
+bound and is not selected as a valid pressure parameter.
+
+```python
+import numpy as np
+from scipy.optimize import brentq
+
+h = 1e-6
+offset = 0.025
+growth = 0.5 + h
+axial_exponent = 0.5 - h
+
+def transport(eta):
+	return axial_exponent * eta + (1 - eta**2) * (4 * eta + offset)
+
+root, root_info = brentq(transport, -0.01, 0.0, xtol=1e-15, full_output=True)
+assert abs(transport(root)) < 1e-14
+axis = 4 * root + offset
+denominator = 1 - 2 * h * root**2
+shape = 1 / (1 + root**2)
+bound = (
+	10 * growth * abs(root) * np.exp(20) * shape**2
+	- growth * (1 - 2 * root * axis) * axis
+)
+print(root, root_info.iterations, transport(root), bound)
+for radial_parameter in (16, 32, 64, 128):
+	derivative_bound = bound / (2 * denominator * radial_parameter)
+	print(radial_parameter, derivative_bound, 4 * derivative_bound)
+```
+
+This stopping check is arithmetic plus one scalar root solve, not a substantive
+corrected-flow run. No new result directory, pressure plot, correction plot,
+or grid study was generated. The required nonlinear unknowns would be phi,
+U, Pi on (X,eta), with analytic axis data phi_star, U_star, Pi0. Their
+discretization, domain extensions, normalization C, residual tolerances,
+continuation, and acceptance tests remain unselected until the datum and
+finite regime are resolved; no arbitrary boundary conditions were added.
+
+### Portability status
+
+Existing reference commands remain:
+
+```bash
+python -m pytest -q
+python scripts/plot_profiles.py --config configs/nondimensional.yaml
+```
+
+They use NumPy/SciPy without CUDA, MPS, or x86-specific code. Tests were run
+on Daisy only; no iMac execution is claimed. The current metadata helper
+falls back when `/proc` or `nvidia-smi` is absent, but its memory report on
+macOS is empty. A cross-platform memory/architecture metadata enhancement
+remains necessary before a substantive two-machine milestone run; it was not
+added after this source-audit stop.

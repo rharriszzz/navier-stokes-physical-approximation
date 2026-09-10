@@ -41,3 +41,80 @@ PDF retrieved 2026-09-09, 166 pages, SHA-256:
 This first pass evaluates a finite domain without multiplying the field by a
 cutoff. It is not a globally localized velocity field. Numerical finite parameter
 choices do not certify the theorem's hierarchy or its asymptotic error bounds.
+
+## Second milestone: pressure-datum source audit (2026-09-09)
+
+Status: source audit, not implemented mathematics. The same PDF digest above
+was verified locally before reading these equations.
+
+| Quantity or dependency | Source / PDF pages | Numerical significance | Implementation status |
+| --- | --- | --- | --- |
+| Pi0=-integral E_o^2/(2X) dX | (4.31), Lemma 4.8, p. 35 | Requires the complete reference swirl, not merely its inner branch. | Not implemented |
+| T_d=exp(M_d)+10; P_star>exp(T_d); h<min(0.01,lambda,exp(-T_d)) | Lemma 4.8, p. 35 | Extra hierarchy not imposed by the comparison-only configuration. | Source constraint only |
+| Pi0=-1/2 integral E_id,sched(y,eta)^2 dy, y=log(X/X_R) | (A.21), Lemma A.5, pp. 133-134 | Angular bumps preserving the total pressure increment can be omitted, but all schedule transition intervals remain. Independent of X_R. | Not implemented |
+| E_id,sched=c(y) f(eta)^vartheta(y), f=(1+eta^2)^(-1), 0<=vartheta<=1 | Proof of Lemma A.5, pp. 133-134; schedule in Section A.2 | Reduces pressure evaluation to a prescribed schedule; c and vartheta are not arbitrary replacement profiles. | Audited; finite admissible schedule not selected |
+| Pi0<=-(5/2) P_star^2 f^2, Pi0 even, eta Pi0'>0 off zero | (A.22), pp. 133-134 | The right side is the exact inner-branch contribution and a bound, NOT the full datum. | Not implemented |
+| Pi(X,eta)=-1/2 integral_y^infinity E(v,eta)^2 dv | (A.23), pp. 133-134 | Later pressure-preserving edits leave the axis datum unchanged. | Not implemented |
+
+Do not implement (A.22)'s bound as equality or substitute a pressure of zero.
+
+### Schedule dependency inventory
+
+Read directly: Section A.2, pp. 129-130; Section A.3, pp. 131-133;
+Lemma A.5, pp. 133-134; Proposition A.7, pp. 139-140; Appendix B,
+pp. 144-147. These give the following dependencies of (A.21).
+
+| Dependency | Source / PDF pages | Explicit versus finite numerical choice |
+| --- | --- | --- |
+| Smooth radial step sigma(y) | (A.5), p. 129 | Explicit flat exponential ratio. Not the axial width sigma_star in (B.2). |
+| Schedule order M_d, T_d, P_star, lambda, h | (A.6), p. 129; Lemma 4.8, p. 35 | T_d and inequalities explicit; sufficiently large/small admissible thresholds are not numerical values. lambda is distinct from inner Lambda. |
+| Reference inner E=P_star f exp(y/10), U=4 eta | (A.7), p. 129 | Explicit for y<=0; its pressure contribution alone is -(5/2) P_star^2 f^2. |
+| Unit slope transition and axial-reduction interval of length T_d | Section A.2, p. 129 | Integrate (log E)'=l-1/2; l and k(y) specified with (A.5). M_d controls the derivative bound 4 norm(sigma')/M_d. |
+| Intermediate slope -lambda and T_w=60 log(1/lambda) | (A.9), p. 129 | Explicit once lambda is fixed; reserved patches must fit. |
+| Pulse interval of length 13/lambda | Section A.2, p. 130 | E retains slope -1/2-lambda. Axial amplitude and its two bumps do not set E or Pi0. |
+| Removal of eta dependence over T_f | (A.10), p. 130 | Formula explicit; choose sufficiently large T_f to keep -lambda-0.1<=l<=-lambda. This changes the pressure integral. |
+| Angular moment adjustment over 30 log(1/lambda) | (A.11), pp. 130, 132 | Two angular bumps restore I=XH/(1-lambda), with zero total pressure change. Omit bumps, NOT the interval, in (A.21). |
+| Exterior slope transitions and 4 log(1/h) hold | Section A.2, p. 130 | Unit transitions specified by (A.5). |
+| Terminal f_o, rho_o=c_o h, Q_p | (A.12)-(A.13), p. 130 | Choose c_o>0 small enough for 0<=f_o'/f_o<h/4. This affects Q_p and the schedule. |
+| Length of constant -h interval before terminal collar | Section A.2, p. 130; Section A.3, p. 132 | Determined by integrating Q'+(1+l)Q=-l-h, starting Q=(lambda-h)/(1-lambda) at exterior transition start, and stopping at Q_p. Positive length must be verified, not guessed. |
+| Terminal power-law tail pressure | (A.12), (A.21), pp. 130, 133 | Integral converges; tail slope is -1/2-h. Its integral must be included, not windowed away. |
+| Heat replacement and compensated moments | (A.39)-(A.43), Proposition A.7, pp. 139-140 | Preserves total pressure increment and Pi0. Not needed to evaluate the original datum (A.21). |
+| Axial amplitude and moment closure | (A.14)-(A.20), pp. 131-133 | Needed to validate a full admissible exterior, but not to evaluate scheduled E once its parameters are fixed. |
+
+The datum therefore requires at least a concrete tuple
+`(M_d, P_star, lambda, h, T_f, c_o)` plus a validated Q stopping event,
+quadrature choices and their error checks. `T_d` and `T_w` are derived,
+not independent fit parameters. X_R cancels from Pi0. Moment-bump placement,
+the heat cutoff and X_R are additional choices for completing the exterior,
+not missing inputs to (A.21) itself. Lack of a unique tuple is not a defect in
+the existence construction: many choices are allowed. The unresolved numerical
+issue is choosing an admissible, computationally useful tuple, not inventing
+an arbitrary pressure function. No unvalidated tuple has been installed in config.
+
+### Axial correction and a necessary size check
+
+The following formulas were verified and documented, but no production pressure
+or nonlinear solver was implemented in this milestone:
+
+| Quantity | Source / PDF pages | Interpretation |
+| --- | --- | --- |
+| Z_star=-A(1-2 eta U_star)U_star-H_star U_star_eta-d Pi0_eta+4A eta Pi0 | (B.1), p. 144 | Requires both the pressure datum and its eta derivative; d=1-eta^2. |
+| U=U_star+Lambda^(-1) u; u approximately -Y Z_star/(2L) | (B.12)-(B.13), pp. 146-147 | The first omitted correction to U is -Y Z_star/(2L Lambda), not -Y Z_star/(2L). |
+| -2L(X U_XX+U_X)=S_n; Pi_X=phi^2/C^2 | (B.15), p. 147; (4.9), p. 26 | At X=0, S_n=Z_star, so any regular solution has U_X(0,eta)=-Z_star/(2L). |
+
+At the unique negative root eta0 of H_star, combine (A.22), the sign of Pi0',
+and (B.1). Without evaluating Pi0, one obtains
+
+$$
+Z_*(\eta_0)\ge
+10 A |\eta_0|P_*^2 f(\eta_0)^2
+-A(1-2\eta_0 U_*(\eta_0))U_*(\eta_0).
+$$
+
+This is a derived necessary bound, not a pressure model. Since T_d>10 and
+P_star>exp(T_d), replacing P_star^2 by exp(20) yields a weaker conservative
+bound. The strict schedule also requires h<exp(-10). Neither statement depends
+on a chosen smoothing length or on quadrature. The baseline h=0.005 and all
+suggested h values violate that necessary condition. Evaluating this bound at
+a smaller illustrative h is not a certificate that the full schedule exists
+for that tuple; all other admissibility conditions remain to be checked.
