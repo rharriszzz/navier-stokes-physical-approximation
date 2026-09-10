@@ -280,3 +280,46 @@ Decision: publish the unchanged prompt and this receipt before implementation;
 execute only within its staged gates and stop conditions. This is an
 authorization record, not evidence of numerical acceptance. Outcomes will
 be appended separately without changing historical failure records.
+
+### Exchange 008 outcome: 2026-09-10 UTC
+
+Prompt/receipt publication: `4bdfd75`. The exact-source benchmark verifies
+g/G local widths .00416903/.00294795 and passes at 2049 global Lobatto
+nodes (relative G/G_eta errors 9.57e-9/9.57e-8). Matrix-free coefficient
+transforms and exact p=G Pbar factorization are implemented without changing
+the tuple or pressure evaluator.
+
+At 65x2049, both comparison and flat starts lose convergence, proposing
+nonpositive Phi at iterations 10 and 13. Residual localization identifies
+endpoint growth; source-region residuals are much smaller. This triggers
+the prescribed stop before further eta, radial or combined solution refinement.
+No core is accepted; no B.13 comparison is recomputed. The separate sigma
+root audit finds a necessary bound near .00200285 at the near-axis Z zero,
+but no sigma or other parameter is changed.
+
+The [15-part report](experiment-log.md#sixth-milestone-same-tuple-source-resolution-2026-09-10-utc)
+records the partial source-resolution success and nonlinear failure, both
+initializations, identities, modal/derivative diagnostics and provenance.
+All 81 tests pass, including the original 75. Exactly one next gate:
+**C. Improve the local numerical method again.** Implementation and final
+reference artifacts remain local pending review/publication authorization.
+No outgoing web-AI handoff or new scientific response has yet been received
+or published for this outcome.
+
+## Exchange 009: sixth-milestone response file and publication
+
+Following the sixth-milestone report, the user explicitly requested:
+
+> Instead of giving your response to me, please create a SIXTH_RESPONSE.md, then add commit and push. thanks!
+
+The outgoing scientific handoff is preserved in
+[SIXTH_RESPONSE.md](../SIXTH_RESPONSE.md). It distinguishes source-resolution
+success from endpoint iteration failure, records the unchanged tuple and
+staged stop, and recommends gate C without claiming numerical existence or
+nonexistence. No response from the other AI to this handoff has been received.
+
+Decision: publish the sixth-milestone implementation, tests, configuration,
+report, selected reference JSON/plots and response file together. Earlier
+unpublished statuses are historical. Original run provenance is retained;
+full arrays and partial runs remain local and ignored. This publication
+request does not authorize another numerical experiment.

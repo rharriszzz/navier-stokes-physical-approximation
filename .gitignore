@@ -25,3 +25,7 @@ results/compressed_not_theorem_admissible_reference_v2/*
 results/core_not_theorem_admissible_reference_v2/*
 !results/core_not_theorem_admissible_reference_v2/*.png
 !results/core_not_theorem_admissible_reference_v2/core_not_theorem_admissible_summary.json
+!results/core_representation_not_theorem_admissible_reference/
+results/core_representation_not_theorem_admissible_reference/*
+!results/core_representation_not_theorem_admissible_reference/summary.json
+!results/core_representation_not_theorem_admissible_reference/*.png

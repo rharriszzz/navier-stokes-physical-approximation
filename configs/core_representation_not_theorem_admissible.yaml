@@ -1,0 +1,23 @@
+model: same_tuple_representation_not_theorem_admissible
+datum: aggressive
+Lambda: 512
+g_peak: 0.1
+sigma_star: 0.2
+h: 0.005
+j0: 0.025
+Y_domain: [0, 4.1]
+eta_domain: [-1, 1]
+lengths:
+  intermediate_power: 1
+  axial_pulse_swirl_interval: 1
+  angular_bump_interval_unbumped: 1
+  profile_interpolation: 8
+  release_hold: 2
+source_counts: [513, 1025, 2049, 4097]
+radial_count_stage_A: 65
+initial_guesses: [comparison, flat]
+iteration_limit: 80
+increment_tolerance: 1.0e-11
+planned_eta_counts: [2049, 4097, 8193]
+planned_radial_counts: [33, 65, 129]
+policy: stop at resolved fixed-point failure; later stages conditional on convergence

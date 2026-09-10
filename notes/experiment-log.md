@@ -1095,3 +1095,281 @@ at this same first tuple before reopening parameter continuation. The
 finite sigma partition failure must remain explicit, even if numerical
 resolution improves. Stop here for review; no global moment/stress work,
 outer join, whole-flow residual, DNS, or physical claim follows this result.
+
+---
+
+# Sixth milestone: same-tuple source resolution, 2026-09-10 UTC
+
+**Source representation passes; the resolved fixed-point iteration fails.
+No numerical B.15 core is accepted.** Both initial guesses produce a
+nonpositive Phi proposal, after initial improvement followed by endpoint
+growth. The prompt's explicit stop condition prevents later refinement
+stages. This is not evidence of nonexistence of the finite core.
+
+The unchanged [sixth prompt](../SIXTH_PROMPT.md) and receipt were published
+as `4bdfd75` before implementation. All physical/model parameters remain
+fixed: aggressive datum, Lambda512, g_peak=.1, sigma_star=.2, h=.005,
+j0=.025, Y in [0,4.1], eta in [-1,1]. The old solver, pressure evaluators,
+and fifth-milestone reference outputs are unchanged. New implementation
+and final artifacts remain local pending review/publication.
+
+## 1. Independently verified source widths
+
+Direct differentiation of B.1/B.3 gives H_star'(eta0)=4.494906893555287,
+eta0=-.005561716315493002, and local Gaussian standard deviations
+.00416902723452542 for g and .00294794742848432 for G=g^2.
+These are local curvature widths, not global distribution moments.
+The 513-point central Lobatto spacing is .00613588464915448, larger than
+either width. No parameter was adjusted to obtain these numbers.
+
+## 2. Exact-source benchmark
+
+The reference mesh combines 8193 global uniform points, 4097 points within
+12 G standard deviations of eta0, and eta0 itself. Direct axis evaluation
+provides g, G, G_eta, G_etaeta, zeta, chi and Z_star. The G derivatives
+use analytic zeta_eta and the exact B.3 exponential identities, not
+interpolated derivatives. Independent fourth-order finite-difference tests
+converge at the expected rate. Direct G is nonnegative; polynomial
+interpolants need not be.
+
+| Eta count | Relative Linf G | Relative Linf G_eta | Relative Linf G_etaeta | L2 G | Minimum interpolated G |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 513 | .171283 | .432436 | 2.24373 | 1.83111e-4 | -1.37575e-3 |
+| 1025 | .00426361 | .0211153 | .534575 | 4.71088e-6 | -2.85341e-5 |
+| 2049 | 9.57439e-9 | 9.56631e-8 | 6.36477e-6 | 1.12219e-11 | -5.15901e-11 |
+
+Absolute derivative Linf errors at 2049 are 1.96181e-7 and .00732392.
+All three error families decrease. The numerical gates relative Linf G
+<1e-4 and relative Linf G_eta<1e-3 pass at 2049; the benchmark therefore
+stops before 4097 as permitted. This is not a theorem condition.
+
+Peak-value errors are 1.71843e-4, 1.64284e-5, 8.49100e-11; peak-location
+errors are 3.64135e-4, 2.05494e-5, 6.93902e-11. Counts across a full
+one-standard-deviation width are 1,1,2, and across six standard deviations
+are 3,6,12. The counting intervals are eta0 +/- std/2 and eta0 +/- 3std.
+Modal highest-10%-to-maximum ratios decrease .596389, .0226603, 5.43537e-7.
+The JSON retains coefficient envelopes by tenth and errors for the other
+direct source fields. At 2049, g error is 3.65e-15 and zeta/chi/Z value
+errors are about 1.73e-14, 2.78e-15 and 2.66e-14.
+
+## 3. Representation chosen
+
+Retain global Chebyshev-Lobatto polynomials, but use DCT-I coefficient
+transforms, coefficient differentiation and inverse transforms instead of
+dense eta differentiation matrices. The source benchmark takes about two
+seconds and establishes a practical resolved order at 2049. No filtering,
+mode truncation, coordinate mapping, or multi-domain interface is introduced.
+No continuity constraints at artificial interfaces are therefore needed.
+Manufactured analytic functions verify first/second derivative convergence
+and agreement of off-grid evaluation with zero-padded transform evaluation.
+
+This choice resolves the source but does not establish stability of repeated
+endpoint differentiation in the nonlinear iteration. No analytic coefficient
+norm contraction theorem is being transferred to the finite transform scheme.
+
+## 4. Pressure factorization and independent validation
+
+Use exactly p=G Pbar, Pbar=I(Phi^2). Inside the map,
+p_eta=G_eta Pbar+G I(2Phi Phi_eta). The second derivative uses the full
+product rule and I(2(Phi_eta^2+Phi Phi_etaeta)). No Pi0 refit or surrogate
+is introduced. The independent residual instead differentiates numerical
+Pbar, so the pressure check is not a tautological reuse of its integrand.
+Manufactured tests verify factorization, independent Pbar_Y convergence,
+and p_eta/p_etaeta agreement with direct spectral differentiation.
+
+At the comparison-start minimum-increment snapshot, independent Linf
+Pbar_Y-Phi^2 is 3.45102e-12 and p_Y-G Phi^2 is 2.18645e-14.
+Pbar_eta minus the integral identity is 4.54623e-9; the second-eta identity
+discrepancy is .0128530 globally but 2.02201e-6 near the source.
+These are one-iterate checks, not a pressure-refinement acceptance claim.
+Later iteration growth increases the Pbar radial and derivative defects.
+Small physical pressure residual alone can hide defects where G is tiny,
+which is why the unfactored Pbar identity is reported separately.
+
+## 5. Eta-only stage
+
+Stage A holds 65 radial points and begins at the first source-resolved
+eta count, 2049. The comparison initial guess produces its minimum increment
+3.30747e-7 at iteration 4, then grows through 1.16146e-5, .000215867,
+.00236784, .0165307, .0773914 and .251162. Iteration 10 proposes
+min Phi=-.00615242. The last retained positive iterate is iteration 9.
+The minimum-increment snapshot is explicitly unaccepted.
+
+The flat initial guess is checked at this same grid for diagnosis, not as
+continuation. It also fails (section 11). The prompt explicitly requires
+stopping if the fixed point ceases to converge once the source is resolved.
+Thus no 4097/8193 nonlinear eta run was opened, and eta-only solution
+refinement was not established. Source-only refinement is not its substitute.
+
+## 6. Radial-only stage
+
+Not run. The planned 33/65/129 sequence was conditional on passing Stage A.
+No residual floor is assigned conclusively to radial error on one grid.
+The old radial inverse polynomial tests remain intact and pass.
+
+## 7. Combined confirmation
+
+Not run because Stages A and B did not pass. No accepted-core label or
+combined-convergence claim is generated by the workflow.
+
+## 8. Independent residual localization
+
+Original (4.8)-(4.9)/(4.13) sources are reconstructed independently of
+R1/R2 on 129 uniform Y points and 4097 nested eta Lobatto points. The
+latter include original nodes and interleaved off-grid points. L2 uses
+trapezoidal integration with respect to dY d_eta; sampled RMS is separate.
+The central-source region is abs(eta-eta0)<=6 local G standard deviations.
+All norms include eta endpoints; no final acceptance region discards them.
+
+Comparison start, minimum-increment snapshot (iteration 4):
+
+| Residual | All eta Linf | abs(eta)<=.98 Linf | Source Linf | Eta endpoints Linf | L2 | RMS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Angular | .230462 | 5.86016e-6 | 1.58013e-6 | .230462 | 1.92432e-4 | .00200518 |
+| Axial | .00126511 | 2.32302e-7 | 6.69731e-9 | .00126511 | 1.13993e-6 | 1.21055e-5 |
+| Pressure | 2.18645e-14 | 2.18645e-14 | 2.18645e-14 | 0 | 1.90740e-16 | 7.25592e-17 |
+| Pbar radial | 3.45102e-12 | 3.45102e-12 | 3.45102e-12 | 1.68351e-12 | 1.85212e-13 | 8.71190e-14 |
+
+Angular/axial maxima occur at (Y,eta)=(4.1,-1). Axis Linf values are
+2.22229e-9 and 2.96474e-11; interior-Y maxima are .221771 and .00120934.
+The endpoint problem is not confined to only the last radial grid point.
+
+By the last retained iterate, angular Linf grows to 31358.6 at (4.1,-1)
+and axial Linf to 174.287 at (4.1,+1), while source-region values remain
+1.85175e-6 and 8.54784e-9. Pressure Linf is 3.08868e-10 and Pbar radial
+Linf is 8.01091e-6. Pbar_etaeta identity mismatch reaches 5.00670e6
+globally, including 661.764 near the source. Endpoint instability is
+observed directly, but nonlinear contamination need not remain exclusively
+at the endpoints in every diagnostic.
+
+## 9. Modal diagnostics
+
+Modal tails are recorded per iteration and for Y=.5,2,4.1 snapshots of
+Phi, u and Pbar. At Y=4.1 the minimum-increment tail ratios are
+7.83877e-12, 9.31580e-12, 1.06878e-12. At the last retained iterate they
+are 5.84179e-10, 3.30854e-9, 3.10840e-8. The broad modal distribution
+also grows, as the plot shows. A small highest-10% tail alone is not a
+bound on endpoint derivatives, whose modal weights amplify high orders.
+The plotted Y=4.1 residual slice includes the locations of both failed
+angular/axial maxima; full modal slices and residual arrays remain local.
+
+## 10. First/second derivatives
+
+No solution derivative convergence can be claimed because the first
+source-resolved iteration fails. The JSON records first/second Y and eta
+derivative magnitudes by region for both saved snapshots, plus common-grid
+failed-guess differences. These are NOT refinement errors. In those fields,
+u derivatives are divided by Lambda and denote U-U_star derivatives;
+U_eta is obtained by adding 4, while U_etaeta is unchanged.
+
+| Quantity | Global magnitude, min-increment snapshot | Global magnitude, last retained | Source magnitude, last retained |
+| --- | ---: | ---: | ---: |
+| Phi_eta | 13.1155 | 19966.0 | 12.6983 |
+| Phi_etaeta | 61803.5 | 3.75490e9 | 1066.18 |
+| (U-U_star)_eta | .406120 | 438.771 | .406120 |
+| U_etaeta | 1245.52 | 1.04224e8 | 4.29548 |
+| Pbar_eta | 48.8736 | 5396.02 | 48.2658 |
+| Pbar_etaeta | 47138.5 | 8.45337e8 | 4311.46 |
+
+The large last global values occur at eta endpoints. Y derivatives also
+remain in the record: Phi_YY grows from .0406870 to .395259 and U_YY from
+8.71700e-5 to .00935352 globally, while central values stay much smaller.
+This supports endpoint amplification as the observed failure pattern.
+It does not identify roundoff versus loss of discrete contraction uniquely;
+no higher-precision, alternative endpoint method or filtering test was run.
+The small interior residual level is not a demonstrated discretization floor.
+
+## 11. Initial guesses and iteration behavior
+
+The comparison and flat starts fail at proposals 10 and 13, respectively.
+The flat start's minimum increment is 1.08758e-7 at iteration 5; its best
+snapshot has angular/axial Linf .0720152/.0120674 and pressure Linf
+3.90070e-14. Its last retained min Phi=.215007, followed by proposed
+min Phi=-.219511. No nonpositive proposal is promoted to a solution.
+
+Differences between last retained guesses are .0309760 in Phi and .0589249
+in U globally, but about 6.30e-13 and 6.19e-13 on abs(eta)<=.98.
+Second-eta differences exceed 1e9 globally. These are two failed iterates,
+not distinct resolved solutions or evidence of multiple stable branches.
+Increment maxima move to eta endpoints before the failure. Histories retain
+rescaled collocation residuals, explicitly distinct from independent checks.
+
+## 12. Acceptance decision
+
+**Rejected.** The known source passes its representation gate, but the
+resolved fixed-point map fails before eta/radial/combined solution convergence
+can be established. Resolving G and factoring pressure are insufficient for
+this global endpoint treatment. No theorem, numerical existence, uniqueness,
+global construction or physical-realizability conclusion follows.
+
+## 13. B.13 comparison
+
+Not recomputed because acceptance is required first. The fifth-milestone
+.10212 correction and .000732 first-term discrepancy remain historical
+unaccepted-iterate diagnostics. No Lambda rate is inferable from this tuple.
+
+## 14. Separate sigma/B.2 side audit
+
+Sigma_star remains .2. B.2 first chooses delta_star and then sigma_star;
+refinement cannot repair max chi approximately .988444<.99 at this tuple.
+Bracketing on 1001 real samples and scalar root refinement locates three
+Z_star zeros. Residuals at them are at most 2.67e-15:
+
+| Z_star zero | chi at sigma=.2 | Necessary strict sigma upper bound |
+| --- | ---: | ---: |
+| -.942363935308158 | .951480 | .0890124573 |
+| -.001128332434200368 | .00983065 | .00200285138 |
+| .9388371728950924 | .954212 | .0917615760 |
+
+The bounds are abs(H_star)/sqrt(99), with a strict inequality required.
+These are necessary rootwise conditions only, not sufficient conditions
+on a small-Z neighborhood or a theorem certificate. Root enumeration is
+numerical, not a certified completeness proof. The near-axis zero imposes
+a far smaller bound than .1; no smaller-sigma nonlinear case was launched.
+Width scales approximately linearly with sigma, so such a change would
+make source resolution more demanding, not less.
+
+## 15. Runtime, provenance and tests
+
+Final run: 2026-09-10T01:46:40 UTC, Daisy/WSL2, CPU float64, one OpenBLAS
+thread, Python 3.12.14. Workflow time 11.17 seconds; process high-water
+RSS 560188 KiB (547.1 MiB). No GPU, iMac run, time step or external service.
+The summary records parent `4bdfd75`, dirty status, configuration and file
+hashes; that parent alone does not contain the new implementation.
+
+The first diagnostic workflow encountered a zero-field modal ratio 0/0
+for the flat u=0 start; strict JSON serialization rejected NaN. The producer
+now defines the identically zero field's modal ratio as zero and has a
+regression test. Its partial run is preserved; the final reference is a
+fresh directory. This bookkeeping fix did not alter the equation map.
+
+**81 tests pass in 31.95 seconds**, retaining the original 75. Six new
+tests cover analytic source derivatives/nonnegativity, source convergence,
+manufactured first/second spectral derivatives, independent factored pressure
+identities, zero-field modal serialization, and same-tuple workflow gates
+including no-overwrite/forbidden-parameter checks. Editor diagnostics show
+no errors; both final plots were visually inspected. No old test was weakened.
+
+Reproduce with:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/core_representation_not_theorem_admissible.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q
+```
+
+Final artifacts: [summary](../results/core_representation_not_theorem_admissible_reference/summary.json),
+[source and iteration plot](../results/core_representation_not_theorem_admissible_reference/source_and_iteration.png),
+[residual and modal plot](../results/core_representation_not_theorem_admissible_reference/residuals_and_modes.png).
+Only these compact artifacts are allowlisted for eventual publication;
+arrays, source-gate checkpoints and partial attempts remain local.
+
+## Next gate and stop
+
+**C. Improve the local numerical method again.** Source underresolution was
+real and is now controlled to the stated numerical gate, but the same finite
+tuple remains unaccepted because the iteration amplifies endpoint errors.
+A later authorized study should target endpoint-stable differentiation and
+iteration, preserving original equations and full-domain acceptance checks.
+Do not discard endpoints or interpret an early small increment as success.
+No further model change, nonlinear control, global moment/stress work or
+time integration is authorized by this result. Stop for review.

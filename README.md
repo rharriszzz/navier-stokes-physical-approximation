@@ -286,3 +286,22 @@ and [bounded config](configs/core_not_theorem_admissible.yaml). The report
 preserves failed residuals, derivative changes, initialization checks and
 plots. All models remain NOT theorem-admissible. Recommended next gate:
 improve the local solver, then reassess this same initial case.
+
+## Sixth milestone: source resolved, endpoint iteration fails
+
+The [same-tuple representation study](notes/experiment-log.md#sixth-milestone-same-tuple-source-resolution-2026-09-10-utc)
+passes the exact-source convergence gate at 2049 eta points and uses
+p=g^2 Pbar with analytic derivatives of g^2. All model parameters and
+the original pressure datum are unchanged. Matrix-free Chebyshev transforms
+avoid dense high-order eta matrices.
+
+Both initial guesses then lose fixed-point convergence through endpoint
+growth and propose nonpositive Phi. **No core is accepted.** Later radial
+and combined refinement stages were not run after the required stop.
+The report separates numerical instability from the unchanged sigma/B.2
+mismatch. It recommends improving the local method again, not a claim
+that the finite core cannot exist. All models remain NOT theorem-admissible.
+
+```bash
+OPENBLAS_NUM_THREADS=1 python scripts/core_representation_not_theorem_admissible.py
+```

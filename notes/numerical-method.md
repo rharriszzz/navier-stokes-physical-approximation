@@ -436,3 +436,61 @@ work under gate B is a source-equivalent locally resolved eta representation
 or a factored pressure treatment, validated on the same first tuple before
 any parameter continuation. Merely tightening the increment tolerance does
 not address the observed failure.
+
+## Sixth milestone: source-resolved, factored same-tuple experiment
+
+All model parameters and the aggressive pressure evaluator are unchanged.
+Source-only checks precede any nonlinear call. Exact B.3 derivatives are
+tested against fourth-order finite differences, not a polynomial derivative.
+The reference mesh has 8193 global uniform points plus 4097 points within
+12 local standard deviations of eta0. Source errors include endpoints.
+Peak location uses scalar optimization within one standard deviation of
+eta0. Effective counts refer to widths of one and six standard deviations,
+not intervals of +/- one and +/- six. Modal tails use the highest 10%.
+
+The source benchmark reaches its declared value/first-derivative gate at
+2049 Lobatto points with decreasing second-derivative errors. Retain global
+Chebyshev polynomials but use DCT-I coefficients, coefficient differentiation
+and inverse transforms instead of dense eta matrices. No filtering or
+coefficient truncation is introduced. There are no domain interfaces. The
+global second-derivative conditioning still needs explicit endpoint checks.
+
+Pressure p=G Pbar is reconstructed with exact G and G_eta. The iteration
+uses Pbar=I(Phi^2), Pbar_eta=I(2Phi Phi_eta); independent residuals instead
+differentiate numerical Pbar and reconstruct original S_q/S_n. This tests
+the product-rule identity without reusing its right-hand side as a residual.
+The p148 map is unchanged; the old solver and reference results are retained.
+
+Stage A fixes 65 radial points and starts at the first source-resolved eta
+count, with nested doublings only while numerical stop conditions permit.
+If Stage A converges, Stage B will fix eta and use 33/65/129 radial points,
+then Stage C one combined pair. If the resolved first iteration fails, stop
+without opening those later stages. The same 1e-11 increment threshold and
+80-iteration budget remain; neither is numerical acceptance. Known failure
+conditions keep the last finite positive iterate and record rejected proposals.
+
+### Sixth-milestone executed stop
+
+At 65x2049, both starts lose convergence and propose Phi<=0. Accordingly
+Stages A (further eta refinement), B and C are not executed. The minimum
+increment snapshot and last retained positive snapshot are saved, neither
+accepted. Adding source-equivalent factorization did not restore stable
+global endpoint iteration. No filtering, damping, parameter continuation,
+domain truncation or hidden boundary condition was added after this failure.
+
+Independent residuals zero-pad eta coefficients onto 4097 Lobatto nodes,
+including interleaved off-grid nodes, and evaluate radial polynomials on 129
+uniform points. Original S_q/S_n use independently quadrature-averaged U
+and differentiated Pbar, not R1/R2. Pbar derivatives are compared against
+integral product identities as separate, non-tautological checks. Report
+all-eta, abs(eta)<=.98, abs(eta-eta0)<=6 G standard deviations, eta endpoint,
+Y=0, Y=4.1 and interior-Y norms. Derivative magnitudes and differences
+between failed initializations are not called refinement convergence.
+
+Modal tails are computed without filtering at all iterations and on
+Y=.5,2,4.1 slices. For an identically zero field the modal ratio is defined
+as zero, avoiding undefined 0/0 in the flat-start provenance. First failed
+serialization output is preserved separately from the final reference run.
+The separate sigma side audit locates numerical Z_star roots and reports
+abs(H_star)/sqrt(99) as a necessary strict upper bound, not a sufficient
+neighborhood condition. No smaller sigma is applied to any nonlinear run.

@@ -92,3 +92,30 @@ def test_core_failed_gate_workflow(tmp_path):
     assert summary["environment"]["source_sha256"]
     assert summary["records"][-1]["residual"]["norms"][2]["l2_trapezoidal"] > 0
     assert subprocess.run(command, cwd=root, capture_output=True).returncode != 0
+
+
+def test_same_tuple_representation_failure_workflow(tmp_path):
+    root = Path(__file__).resolve().parents[1]
+    output = tmp_path / "same_tuple_not_theorem_admissible"
+    command = [sys.executable, str(root / "scripts/core_representation_not_theorem_admissible.py"), "--output", str(output)]
+    subprocess.run(command, check=True, cwd=root)
+    summary = json.loads((output / "summary.json").read_text())
+    assert summary["source_benchmark"]["passed"]
+    assert not summary["accepted"]
+    assert summary["no_model_parameter_changed"]
+    assert summary["next_gate"].startswith("C.")
+    assert len(summary["cases"]) == 2
+    for case in summary["cases"]:
+        assert case["status"] == "phi_nonpositive_proposal"
+        assert case["grid"] == [65, 2049]
+        norms = case["snapshots"]["best_increment"]["norms"]
+        assert norms["pressure"]["all_eta_linf"] < 1e-10
+        assert norms["angular"]["eta_endpoints_linf"] > 100 * norms["angular"]["central_source_linf"]
+    assert all((output / filename).stat().st_size > 1000 for filename in summary["plots"])
+    assert summary["environment"]["source_sha256"]
+    assert subprocess.run(command, cwd=root, capture_output=True).returncode != 0
+    config = yaml.safe_load((root / "configs/core_representation_not_theorem_admissible.yaml").read_text())
+    config["sigma_star"] = 0.1
+    config_path = tmp_path / "forbidden.yaml"
+    config_path.write_text(yaml.safe_dump(config))
+    assert subprocess.run(command + ["--config", str(config_path)], cwd=root, capture_output=True).returncode != 0

@@ -221,3 +221,20 @@ B.2 chooses delta_star first and then sigma_star so that chi>.99 wherever
 abs(Z_star)<=delta_star. The illustrative delta=.1 used in the finite audit
 is not a threshold supplied by the theorem. With sigma=.2, even max chi
 is below .99, and the sampled small-Z set fails that partition condition.
+
+## Sixth milestone: same-tuple representation identities
+
+Directly reread PDF pp26-27 and 144-149 (same SHA-256). B.3 gives
+G=g^2, G_eta=2 Lambda zeta G and
+G_etaeta=(2 Lambda zeta_eta+4 Lambda^2 zeta^2)G.
+With K=H_star^2+sigma_star^2, differentiation gives
+`zeta_eta=-(L_eta H_star+L H_star_eta)/K+2L H_star^2 H_star_eta/K^2`.
+At the fixed tuple, L_eta=-.02eta and H_star_eta=4.495-12eta^2-.05eta.
+These are direct derivatives of B.3, not derivatives of interpolated g.
+
+B.12/B.14 pressure factorization is exactly p=G Pbar,
+Pbar=I(Phi^2). Therefore Pbar_eta=I(2Phi Phi_eta) and
+Pbar_etaeta=I(2(Phi_eta^2+Phi Phi_etaeta)); the ordinary product rule
+reconstructs p_eta and p_etaeta. Independent differentiation of numerical
+Pbar must check these integral identities and Pbar_Y=Phi^2. No change
+to Pi0, R1/R2, fixed parameters or B.15 boundary treatment is implied.
