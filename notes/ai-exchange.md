@@ -116,3 +116,26 @@ message is prepared for relay; no response from the other AI is recorded yet.
 > The central limitation is geometry: the baseline still spans 140.889 decades in X (about 70.44 in radius at fixed q). Reducing lambda to 0.1 increases this to 196.208 decades in X without materially improving pressure or the correction. Lowering P_star to 1 makes the first correction smaller but does not shorten the schedule. The earlier exact-hierarchy necessary bound is retained separately, not treated as a solved schedule.
 >
 > Please independently review the schedule/Q interpretation and derivative validation. Then recommend a narrowly scoped next milestone: is a core-only nonlinear B.15 diagnostic scientifically worthwhile despite the global scale separation, or should we first study explicitly modified schedule lengths and identify which matching, pressure, and stress conditions those changes would sacrifice? No nonlinear solve, full momentum residual, time integration, or dimensionalization has been attempted. Please do not treat a small first correction as evidence of dynamical concentration or physical realizability.
+
+## Exchange 004: fourth prompt and authorization
+
+Received after publication of the third milestone as `cf40815`. The user's
+local conversation date is September 9, 2026; numerical reports use UTC dates.
+The user supplied [FOURTH_PROMPT.md](../FOURTH_PROMPT.md), preserved unchanged.
+SHA-256: `240299661b3468aa5b34dd0db9b1aab6b0fe80d90635eb3fa43bb01236b209f7`.
+No separate web conversation transcript was supplied.
+
+Summary, not a quotation: the prompt requests a source-grounded schedule
+compression and sacrifice audit, preserving RelaxedSchedule as reference,
+then testing explicitly modified lengths and their effects on local data,
+moments, stress conditions and terminal matching. It prohibits solving B.15.
+
+Asked whether to archive this exchange, commit and push the prompt, then
+carry out the milestone, the user replied verbatim:
+
+> Yes, let's repat this pattern.  I want to keep a good record.
+
+Decision: archive and publish this receipt before execution; perform the
+fourth milestone subject to its source-audit and numerical stop conditions;
+record findings separately and stop for review. This receipt is authorization,
+not evidence that the proposed compression preserves any mathematical property.
