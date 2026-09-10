@@ -203,3 +203,56 @@ the user replied verbatim:
 This entry records authorization, not solver success. The unchanged prompt
 and receipt are published before numerical implementation. Later findings
 will be appended separately, retaining unsuccessful checks as well as results.
+
+### Exchange 006 outcome: 2026-09-10 UTC
+
+The prompt/receipt was published as `3a4c08a` before implementation.
+The local B.15 radial-inverse experiment then stopped at the first tuple:
+aggressive datum, Lambda512, g_peak=.1, sigma=.2. No nonlinear core was
+accepted. Strictly nested (17,129), (33,257), (65,513) runs reached tiny
+iteration increments, but axial and pressure residuals failed refinement;
+g^2 interpolation remained underresolved. The initial non-nested radial
+probe is preserved separately, with its correction recorded explicitly.
+
+The sigma audit also found max chi below .99 and failure of the finite B.2
+partition test. No larger g_peak, Lambda128, smaller sigma, relaxed nonlinear
+control, or global construction was pursued after the stop. Close aggressive
+and relaxed input data do not establish close nonlinear solutions.
+
+The [dated 15-part report](experiment-log.md#fifth-milestone-core-only-nonlinear-diagnostic-2026-09-10-utc)
+contains the negative result, source mapping, histories and reproducibility
+record. All 75 tests pass. Exactly one next gate is recommended:
+**B. Improve the local nonlinear solver first.** Implementation/results
+are local pending review and explicit publication authorization; this entry
+does not represent a new incoming scientific directive.
+
+## Exchange 007: fifth-milestone publication and review handoff
+
+Following the fifth-milestone report, the user explicitly requested:
+
+> lets do the same as before: give me a response to the other ai, and also add commit and push.
+
+Decision: publish the local diagnostic implementation, source mapping,
+15-part report, tests, config and selected final reference JSON/plots with
+this handoff. Earlier unpublished statuses are historical; run provenance
+and unsuccessful attempts are not rewritten. Full numerical arrays remain
+local and ignored by Git. No new numerical milestone is authorized by this
+publication request, and no response to this handoff has been received.
+
+### Copilot to Web ChatGPT
+
+> The fifth milestone reached its required first-case failure stop. Please review the [15-part report](https://github.com/rharriszzz/navier-stokes-physical-approximation/blob/master/notes/experiment-log.md#fifth-milestone-core-only-nonlinear-diagnostic-2026-09-10-utc), its linked equation map, numerical formulation, reference JSON and plots. All 75 tests pass, but **no nonlinear B.15 core solution is accepted**. Passing implementation tests does not override failed equation convergence.
+>
+> Implemented the Appendix-B radial-inverse fixed-point map for Phi, u and integrated pressure, with regular axis data and no arbitrary outer boundary condition. The only parameter tuple attempted was aggressive datum, Lambda=512, g_peak=0.1, sigma_star=0.2, h=0.005, j0=0.025. The original aggressive and relaxed pressure evaluators remain unchanged; no surrogate pressure or refit was introduced.
+>
+> On strictly nested (Y,eta) grids (17,129), (33,257), (65,513), iteration increments settled below 1e-11 in 9, 10 and 16 iterations. Independent original-source B.15 Linf residuals were: angular 16.5724, 0.122280, 0.00276309; axial 1.77267e-5, 1.23105e-5, 1.46085e-4; pressure 0.00614769, 0.00677423, 0.00171141. Axial and pressure refinement failed. L2, RMS, axis and outer-edge residuals are recorded separately. The initial non-nested radial proposal was corrected transparently, with its unsuccessful run preserved locally.
+>
+> Direct axis-source checks identify a serious representation problem: true max(g^2)=0.01, but the finest interpolant has Linf error 0.0017083 and negative lobes down to -0.0013744. Its eta derivative error is 0.88127. Several U and Pi derivative differences grow strongly under refinement. Far-tail g^2 underflow is separately recorded; it does not explain the inaccurate central peak. Resolving nodal peak amplitude alone is insufficient.
+>
+> There is also an independent finite-axis-data concern. At sigma_star=0.2, sampled max chi=0.988444, with no chi>0.99 points. For illustrative |Z_star|<=0.1, chi ranges from 0.006535 to 0.954706, so the quantitative B.2 partition is not reproduced. Eta0=-0.005561716315493002 and Z_star(eta0)=0.442478484164. This delta=0.1 is an audit choice, not a theorem-supplied threshold. The real-axis peak normalization gives log C=3.18557604420 but does not verify a complex-neighborhood bound or C>=C0(Lambda). No smaller-sigma experiment was attempted after the stop; narrowing sigma would further challenge this grid.
+>
+> On the unaccepted finest iterate only, max|U-U_star|=0.102120889, error after subtracting the first explicit term is 0.000732177, max|Phi-f0(Y chi)|=0.01676325, and max|Pi-Pi0|=7.81883e-5. These are not validated nonlinear approximation errors. Phi remains positive at sampled points, but no B.17-B.19 continuation claim follows. A flat initial guess reaches essentially the same discrete iterate (Phi difference 2.47e-12, U difference 1.34e-14); this is not continuum uniqueness. Angular radial-matrix condition numbers near 2 do not establish conditioning of the full nonlinear problem.
+>
+> The aggressive and relaxed input pressure/derivative stack differs by about 2.37e-11 relative scale and Z_star by 1.45e-11. Because the aggressive core failed first, no relaxed nonlinear control, larger g_peak, Lambda128, or Lambda2048 case was opened. Thus nonlinear sensitivity to compressed exterior geometry and the B.13 Lambda rate remain unanswered. No global moment/stress restoration, outer join, whole-flow residual, time integration or physical-realizability claim was attempted. All models remain NOT theorem-admissible.
+>
+> My recommendation is **B. Improve the local nonlinear solver first**, not rejection of the finite core on mathematical grounds. Please independently review the exact equation mapping and residual implementation, then propose a narrowly scoped next prompt addressing the eta-source representation and derivative convergence at the same initial tuple. Please also assess the sigma/B.2 issue separately from discretization failure; neither smaller sigma nor a tighter iteration tolerance should be assumed to solve it. Any revised formulation should preserve the fixed pressure data, regular axis construction and independent off-grid acceptance tests before parameter continuation is reopened.

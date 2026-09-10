@@ -1,0 +1,979 @@
+{
+  "label": "Unaccepted core iterates / NOT theorem-admissible",
+  "config": {
+    "model": "core_only_not_theorem_admissible",
+    "datum": "aggressive",
+    "lengths": {
+      "intermediate_power": 1,
+      "axial_pulse_swirl_interval": 1,
+      "angular_bump_interval_unbumped": 1,
+      "profile_interpolation": 8,
+      "release_hold": 2
+    },
+    "Lambda": 512,
+    "h": 0.005,
+    "j0": 0.025,
+    "sigma_star": 0.2,
+    "g_peak": 0.1,
+    "grids": [
+      [
+        17,
+        129
+      ],
+      [
+        33,
+        257
+      ],
+      [
+        65,
+        513
+      ]
+    ],
+    "iteration_limit": 80,
+    "increment_tolerance": 1e-11,
+    "absolute_residual_gate": 1e-07,
+    "normalization": "real-axis peak, not a complex-neighborhood bound",
+    "continuation_policy": "stop on failed refinement; do not run other Lambda or g_peak"
+  },
+  "environment": {
+    "date_utc": "2026-09-10T01:21:19.666263+00:00",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "executable": "/home/rharris/git/navier-stokes-physical-approximation/.venv/bin/python",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "machine": "daisy",
+    "architecture": "x86_64",
+    "python_address_bits": 64,
+    "cpu": "Intel(R) Core(TM) i7-14700F",
+    "memory": {
+      "MemTotal": "7983812 kB",
+      "MemAvailable": "4911116 kB"
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Ti, 610.60, 8188 MiB",
+    "compute_backend": "CPU",
+    "packages": {
+      "PyYAML": "6.0.3",
+      "Pygments": "2.21.0",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "fonttools": "4.64.0",
+      "iniconfig": "2.3.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.1",
+      "nsblowup": "0.1.0",
+      "numpy": "2.5.3",
+      "packaging": "26.3",
+      "pillow": "12.3.0",
+      "pip": "25.0.1",
+      "pluggy": "1.6.0",
+      "pyparsing": "3.3.2",
+      "pypdf": "6.18.0",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "scipy": "1.18.1",
+      "six": "1.17.0"
+    },
+    "git_commit": "3a4c08a11be67946b5a3e8d9fa6b3e04d249bc4a",
+    "git_status": "M notes/equation-map.md\n M notes/numerical-method.md\n M tests/test_workflow.py\n?? configs/core_not_theorem_admissible.yaml\n?? scripts/core_not_theorem_admissible.py\n?? src/nsblowup/core_not_theorem_admissible.py\n?? tests/test_core_operators.py",
+    "source_sha256": {
+      "configs/compressed_not_theorem_admissible.yaml": "9a65a037940637c44272e297f5c232a4dd40920aa6ab163708049cdc4cf7177d",
+      "configs/core_not_theorem_admissible.yaml": "f412946faaa6ed3c8a63c4c1af6d135e9ddfd0750d582de0a335f2ccb376c874",
+      "configs/nondimensional.yaml": "5e28c30f5247ca14bc6e646317731435504ab5b57036de00886bfc3167303ff9",
+      "configs/relaxed_not_theorem_admissible.yaml": "ac30fb3298566c40e2673c8c2bf6efc968d7137bf87d0d02a64abcee8d79f4f1",
+      "pyproject.toml": "f933e8a9534746b995c99ea29494214c24c7b6842044af6936799be72a19ff17",
+      "scripts/compressed_not_theorem_admissible.py": "3c966e847bb5bca6e740ab8386a7091e093902f017f0662329afd8c85443ecdf",
+      "scripts/core_not_theorem_admissible.py": "b5db5d1442de6b5fb1a14be86cc1ffedb419ca3fe515a1b10b9840c6f08b9450",
+      "scripts/environment.py": "eae24485a70ed3c40f7314693d7ccbcec4cb792a29a3d920ca2d16d8c239a25f",
+      "scripts/plot_profiles.py": "909137c387649c9d10455cd3d10812b7ada648686c893d794f98d0e2486f2e87",
+      "scripts/relaxed_pressure.py": "912e660bb8ef114e68fdc9259afcd06d775bb693baa9f42e154683648d0ec80a",
+      "src/nsblowup/__init__.py": "cb1badb5f801bde80b0be9fdc4a7aace3779ddc0e485da0fbd2dd6a762db36f7",
+      "src/nsblowup/compressed_not_theorem_admissible.py": "a7b9520b0a239262a56191ff6682f8abfc9057621817c5e53c86464c2acf9f19",
+      "src/nsblowup/coordinates.py": "fc7bdd9869b7b714043f83104b386a46ead2f2e0f14ba2f526dc442404a256e4",
+      "src/nsblowup/core_not_theorem_admissible.py": "b421f4955ded2acede7916f9d5e24b575a7bb1d22afc0d3bc9e73333267f5db0",
+      "src/nsblowup/io.py": "2352f674e0b8baaab1a834aaf4316a63dd8b5a160ffd6a295e3fbd683c510269",
+      "src/nsblowup/operators_axisymmetric.py": "fa306fab9a20f1e53d8db1952f28ae76cc95deabc8d9a3cc021d4cad9fc848cd",
+      "src/nsblowup/profiles.py": "4a32113d159f080db629c926e0251b019a51a9f02ff46e405fe035758cf12b2a",
+      "src/nsblowup/relaxed_schedule.py": "466aaa71eb6d722ef16c4e46b9a35492dcc8bb6c7a9499bb3dc63d2d89e6bbcc",
+      "tests/test_compressed_schedule.py": "7d3ace7d05ccb5b975df91642def8cfa7b2eb7db80c7916b5bfdd58264206508",
+      "tests/test_coordinates.py": "5001254f333519e90858483f2b5c8739068fc55d569309b8db6c133512247160",
+      "tests/test_core_operators.py": "22495729900efa4997508aa47528e21f5a42f4059515593104793d4a12bb37e0",
+      "tests/test_environment.py": "2c6cf229e98ce525b3e502730ad90f4abe94b31549cd809e4047296fd3481720",
+      "tests/test_operators.py": "27ad7b2c81f7ea3d035f49e01b78518c02b09404c2df3ffd49d27ecab4f0981c",
+      "tests/test_profiles.py": "d4bd99ff14567f935362b17f08952f5a2758521c47c91ecd005d246460f05c66",
+      "tests/test_relaxed_schedule.py": "395516194a1f0b4df696eb06a1000d746960dfb97c6697b349f6f123fd5b50b7",
+      "tests/test_workflow.py": "ab668a54043483cbf625abe2d272643480703d291028b6888b39e72141289db0"
+    }
+  },
+  "records": [
+    {
+      "grid": [
+        17,
+        129
+      ],
+      "status": "increment_converged_not_yet_accepted",
+      "history": [
+        {
+          "iteration": 1,
+          "increment_phi_or_U": 0.01695863630527289,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.03215596876220638,
+            0.7377361381947823,
+            6.375108774214766e-17
+          ],
+          "min_phi": 0.26833608094627526,
+          "max_abs_delta_U": 0.10211720593202846
+        },
+        {
+          "iteration": 2,
+          "increment_phi_or_U": 0.0001959678193352299,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.0013362785678875076,
+            0.009919689385752606,
+            1.444157293750692e-16
+          ],
+          "min_phi": 0.2684649769125482,
+          "max_abs_delta_U": 0.10211522377460026
+        },
+        {
+          "iteration": 3,
+          "increment_phi_or_U": 2.0711432441866684e-05,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.00021154643932475839,
+            7.882520005120242e-05,
+            7.37257477290143e-17
+          ],
+          "min_phi": 0.268464241484198,
+          "max_abs_delta_U": 0.10211522707062289
+        },
+        {
+          "iteration": 4,
+          "increment_phi_or_U": 4.682695447566498e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            6.983865979261856e-05,
+            3.0987505784535463e-06,
+            1.5569143196891844e-16
+          ],
+          "min_phi": 0.2684642447031578,
+          "max_abs_delta_U": 0.10211522707888009
+        },
+        {
+          "iteration": 5,
+          "increment_phi_or_U": 5.462879620887762e-07,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.1275978123190776e-05,
+            6.784955927860437e-07,
+            1.1752751549742868e-16
+          ],
+          "min_phi": 0.26846424462236534,
+          "max_abs_delta_U": 0.10211522707892955
+        },
+        {
+          "iteration": 6,
+          "increment_phi_or_U": 3.669533366057465e-08,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.0044702219965188e-06,
+            8.423228407133942e-08,
+            1.0321604682062002e-16
+          ],
+          "min_phi": 0.26846424462343116,
+          "max_abs_delta_U": 0.10211522707892857
+        },
+        {
+          "iteration": 7,
+          "increment_phi_or_U": 1.5225311011946019e-09,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            5.3445739527178265e-08,
+            5.798652571997742e-09,
+            6.201636426617085e-17
+          ],
+          "min_phi": 0.2684642446234398,
+          "max_abs_delta_U": 0.10211522707892856
+        },
+        {
+          "iteration": 8,
+          "increment_phi_or_U": 4.089500960091641e-11,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.7919012827369296e-09,
+            2.4648949201178105e-10,
+            6.201636426617085e-17
+          ],
+          "min_phi": 0.2684642446234396,
+          "max_abs_delta_U": 0.10211522707892856
+        },
+        {
+          "iteration": 9,
+          "increment_phi_or_U": 7.329137297062971e-13,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            3.752056174435858e-11,
+            2.4648948507288715e-10,
+            6.201636426617085e-17
+          ],
+          "min_phi": 0.2684642446234396,
+          "max_abs_delta_U": 0.10211522707892856
+        }
+      ],
+      "residual": {
+        "equation_order": [
+          "angular",
+          "axial",
+          "pressure"
+        ],
+        "norms": [
+          {
+            "linf": 16.572446621141978,
+            "sampled_rms": 2.0445516535868484,
+            "l2_trapezoidal": 5.608571307595019,
+            "axis_linf": 2.621325243197006,
+            "outer_linf": 16.572446621141978
+          },
+          {
+            "linf": 1.7726679723217842e-05,
+            "sampled_rms": 5.726018299343514e-06,
+            "l2_trapezoidal": 1.6015663515906245e-05,
+            "axis_linf": 9.166001291305292e-13,
+            "outer_linf": 1.7726679723217842e-05
+          },
+          {
+            "linf": 0.0061476878362434016,
+            "sampled_rms": 0.00039722747362757064,
+            "l2_trapezoidal": 0.0011397694012439,
+            "axis_linf": 0.0061476878362434016,
+            "outer_linf": 0.005988129761837996
+          }
+        ],
+        "off_grid_shape": [
+          36,
+          259
+        ],
+        "min_phi_off_grid": 0.2677600093824904,
+        "max_abs_delta_U": 0.10211875711965113,
+        "first_term_error_U": 0.0007321617132755101,
+        "phi_comparison_error": 0.021592608345272324,
+        "max_pressure_correction": 1.3398017173926746e-05,
+        "min_angular_source": 4.2323338101916175
+      },
+      "runtime_seconds": 0.20035750699935306,
+      "angular_matrix_condition_max": 1.9710209259935412,
+      "axis_g2_interpolation_linf": 0.008430667357931075,
+      "axis_g2_derivative_linf": 2.065953086198702,
+      "axis_g2_interpolant_min": -0.0003713466781746961,
+      "axis_grid_sampled_g_peak": 0.04135441696646305,
+      "min_phi_grid": 0.2684642446234396,
+      "accepted": false
+    },
+    {
+      "grid": [
+        33,
+        257
+      ],
+      "status": "increment_converged_not_yet_accepted",
+      "history": [
+        {
+          "iteration": 1,
+          "increment_phi_or_U": 0.016922909314507573,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.032211410688481094,
+            0.737825355931432,
+            5.477389375396768e-16
+          ],
+          "min_phi": 0.26838978577050776,
+          "max_abs_delta_U": 0.10211719452698784
+        },
+        {
+          "iteration": 2,
+          "increment_phi_or_U": 0.00019491263861015629,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.0013402884503740005,
+            0.009919958210108049,
+            5.37330596683816e-16
+          ],
+          "min_phi": 0.26851620454422276,
+          "max_abs_delta_U": 0.1021152126000788
+        },
+        {
+          "iteration": 3,
+          "increment_phi_or_U": 1.4298591582417863e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            2.018335792522072e-05,
+            7.906446989458527e-05,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.26851540428172027,
+          "max_abs_delta_U": 0.10211521579422128
+        },
+        {
+          "iteration": 4,
+          "increment_phi_or_U": 5.017874452062365e-07,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            7.86072606366638e-06,
+            4.7630725393620066e-05,
+            5.37330596683816e-16
+          ],
+          "min_phi": 0.26851540777230765,
+          "max_abs_delta_U": 0.10211521580204432
+        },
+        {
+          "iteration": 5,
+          "increment_phi_or_U": 2.203180526350046e-07,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.696121031626775e-06,
+            4.7874066983616403e-05,
+            5.37330596683816e-16
+          ],
+          "min_phi": 0.26851540776479405,
+          "max_abs_delta_U": 0.10211521580270289
+        },
+        {
+          "iteration": 6,
+          "increment_phi_or_U": 5.741892988853081e-08,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.606544122144827e-06,
+            2.4406274745085443e-05,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.2685154077647395,
+          "max_abs_delta_U": 0.1021152158026887
+        },
+        {
+          "iteration": 7,
+          "increment_phi_or_U": 9.561204161734338e-09,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            3.407800258253303e-07,
+            7.119480669587341e-06,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.26851540776473637,
+          "max_abs_delta_U": 0.10211521580268797
+        },
+        {
+          "iteration": 8,
+          "increment_phi_or_U": 1.0736466160565783e-09,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.7460139086970277e-08,
+            1.2952996573875608e-06,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.2685154077647364,
+          "max_abs_delta_U": 0.102115215802688
+        },
+        {
+          "iteration": 9,
+          "increment_phi_or_U": 8.470518730874232e-11,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.4384048623891115e-09,
+            1.572790015169634e-07,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.2685154077647364,
+          "max_abs_delta_U": 0.102115215802688
+        },
+        {
+          "iteration": 10,
+          "increment_phi_or_U": 4.8496207050163775e-12,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            3.0232426458109973e-10,
+            1.4488554432590117e-08,
+            5.408000436357696e-16
+          ],
+          "min_phi": 0.2685154077647364,
+          "max_abs_delta_U": 0.102115215802688
+        }
+      ],
+      "residual": {
+        "equation_order": [
+          "angular",
+          "axial",
+          "pressure"
+        ],
+        "norms": [
+          {
+            "linf": 0.12228043721691506,
+            "sampled_rms": 0.011551153753813204,
+            "l2_trapezoidal": 0.03236362434880217,
+            "axis_linf": 0.010529024442595514,
+            "outer_linf": 0.12228043721691506
+          },
+          {
+            "linf": 1.2310506916080044e-05,
+            "sampled_rms": 3.702431270767673e-06,
+            "l2_trapezoidal": 1.0444148776758562e-05,
+            "axis_linf": 8.686384944667225e-12,
+            "outer_linf": 1.2310506916080044e-05
+          },
+          {
+            "linf": 0.006774227742024106,
+            "sampled_rms": 0.00040655656267287046,
+            "l2_trapezoidal": 0.0011653353078365325,
+            "axis_linf": 0.006774227742024106,
+            "outer_linf": 0.006726428006360213
+          }
+        ],
+        "off_grid_shape": [
+          68,
+          515
+        ],
+        "min_phi_off_grid": 0.26851426348849816,
+        "max_abs_delta_U": 0.10212112048256938,
+        "first_term_error_U": 0.0007321468964877065,
+        "phi_comparison_error": 0.016758431235856908,
+        "max_pressure_correction": 1.3638077403399507e-05,
+        "min_angular_source": 3.7157278126156026
+      },
+      "runtime_seconds": 0.3048324920000596,
+      "angular_matrix_condition_max": 1.9489040952129992,
+      "axis_g2_interpolation_linf": 0.00836715300139229,
+      "axis_g2_derivative_linf": 2.049104682220491,
+      "axis_g2_interpolant_min": -0.0002726956851317931,
+      "axis_grid_sampled_g_peak": 0.04135441696646305,
+      "min_phi_grid": 0.2685154077647364,
+      "accepted": false
+    },
+    {
+      "grid": [
+        65,
+        513
+      ],
+      "status": "increment_converged_not_yet_accepted",
+      "history": [
+        {
+          "iteration": 1,
+          "increment_phi_or_U": 0.016922453288443495,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.032338344753703396,
+            0.7378946665145183,
+            2.1356180712750472e-14
+          ],
+          "min_phi": 0.26838951913911646,
+          "max_abs_delta_U": 0.10212038800683748
+        },
+        {
+          "iteration": 2,
+          "increment_phi_or_U": 0.00019496511565214591,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            0.0013405753650512948,
+            0.00995438153917838,
+            2.7878740982423267e-14
+          ],
+          "min_phi": 0.2685159210294372,
+          "max_abs_delta_U": 0.10211842736214798
+        },
+        {
+          "iteration": 3,
+          "increment_phi_or_U": 1.4451797796799504e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            2.0316503220100396e-05,
+            0.0012353943525955091,
+            2.6596780333676406e-14
+          ],
+          "min_phi": 0.26851513579593506,
+          "max_abs_delta_U": 0.10211842532782228
+        },
+        {
+          "iteration": 4,
+          "increment_phi_or_U": 1.8790916404241853e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            5.226556700765883e-07,
+            0.011736381789127004,
+            2.2336299476677368e-14
+          ],
+          "min_phi": 0.26851513962926565,
+          "max_abs_delta_U": 0.1021184253331738
+        },
+        {
+          "iteration": 5,
+          "increment_phi_or_U": 5.262866288376772e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            3.258080361208046e-06,
+            0.04732861199540852,
+            1.1804793254022172e-14
+          ],
+          "min_phi": 0.2685151395306897,
+          "max_abs_delta_U": 0.10211842541559285
+        },
+        {
+          "iteration": 6,
+          "increment_phi_or_U": 7.88507059700655e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            8.512552287231589e-06,
+            0.09651054183202351,
+            1.1915815556484688e-14
+          ],
+          "min_phi": 0.2685151395337427,
+          "max_abs_delta_U": 0.10211842541237591
+        },
+        {
+          "iteration": 7,
+          "increment_phi_or_U": 7.089816687733119e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.183992146383192e-05,
+            0.11333735242274567,
+            1.1862039128729407e-14
+          ],
+          "min_phi": 0.2685151395339659,
+          "max_abs_delta_U": 0.10211842541200403
+        },
+        {
+          "iteration": 8,
+          "increment_phi_or_U": 4.132721490662794e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            9.916624737311367e-06,
+            0.08361229627283656,
+            1.186030440525343e-14
+          ],
+          "min_phi": 0.2685151395339498,
+          "max_abs_delta_U": 0.10211842541202198
+        },
+        {
+          "iteration": 9,
+          "increment_phi_or_U": 1.6513735990979217e-06,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            5.411763876196542e-06,
+            0.04124664633722469,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.2685151395339497,
+          "max_abs_delta_U": 0.10211842541202262
+        },
+        {
+          "iteration": 10,
+          "increment_phi_or_U": 4.719156423381443e-07,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            2.0343599171643648e-06,
+            0.014262282564683149,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 11,
+          "increment_phi_or_U": 9.971580939086011e-08,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            5.486649587590174e-07,
+            0.003586413609067418,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 12,
+          "increment_phi_or_U": 1.600397400366993e-08,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.0893645375955469e-07,
+            0.0006755063400654127,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 13,
+          "increment_phi_or_U": 1.9947322335567286e-09,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            1.6423567543704526e-08,
+            9.761501453359189e-05,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 14,
+          "increment_phi_or_U": 1.9670220660628068e-10,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.607556616624542e-09,
+            1.1016138733777048e-05,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 15,
+          "increment_phi_or_U": 1.5592922786300534e-11,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.607556616624542e-09,
+            9.758819197736024e-07,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        },
+        {
+          "iteration": 16,
+          "increment_phi_or_U": 1.0040197839789045e-12,
+          "input_iterate_rescaled_collocation_linf_not_independent": [
+            4.607556616624542e-09,
+            2.370760612963041e-07,
+            1.2006021177235482e-14
+          ],
+          "min_phi": 0.26851513953394973,
+          "max_abs_delta_U": 0.10211842541202258
+        }
+      ],
+      "residual": {
+        "equation_order": [
+          "angular",
+          "axial",
+          "pressure"
+        ],
+        "norms": [
+          {
+            "linf": 0.0027630911424694204,
+            "sampled_rms": 0.00031289148283339586,
+            "l2_trapezoidal": 0.0008797973382715376,
+            "axis_linf": 8.485025659865642e-08,
+            "outer_linf": 0.0027630911424694204
+          },
+          {
+            "linf": 0.00014608533902649157,
+            "sampled_rms": 4.040421099898489e-05,
+            "l2_trapezoidal": 0.00011468233535625334,
+            "axis_linf": 2.964384293591138e-11,
+            "outer_linf": 0.00014608533902649157
+          },
+          {
+            "linf": 0.001711408072521807,
+            "sampled_rms": 0.00012991303276362414,
+            "l2_trapezoidal": 0.0003721953971436259,
+            "axis_linf": 0.001681628768585278,
+            "outer_linf": 0.001711408072521807
+          }
+        ],
+        "off_grid_shape": [
+          132,
+          1027
+        ],
+        "min_phi_off_grid": 0.2685150234764793,
+        "max_abs_delta_U": 0.10212088936254671,
+        "first_term_error_U": 0.0007321766323851106,
+        "phi_comparison_error": 0.01676324913702948,
+        "max_pressure_correction": 7.818825517880157e-05,
+        "min_angular_source": 3.0160414184454467
+      },
+      "runtime_seconds": 1.0411210769998434,
+      "angular_matrix_condition_max": 1.9377636513235483,
+      "axis_g2_interpolation_linf": 0.0017083165081136506,
+      "axis_g2_derivative_linf": 0.8812703677553354,
+      "axis_g2_interpolant_min": -0.0013743559474932963,
+      "axis_grid_sampled_g_peak": 0.09905619196084774,
+      "min_phi_grid": 0.26851513953394973,
+      "accepted": false
+    }
+  ],
+  "completed_utc": "2026-09-10T01:21:19.739995+00:00",
+  "axis_audit": {
+    "eta0": -0.005561716315493002,
+    "H_range": [
+      -1.8184526865184307,
+      1.8497234584204854
+    ],
+    "chi_max": 0.9884442388402854,
+    "chi_above_0p99_count": 0,
+    "small_Z_threshold": 0.1,
+    "small_Z_sample_count": 14,
+    "small_Z_sampled_intervals": [
+      [
+        -0.943359375,
+        -0.94140625
+      ],
+      [
+        -0.001953125,
+        -0.00048828125
+      ],
+      [
+        0.93798828125,
+        0.93994140625
+      ]
+    ],
+    "chi_range_on_small_Z_samples": [
+      0.0065347433132384135,
+      0.9547055855308854
+    ],
+    "Z_at_eta0": 0.44247848416407726,
+    "max_abs_Z": 25.477705641820357,
+    "log_C": 3.185576044197519,
+    "log_g_range": [
+      -473.79776259823603,
+      -2.3025850929940455
+    ],
+    "g2_underflow_count": 874,
+    "control_relative_pressure_difference": 2.3705542041343376e-11,
+    "control_relative_Z_difference": 1.4506779666012965e-11
+  },
+  "independent_residuals_decrease_each_refinement": [
+    true,
+    false,
+    false
+  ],
+  "accepted": false,
+  "initial_guess_check": {
+    "initial": "Phi=1,u=0",
+    "status": "increment_converged_not_yet_accepted",
+    "history": [
+      {
+        "iteration": 1,
+        "increment_phi_or_U": 0.7276127823814023,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          0.9943456260773054,
+          25.52407485429373,
+          3.120073643891885e-14
+        ],
+        "min_phi": 0.27238721761859774,
+        "max_abs_delta_U": 0.102195892040151
+      },
+      {
+        "iteration": 2,
+        "increment_phi_or_U": 0.012145865230582809,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          0.02616551976296959,
+          0.7378776269920205,
+          1.782601843913767e-14
+        ],
+        "min_phi": 0.2684435325209978,
+        "max_abs_delta_U": 0.10212040905049385
+      },
+      {
+        "iteration": 3,
+        "increment_phi_or_U": 0.00011721801745412375,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          0.0009412300907183438,
+          0.009921840457390974,
+          2.303018886706809e-14
+        ],
+        "min_phi": 0.26851553930672595,
+        "max_abs_delta_U": 0.10211842223268504
+      },
+      {
+        "iteration": 4,
+        "increment_phi_or_U": 1.8915431947534589e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          1.2396133841678647e-05,
+          0.011780793007560936,
+          1.1804793254022172e-14
+        ],
+        "min_phi": 0.26851513808989924,
+        "max_abs_delta_U": 0.10211842532494078
+      },
+      {
+        "iteration": 5,
+        "increment_phi_or_U": 5.261527500872304e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          3.3468973017394127e-06,
+          0.047308707853742055,
+          1.186030440525343e-14
+        ],
+        "min_phi": 0.26851513953534517,
+        "max_abs_delta_U": 0.1021184254155735
+      },
+      {
+        "iteration": 6,
+        "increment_phi_or_U": 7.884706354582133e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          8.5563713070262e-06,
+          0.09649542328232572,
+          1.1804793254022172e-14
+        ],
+        "min_phi": 0.26851513953373074,
+        "max_abs_delta_U": 0.10211842541237712
+      },
+      {
+        "iteration": 7,
+        "increment_phi_or_U": 7.090641480474169e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          1.1798872091705638e-05,
+          0.11334194458472693,
+          1.1863773852205384e-14
+        ],
+        "min_phi": 0.2685151395339659,
+        "max_abs_delta_U": 0.10211842541200414
+      },
+      {
+        "iteration": 8,
+        "increment_phi_or_U": 4.133788777345437e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          9.839217481800566e-06,
+          0.08362935314592618,
+          1.186030440525343e-14
+        ],
+        "min_phi": 0.2685151395339498,
+        "max_abs_delta_U": 0.10211842541202198
+      },
+      {
+        "iteration": 9,
+        "increment_phi_or_U": 1.6520125949263942e-06,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          5.355667959259375e-06,
+          0.04126095075181313,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.2685151395339497,
+        "max_abs_delta_U": 0.10211842541202262
+      },
+      {
+        "iteration": 10,
+        "increment_phi_or_U": 4.7215486446983146e-07,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          2.0094072352410536e-06,
+          0.014269078911240907,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 11,
+        "increment_phi_or_U": 9.977773230904208e-08,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          5.411697677308591e-07,
+          0.00358856222061954,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 12,
+        "increment_phi_or_U": 1.6015679164815833e-08,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          1.073299484930651e-07,
+          0.0006759856512609241,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 13,
+        "increment_phi_or_U": 1.996416507804577e-09,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          1.612666397816931e-08,
+          9.769769838929854e-05,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 14,
+        "increment_phi_or_U": 1.9689383456977794e-10,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          4.607556616624542e-09,
+          1.1027966249410603e-05,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 15,
+        "increment_phi_or_U": 1.5604240122257806e-11,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          4.607556616624542e-09,
+          9.752848368349554e-07,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      },
+      {
+        "iteration": 16,
+        "increment_phi_or_U": 1.0070833056374795e-12,
+        "input_iterate_rescaled_collocation_linf_not_independent": [
+          4.607556616624542e-09,
+          2.370760612963041e-07,
+          1.2006021177235482e-14
+        ],
+        "min_phi": 0.26851513953394973,
+        "max_abs_delta_U": 0.10211842541202258
+      }
+    ],
+    "phi_difference_from_comparison_initial": 2.4748536553431677e-12,
+    "U_difference_from_comparison_initial": 1.343022915101244e-14,
+    "interpretation": "same-grid iterate check only, not uniqueness of a converged continuum solution"
+  },
+  "plots": [
+    "core_not_theorem_admissible_failed_convergence.png",
+    "core_not_theorem_admissible_axis_resolution.png"
+  ],
+  "unaccepted_derivative_refinement": [
+    {
+      "coarse": [
+        17,
+        129
+      ],
+      "fine": [
+        33,
+        257
+      ],
+      "linf_changes": {
+        "phi_value": 0.009644860246595166,
+        "phi_Y": 0.003363867599478005,
+        "phi_eta": 1.1931581330661416,
+        "phi_YY": 0.0005139611464650877,
+        "phi_etaeta": 3092.8675035971683,
+        "u_value": 1.0443072067049114e-06,
+        "u_Y": 5.06492108040893e-07,
+        "u_eta": 0.0002796782346259352,
+        "u_YY": 1.2565144070355864e-07,
+        "u_etaeta": 3.367134229367366,
+        "p_value": 8.56145022096253e-06,
+        "p_Y": 2.1338255856034053e-06,
+        "p_eta": 0.0010440867624264077,
+        "p_YY": 2.2390098245182788e-08,
+        "p_etaeta": 0.35988203214425485
+      }
+    },
+    {
+      "coarse": [
+        33,
+        257
+      ],
+      "fine": [
+        65,
+        513
+      ],
+      "linf_changes": {
+        "phi_value": 7.482538732195287e-05,
+        "phi_Y": 3.4572793606010626e-05,
+        "phi_eta": 0.0292133156880805,
+        "phi_YY": 9.961438928635932e-06,
+        "phi_etaeta": 1157.3375971092028,
+        "u_value": 2.8820890860849213e-05,
+        "u_Y": 5.233330720155315e-05,
+        "u_eta": 0.8292646616220842,
+        "u_YY": 8.578935330660897e-05,
+        "u_etaeta": 21176.19533576224,
+        "p_value": 6.562290692319437e-05,
+        "p_Y": 1.605165227143082e-05,
+        "p_eta": 0.014888798275259282,
+        "p_YY": 2.3902335401314743e-08,
+        "p_etaeta": 21.308184344193304
+      }
+    }
+  ],
+  "derivative_comparison_grid": [
+    129,
+    1028
+  ],
+  "derivative_field_units": "phi=Phi, u=U-U_star, p=Pi-Pi0; derivatives in Y and eta",
+  "runtime_seconds": 4.297597157999917,
+  "process_peak_rss_native": 432528,
+  "peak_rss_units": "bytes on macOS, KiB on Linux",
+  "openblas_threads": "1",
+  "stopping_reason": "initial Lambda512 g_peak0.1 case fails independent residual refinement; no accepted nonlinear core",
+  "next_gate": "B. Improve the local nonlinear solver first",
+  "not_performed": [
+    "Lambda128 or larger g_peak continuation",
+    "nonlinear relaxed control (no accepted aggressive solution)",
+    "accepted-profile B.17-B.19 continuation diagnostics",
+    "global matching, stress, time integration",
+    "iMac run"
+  ],
+  "limitations": [
+    "failed iterates are not solutions",
+    "real-axis normalization not theorem C0",
+    "discrete contraction not analytic-norm contraction",
+    "no physical or theorem claim"
+  ]
+}

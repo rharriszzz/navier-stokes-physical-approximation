@@ -162,3 +162,62 @@ The new models are modified finite schedules, not applications of Lemma A.5
 to unchanged paper intervals. Its proof's factorization and integrable-tail
 argument still apply to their A.21-style integral. No unchanged datum or
 global moment identity is inferred from a small numerical pressure difference.
+
+## Fifth milestone: local nonlinear B.15 formulation
+
+Direct PDF readings: pp26-27, 147-149, alongside B.1-B.3 pp144-146.
+All finite runs remain NOT theorem-admissible. Use Y=Lambda X,
+phi=phi_star Phi, U=U_star+u/Lambda, Pi=Pi0+p/Lambda,
+p=I(g^2 Phi^2), g=phi_star/C. I integrates from 0 to Y;
+A_X(u)=I(u)/Y with its regular value u(0). Axis data: Phi(0)=1, u(0)=p(0)=0.
+
+Set B=-2D eta A_X(u)-d partial_eta A_X(u), W=W_star+B/Lambda,
+H_c=H_star+d u/Lambda. Exact B.14-B.15 remainders:
+
+```
+L R1 = [W+h(1-2 eta U)+d u zeta_star] Phi + W Y Phi_Y + H_c Phi_eta
+L R2 = [A(1-4 eta U_star)+4d]u -2A eta u^2/Lambda
+  + W Y u_Y + H_star u_eta + d u u_eta/Lambda
+  -4A eta p + d p_eta -2 eta Y p_Y
+2(Y Phi_YY+2 Phi_Y) = -chi Phi + R1/Lambda
+2(Y u_YY+u_Y) = -Z_star/L + R2/Lambda
+```
+
+The inverse J_nu sends Y^k to Y^(k+1)/[(k+1)(k+nu)], selecting
+zero axis value and excluding singular homogeneous solutions (B.5).
+The p148 fixed-point map is
+`Phi_new=Phi0+(1+J2 chi/2)^(-1) J2 R1/(2 Lambda)` and
+`u_new=-Y Z_star/(2L)+J1 R2/(2 Lambda)`.
+
+Independent original equations use (4.8)-(4.9):
+`l=1+Y Phi_Y/Phi`, `(log E)_eta=Lambda zeta_star+Phi_eta/Phi`,
+`W=1-2D eta A_X(U)-d partial_eta A_X(U)`, `H_c=D eta+dU`,
+`S_q=-W l-h(1-2 eta U)-H_c(log E)_eta`,
+`S_n=-W Y U_Y-A(1-2 eta U)U-H_c U_eta-d Pi_eta+4A eta Pi+2 eta Y Pi_Y`.
+Residuals are `-2L Lambda(Y Phi_YY+2Phi_Y)/Phi-S_q`,
+`-2L Lambda(Y U_YY+U_Y)-S_n`, and `Lambda Pi_Y-g^2 Phi^2`.
+These checks do not reuse R1/R2 or a fixed-point increment as a residual.
+
+B.17-B.19 real-axis diagnostics (not proof): S_q lower bound comparison,
+Phi positivity, p1=-2Y Phi_Y/Phi, n_s=-2u_Y, and at Y=4,
+`p1+p2^2/p1`, with p2=X n_s/E. These identities for integrated stress
+are justified only for a solved profile; evaluating them on an unaccepted
+iterate is not a verified continuation test. C0(Lambda), complex-neighborhood
+smallness, contraction thresholds and B.13 remainder bounds are not assumed.
+
+Direct p147 B.13 states, for every fixed derivative pair (r,s),
+`sup |partial_Y^r partial_eta^s (Phi-f0(Y chi), u+Y Z_star/(2L))| <= C_rs/Lambda`
+on the specified common neighborhood, for sufficiently large Lambda and
+C>=C0(Lambda). Thus the expected U error after its first term is O(Lambda^-2),
+not an asserted finite-case estimate. No such rate was measured in milestone 5.
+B.16 requires C at least the supremum of abs(phi_star) on a complex
+neighborhood; the finite real-peak normalization does not verify that.
+
+The actual unscaled B.15 equations are
+`-2L(X phi_XX+2phi_X)/phi=S_q`, `-2L(X U_XX+U_X)=S_n`,
+and `Pi_X=phi^2/C^2`, the zero-leading-stress specialization of (4.13).
+This gives the independent rescaled residuals above by X=Y/Lambda.
+B.2 chooses delta_star first and then sigma_star so that chi>.99 wherever
+abs(Z_star)<=delta_star. The illustrative delta=.1 used in the finite audit
+is not a threshold supplied by the theorem. With sigma=.2, even max chi
+is below .99, and the sampled small-Z set fails that partition condition.

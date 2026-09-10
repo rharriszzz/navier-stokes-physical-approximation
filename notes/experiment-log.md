@@ -860,3 +860,238 @@ Final artifacts: [summary and validation](../results/compressed_not_theorem_admi
 [Pi0 and Z_star comparison](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_local_data.png),
 [local error versus geometry saved](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_tradeoff.png),
 [condition table](../results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_conditions.md).
+
+---
+
+# Fifth milestone: core-only nonlinear diagnostic, 2026-09-10 UTC
+
+**Stopped at the first acceptance gate. No accepted nonlinear B.15 core.**
+The fixed-point iteration settles, but independent equation residuals and
+derivatives do not converge under refinement. This rejects the present
+numerical representation, not mathematical existence of the finite core.
+Every attempted profile remains **NOT theorem-admissible**.
+
+The unchanged [fifth prompt](../FIFTH_PROMPT.md) and user authorization were
+committed/pushed as `3a4c08a` before implementation. The final run completed
+at 2026-09-10T01:21:19 UTC. New implementation and results remain local
+pending review/publication. Earlier reference artifacts are untouched.
+
+## 1. Exact formulation
+
+Implemented B.12-B.15 with U=U_star+u/Lambda, phi=phi_star Phi,
+Pi=Pi0+p/Lambda and p=I(g^2 Phi^2), using the full existing aggressive
+scheduled pressure and its analytic derivatives. Exact R1/R2, averaging,
+J1/J2, and the independent original 4.9 sources are in the
+[equation map](equation-map.md). Direct PDF pp144-149 and pp26-28 supply
+the equations; the source digest is unchanged. No surrogate Pi0, refit,
+moment correction, outer matching, or time integration was introduced.
+
+## 2. Numerical method and axis
+
+CPU float64 tensor Chebyshev-Lobatto interpolants, exact-polynomial
+Gauss-Legendre radial inverse quadrature, spectral eta derivatives, and the
+p148 radial-inverse fixed-point map. Regularity fixes Phi(0)=1, u(0)=p(0)=0.
+No boundary condition is imposed at Y=4.1 or at the eta endpoints. Primary
+initial guess: Phi=f0(Y chi), u=-Y Z_star/(2L). Maximum 80 iterations;
+increment threshold 1e-11, positivity/nonfinite checks and a growth budget.
+Small increments do not establish equation acceptance.
+
+The initial (17,129), (25,257), (33,513) proposal was incorrectly described
+as nested: its radial grids were only refined. That run is preserved, and
+the reference uses strictly nested (17,129), (33,257), (65,513) grids.
+The same parameter tuple was rerun for documentation completeness; this
+was not a continuation to a new physical case.
+
+## 3. Sigma audit
+
+Keep h=.005, j0=.025, sigma_star=.2. H_star is
+`(.5-h)eta+(1-eta^2)(4eta+.025)`, with sampled range [-1.81845,1.84972]
+and unique negative zero eta0=-.005561716315493002.
+Z_star(eta0)=.442478484164; max abs(Z_star)=25.47770564 on the audit grid.
+The sampled max chi=.98844424 is below .99; no sampled point has chi>.99.
+
+For the explicitly illustrative smallness threshold abs(Z_star)<=.1,
+4097 uniform eta samples plus eta0 give three disjoint sampled intervals:
+[-.943359,-.941406], [-.001953,-.000488], [.937988,.939941]. Their chi
+values range from .006535 to .954706, not above .99. Abs(Z_star) is large
+in the broad interior lobes near eta=+/- .45 (see the axis plot). These
+are sampled locations, not certified level-set endpoints. The B.2
+complementary partition is NOT reproduced quantitatively with sigma=.2.
+The initial numerical probe preceded the completed quantitative audit;
+subsequent reference runs perform the audit before iterating.
+
+No sigma=.1 sensitivity was attempted after the residual stop. Decreasing
+sigma further narrows g near eta0 and does not repair this grid's existing
+resolution deficit; it also must not be assumed to restore the B.2 partition.
+
+## 4. Swirl normalization
+
+Use log g=log(.1)+Lambda integral_eta0^eta zeta_star, never a fitted axis
+profile and never an overflowing phi_star/C quotient. At Lambda512,
+log C=3.18557604420 and log g ranges from -473.797763 to log(.1).
+This real-axis normalization is not B.16 or C>=C0(Lambda).
+On 4098 audit points, 874 squared-swirl tail values underflow; g itself
+is representable there. The central peak is not lost to underflow.
+
+Instead, the g^2 interpolation errors are .0084307, .0083672, .0017083
+against a true maximum .01. The finest interpolant has minimum -.0013744,
+although the exact g^2 is nonnegative. Its derivative Linf error is .88127.
+The sampled g peak is only .04135 on the first two grids and .09906 on
+the finest. This is direct evidence of central underresolution and aliasing,
+not evidence that a small g_peak by itself meets the analytic hypotheses.
+
+## 5. Cases and stop
+
+Only aggressive datum, Lambda512, g_peak=.1, sigma=.2 was iterated.
+It has no accepted solution. Iteration increments settle in 9, 10, 16
+steps, respectively, to 7.33e-13, 4.85e-12, 1.00e-12. Lambda128,
+g_peak=.3 and 1, and optional Lambda2048 were not opened, in accordance
+with the prompt's first-case failure stop.
+
+## 6. Independent equation residuals
+
+Actual B.15 equations are evaluated through the original S_q/S_n sources,
+not R1/R2 or fixed-point increments, on denser off-grid point sets.
+The pressure residual is Lambda Pi_Y-g^2 Phi^2. No normalization by a
+large equation term hides a residual. L2 is trapezoidal with measure dY d_eta;
+unweighted sampled RMS is also retained in the JSON.
+
+| Grid (Y,eta) | Angular Linf | Axial Linf | Pressure Linf | Angular L2 | Axial L2 | Pressure L2 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 17,129 | 16.5724 | 1.77267e-5 | .00614769 | 5.60857 | 1.60157e-5 | .00113977 |
+| 33,257 | .122280 | 1.23105e-5 | .00677423 | .0323636 | 1.04441e-5 | .00116534 |
+| 65,513 | .00276309 | 1.46085e-4 | .00171141 | .000879797 | .000114682 | .000372195 |
+
+Only the angular residual decreases at both refinements. The finest axial
+residual is almost twelve times the middle-grid value. The pressure residual
+initially grows and remains 17% of the peak g^2 scale on the finest grid.
+All three finest Linf values exceed the declared engineering gate 1e-7.
+This is a failure even without invoking that absolute threshold.
+
+| Finest residual | Axis Linf | Y=4.1 Linf | Sampled RMS |
+| --- | ---: | ---: | ---: |
+| Angular | 8.48503e-8 | .00276309 | .000312891 |
+| Axial | 2.96438e-11 | .000146085 | 4.04042e-5 |
+| Pressure | .00168163 | .00171141 | .000129913 |
+
+## 7. Axial correction versus first term
+
+For the **unaccepted finest iterate only**, max abs(U-U_star)=.102120889
+on Y<=4.1 and max abs(U-U_star+Y Z_star/(2L Lambda))=.000732177.
+The requested error divided by max(1,max abs(U-U_star)) has the same value.
+The earlier .099703 first-term maximum was on Y<=4, not 4.1.
+These numbers are not validated nonlinear approximation errors, and no
+Lambda rate can be measured from a single failed parameter tuple.
+
+## 8. Phi comparison
+
+Unaccepted finest max abs(Phi-f0(Y chi))=.01676325, compared with
+.02159261 and .01675843 on the two earlier grids. No convergence of the
+whole nonlinear system follows from this comparatively stable scalar metric.
+
+## 9. Pressure correction
+
+Max abs(Pi-Pi0) is 1.33980e-5, 1.36381e-5, 7.81883e-5 across refinements.
+The jump is consistent with changing representation of the narrow pressure
+source; pressure balance explicitly fails. No pressure-corrected profile
+is accepted or substituted into the earlier validated datum.
+
+## 10. Derivative convergence
+
+Common-grid differences between successive unaccepted interpolants below
+use actual U and Pi units (u and p divided by Lambda). Complete values and
+first/second Y and eta derivative differences are saved in the JSON.
+
+| Quantity | First refinement Linf change | Second refinement Linf change |
+| --- | ---: | ---: |
+| Phi_Y | .00336387 | 3.45728e-5 |
+| Phi_eta | 1.19316 | .0292133 |
+| Phi_YY | .000513961 | 9.96144e-6 |
+| Phi_etaeta | 3092.87 | 1157.34 |
+| U_Y | 5.06492e-7 | 5.23333e-5 |
+| U_eta | .000279678 | .829265 |
+| U_YY | 1.25651e-7 | 8.57894e-5 |
+| U_etaeta | 3.36713 | 21176.2 |
+| Pi_Y | 2.13383e-6 | 1.60517e-5 |
+| Pi_eta | .00104409 | .0148888 |
+| Pi_YY | 2.23901e-8 | 2.39023e-8 |
+| Pi_etaeta | .359882 | 21.3082 |
+
+This plainly fails derivative convergence. Small pointwise U differences
+do not control its eta derivatives, particularly polynomial endpoint
+derivatives. Higher analytic regularity is not inferred from this scheme.
+
+## 11. Aggressive versus relaxed control
+
+Both original schedule evaluators were used unchanged to audit the input
+data. The full pressure/first/second-derivative stack differs by 2.37055e-11
+relative to its maximum, and Z_star by 1.45068e-11. No pressure surrogate
+was introduced. Because the aggressive core failed first, the relaxed
+nonlinear solve was not run. Phi/U/Pi and derivative differences between
+accepted nonlinear controls are unavailable. Sensitivity to outer geometry
+therefore remains unanswered, not demonstrated by close input data.
+
+## 12. Real-axis continuation diagnostics
+
+Unaccepted finest Phi has sampled off-grid minimum .26851502, and S_q
+minimum 3.01604. Positivity alone is insufficient: these values are only
+failed-iterate diagnostics. B.17's lower bound, p1/p2/n_s and B.19's Y=4
+shear test are deferred until a solved profile is accepted. No theorem
+continuation, stress property, or physically sustained concentration is claimed.
+
+## 13. Conditioning and branches
+
+The angular radial matrix maximum 2-norm condition numbers are 1.9710,
+1.9489, 1.9378. These small numbers say nothing about the full nonlinear
+eta differentiation problem. Iteration histories retain both increments and
+rescaled collocation equation residuals; only final off-grid original-source
+residuals are independent. The collocation histories are not acceptance evidence.
+
+The alternate finest-grid start Phi=1,u=0 also settles in 16 steps. Its
+Phi and U differences from the comparison-initialized iterate are 2.47e-12
+and 1.34e-14. No distinct discrete branch was observed in this limited check;
+neither iterate establishes a continuum solution or uniqueness. No parameter
+continuation was tried to bypass the refinement failure.
+
+## 14. Runtime, memory and verification
+
+Daisy/WSL2 CPU float64, Python 3.12.14, one OpenBLAS thread; final diagnostic
+workflow 4.30 seconds, process high-water RSS 432528 KiB (422.4 MiB).
+This is process RSS, not total host memory or a memory increment, and timing
+is not an isolated benchmark. GPU unused; no time step taken; no iMac run.
+The JSON records parent commit `3a4c08a`, dirty status, config, versions,
+source/script/config/test hashes and UTC completion. That parent commit
+alone does not contain the newly implemented diagnostic.
+
+**75 tests pass in 18.10 seconds.** New tests cover exact polynomial
+radial inverses, axis values, spectral derivatives, the angular resolvent
+against f0, rejection despite converged increments, and workflow/no-overwrite
+behavior. Editor diagnostics show no errors. Both diagnostic plots were
+visually inspected; earlier reference outputs are unchanged.
+
+Reproduce with:
+
+```bash
+OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/core_not_theorem_admissible.py
+OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q
+```
+
+Final small artifacts: [summary and histories](../results/core_not_theorem_admissible_reference_v2/core_not_theorem_admissible_summary.json),
+[residual and increment plot](../results/core_not_theorem_admissible_reference_v2/core_not_theorem_admissible_failed_convergence.png),
+[axis-resolution and partition plot](../results/core_not_theorem_admissible_reference_v2/core_not_theorem_admissible_axis_resolution.png).
+Full failed-iterate arrays remain local and ignored by Git.
+
+## 15. Credibility and next gate
+
+**The local nonlinear core has not yet been established numerically.**
+The present representation fails the required convergence tests despite
+settled iterations and superficially modest corrections. This experiment
+cannot yet answer whether B.13 predicts the finite nonlinear core or
+whether that core is insensitive to compressed outer geometry.
+
+**B. Improve the local nonlinear solver first.** A subsequent authorized
+task should resolve the narrow eta-dependent source and verify derivatives
+at this same first tuple before reopening parameter continuation. The
+finite sigma partition failure must remain explicit, even if numerical
+resolution improves. Stop here for review; no global moment/stress work,
+outer join, whole-flow residual, DNS, or physical claim follows this result.

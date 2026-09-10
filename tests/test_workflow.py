@@ -74,3 +74,21 @@ def test_compressed_workflow(tmp_path):
     assert all((output / filename).stat().st_size > 1000 for filename in summary["plots"])
     assert (output / "compressed_not_theorem_admissible_conditions.md").is_file()
     assert subprocess.run(command, cwd=root, capture_output=True).returncode != 0
+
+
+def test_core_failed_gate_workflow(tmp_path):
+    root = Path(__file__).resolve().parents[1]
+    output = tmp_path / "core_not_theorem_admissible"
+    command = [sys.executable, str(root / "scripts/core_not_theorem_admissible.py"), "--output", str(output)]
+    subprocess.run(command, check=True, cwd=root)
+    summary = json.loads((output / "core_not_theorem_admissible_summary.json").read_text())
+    assert not summary["accepted"]
+    assert summary["independent_residuals_decrease_each_refinement"] == [True, False, False]
+    assert summary["axis_audit"]["chi_above_0p99_count"] == 0
+    assert summary["next_gate"].startswith("B.")
+    assert len(summary["unaccepted_derivative_refinement"]) == 2
+    assert len(summary["plots"]) == 2
+    assert all((output / filename).stat().st_size > 1000 for filename in summary["plots"])
+    assert summary["environment"]["source_sha256"]
+    assert summary["records"][-1]["residual"]["norms"][2]["l2_trapezoidal"] > 0
+    assert subprocess.run(command, cwd=root, capture_output=True).returncode != 0

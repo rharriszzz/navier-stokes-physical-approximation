@@ -267,3 +267,22 @@ Three radius decades are blocked by the unchanged early stages alone.
 See the [fourth-milestone report](notes/experiment-log.md#fourth-milestone-schedule-compression-2026-09-10-utc)
 and its linked plots, condition table and reference summary. No nonlinear
 solve, dynamical concentration, or physical realizability is claimed.
+
+## Fifth milestone: failed local-core acceptance gate
+
+The source-grounded nonlinear B.15 diagnostic is implemented, but **no
+nonlinear core solution is accepted**. At Lambda512, g_peak=.1 and
+sigma_star=.2, the initial aggressive-datum iteration settles while axial
+and pressure residuals fail refinement. The narrow g^2 source is unresolved,
+and the finite sigma choice also fails the quantitative B.2 partition audit.
+No stronger-swirl or Lambda128 continuation was attempted.
+
+```bash
+OPENBLAS_NUM_THREADS=1 python scripts/core_not_theorem_admissible.py
+```
+
+See the [fifth-milestone report](notes/experiment-log.md#fifth-milestone-core-only-nonlinear-diagnostic-2026-09-10-utc)
+and [bounded config](configs/core_not_theorem_admissible.yaml). The report
+preserves failed residuals, derivative changes, initialization checks and
+plots. All models remain NOT theorem-admissible. Recommended next gate:
+improve the local solver, then reassess this same initial case.

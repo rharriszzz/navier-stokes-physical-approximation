@@ -1,0 +1,19 @@
+model: core_only_not_theorem_admissible
+datum: aggressive
+lengths:
+  intermediate_power: 1
+  axial_pulse_swirl_interval: 1
+  angular_bump_interval_unbumped: 1
+  profile_interpolation: 8
+  release_hold: 2
+Lambda: 512
+h: 0.005
+j0: 0.025
+sigma_star: 0.2
+g_peak: 0.1
+grids: [[17, 129], [33, 257], [65, 513]]
+iteration_limit: 80
+increment_tolerance: 1.0e-11
+absolute_residual_gate: 1.0e-7
+normalization: real-axis peak, not a complex-neighborhood bound
+continuation_policy: stop on failed refinement; do not run other Lambda or g_peak

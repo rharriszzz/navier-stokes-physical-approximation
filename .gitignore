@@ -21,3 +21,7 @@ results/compressed_not_theorem_admissible_reference_v2/*
 !results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_summary.json
 !results/compressed_not_theorem_admissible_reference_v2/compressed_not_theorem_admissible_conditions.md
 .cache/
+!results/core_not_theorem_admissible_reference_v2/
+results/core_not_theorem_admissible_reference_v2/*
+!results/core_not_theorem_admissible_reference_v2/*.png
+!results/core_not_theorem_admissible_reference_v2/core_not_theorem_admissible_summary.json

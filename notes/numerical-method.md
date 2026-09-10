@@ -352,3 +352,87 @@ control; reconstructible NPZ arrays and temporary runs remain ignored.
 The table's support flags concern geometry only; global moment and stress
 verification flags remain false even for the relaxed baseline. Conditional
 terminal Q identities do not remove that qualification.
+
+## Fifth milestone numerical formulation
+
+Use a tensor Chebyshev-Lobatto interpolant in Y on [0,4.1] and eta on
+[-1,1], CPU float64. Unknowns are Phi and u in B.12; integrate pressure
+from the already fixed scheduled Pi0, never impose a boundary at Y=4.1.
+Eta endpoints are polynomial endpoint derivatives, not prescribed boundary
+data. Radial regularity is imposed by J1/J2 and the fixed axis values.
+
+Numerical radial inverses integrate the interpolation polynomial exactly
+up to quadrature roundoff: J1 F=Y integral_0^1 integral_0^1 F(Yst) ds dt;
+J2 F=Y integral_0^1 (1-t)F(Yt) dt. Gauss-Legendre rules integrate these
+polynomials; pressure and averages use the corresponding single integral.
+The angular order-one operator 1+J2 chi/2 is inverted as a small radial
+matrix for each eta. Iterate the exact p148 map from the explicit comparison.
+Monitor absolute Phi increments and U increments (u increment divided by
+Lambda); stop at 1e-11, at nonfinite/zero-crossing Phi, growth beyond a
+declared finite probe budget, or 80 iterations. A stopped increment is NOT
+acceptance: original-source residuals at independent off-grid points and
+three nested resolutions are required. No assumption of discrete contraction
+is inherited from the proof's analytic coefficient norm.
+
+Initial nested grids: (17,129), (25,257), (33,513) points in (Y,eta).
+Correction during execution: those radial grids were not strictly nested.
+The preserved initial probe used them; the reference rerun uses genuinely
+nested (17,129), (33,257), (65,513) grids at the same parameter tuple.
+Start Lambda512, sigma=.2, g_peak=.1, aggressive datum. Continue only if
+residuals converge; a failed first case triggers the prompt's review stop,
+not an automatic sweep of other parameters. A second reasonable initial
+guess may test dependence on initialization at this same case.
+Real-axis log g=log(g_peak)+Lambda integral_eta0^eta zeta_star is evaluated
+without forming phi_star or C. log C is reported from the integral between
+0 and eta0. Underflow of negligible g^2 tails is distinguished from loss
+of its resolved central peak; derivative and normalization checks determine
+whether the axis data are adequately represented. This is not a complex
+neighborhood bound on g.
+
+Off-grid residuals differentiate the interpolation polynomial and reconstruct
+the original 4.9 sources independently of R1/R2. Norms include Linf and
+unweighted sampled RMS, plus axis and outer-endpoint slices. If accepted,
+subsequent continuation and control comparisons require the same tolerances.
+Failed attempts are saved with histories and residuals, not called solutions.
+
+### Fifth-milestone execution and rejection
+
+The initial grid proposal was corrected to nested (17,129), (33,257),
+(65,513) without changing any physical or axis-data parameter. Three runs
+are retained locally: initial_probe (non-nested radial refinement), reference
+(nested), and reference_v2 (same nested solve with complete L2/derivative
+reporting). Only the small final reference summary and plots are allowlisted.
+The final workflow is deliberately bounded to the initial failed gate, not a
+general parameter-sweep or solution-acceptance API.
+
+Per-iteration histories record increments and the input iterate's rescaled
+collocation equation residuals. Those reuse R1/R2 and are explicitly NOT the
+independent acceptance test. Final acceptance residuals reconstruct original
+S_q and S_n on (36,259), (68,515), (132,1027) sampled grids, including the
+axis and outer edge. L2 uses tensor trapezoidal integration of squared
+residuals with respect to dY d_eta; RMS is additionally reported. The declared
+absolute gate 1e-7 is an engineering criterion, not a theorem estimate, and
+the required decreasing-refinement test fails regardless of that threshold.
+
+Derivative changes use a common 129 by 1028 grid (including eta0), with
+first and second Y and eta derivatives of Phi, U-U_star and Pi-Pi0.
+Common axis terms cancel between refinements. These differences are not
+errors against a known solution. The second initial guess Phi=1,u=0 is
+compared only on the finest discrete grid. Neither check establishes
+analytic regularity, uniqueness, or stable continuous dependence.
+
+At eta0, local expansion gives log(g/g_peak) approximately
+`-Lambda L(eta0) H_star'(eta0) (eta-eta0)^2/(2 sigma_star^2)`.
+Its Gaussian standard-deviation scale is about .0042 at Lambda512 and
+sigma=.2. Eta Lobatto spacing near zero is about .00614 for 513 points,
+and .01227 for 257 points. Squaring g narrows it further. The measured
+interpolant of g^2 has negative lobes and 17% peak-relative Linf error on
+the finest grid, with order-one derivative error. Far-tail square underflow
+is separately counted and does not explain the inaccurate central peak.
+
+No automatic higher resolution, smaller sigma, different amplitude, relaxed
+nonlinear control, or Lambda continuation follows this stop. Possible later
+work under gate B is a source-equivalent locally resolved eta representation
+or a factored pressure treatment, validated on the same first tuple before
+any parameter continuation. Merely tightening the increment tolerance does
+not address the observed failure.
