@@ -323,3 +323,30 @@ report, selected reference JSON/plots and response file together. Earlier
 unpublished statuses are historical. Original run provenance is retained;
 full arrays and partial runs remain local and ignored. This publication
 request does not authorize another numerical experiment.
+
+## Exchange 010: restart checkpoint and incoming seventh prompt
+
+After sixth-milestone publication `bb545d9`, the user supplied three files
+and requested add/commit/push before restarting. They are archived unchanged:
+
+| Supplied file | SHA-256 |
+| --- | --- |
+| [CONVERSATION_BEGINNING_TO_SIX.md](../CONVERSATION_BEGINNING_TO_SIX.md) | `d000f7bdc1756ad739a1c69ff180c70ca4a275e2c0fec58f6b16ff13ad380dd7` |
+| [SIXTH_PROGRESS_SO_FAR.md](../SIXTH_PROGRESS_SO_FAR.md) | `25d3d565b4564ed3d536dfb620dc70c453f90125dd30c2b14408a699d656eb18` |
+| [SEVENTH_PROMPT.md](../SEVENTH_PROMPT.md) | `824be8123b9761fd418fe915329982ff2a9133cabebe34a0227fd2d95605b970` |
+
+Restart routing: the new progress summary and sixth response already contain
+the scientific handoff; it is not duplicated here. These incoming documents
+are user-supplied context, not new locally verified calculations. The seventh
+prompt is received and archived, but **no seventh-milestone experiment has
+started**. This turn authorizes publication and restart notes only. Await the
+user's instruction to begin, then follow the seventh prompt's required reads
+and gates. No numerical process needs to remain running across the restart.
+
+Local-only source dependency: the paper used for direct equation readings is
+cached at `/tmp/nsblowup-source.pdf`, outside Git, and may disappear on restart.
+If missing, retrieve the source URL recorded in the equation map and verify
+its recorded SHA-256 before using it. Published run summaries identify their
+original dirty-state source hashes; do not rewrite them to the later publication
+commit. The new conversation archive distinguishes reconstructed summaries
+from direct conversation material; preserve that distinction on resumption.
