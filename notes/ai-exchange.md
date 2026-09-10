@@ -256,3 +256,27 @@ publication request, and no response to this handoff has been received.
 > The aggressive and relaxed input pressure/derivative stack differs by about 2.37e-11 relative scale and Z_star by 1.45e-11. Because the aggressive core failed first, no relaxed nonlinear control, larger g_peak, Lambda128, or Lambda2048 case was opened. Thus nonlinear sensitivity to compressed exterior geometry and the B.13 Lambda rate remain unanswered. No global moment/stress restoration, outer join, whole-flow residual, time integration or physical-realizability claim was attempted. All models remain NOT theorem-admissible.
 >
 > My recommendation is **B. Improve the local nonlinear solver first**, not rejection of the finite core on mathematical grounds. Please independently review the exact equation mapping and residual implementation, then propose a narrowly scoped next prompt addressing the eta-source representation and derivative convergence at the same initial tuple. Please also assess the sigma/B.2 issue separately from discretization failure; neither smaller sigma nor a tighter iteration tolerance should be assumed to solve it. Any revised formulation should preserve the fixed pressure data, regular axis construction and independent off-grid acceptance tests before parameter continuation is reopened.
+
+## Exchange 008: sixth prompt and authorization
+
+Received after fifth-milestone publication `a3e4dd8`. Supplied artifact:
+[SIXTH_PROMPT.md](../SIXTH_PROMPT.md), preserved unchanged, SHA-256
+`54616e1b6e001329fa7fa96486689653babdff2bb8a8b49c4814c9cd5690d8ba`.
+No separate web-chat transcript was supplied. The user's conversation date
+is September 9, 2026; measured run timestamps are reported in UTC.
+
+The user authorized the next round verbatim:
+
+> it has replied, go for the next round.
+
+Summary, not quotation: improve the numerical representation of the same
+aggressive B.15 tuple only (Lambda512, g_peak=.1, sigma=.2, h=.005,
+j0=.025), starting with exact-source convergence checks. Factor p=G Pbar,
+separate eta and radial refinement, diagnose endpoint/source errors and modal
+tails, then stop for review. No new parameter case, relaxed nonlinear
+control, global construction, or time evolution is authorized.
+
+Decision: publish the unchanged prompt and this receipt before implementation;
+execute only within its staged gates and stop conditions. This is an
+authorization record, not evidence of numerical acceptance. Outcomes will
+be appended separately without changing historical failure records.
