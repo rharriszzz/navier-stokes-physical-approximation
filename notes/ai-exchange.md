@@ -182,3 +182,24 @@ No response to this handoff has been received yet.
 > Under the retained early stages and conditional Q construction, conservative lower bounds are 30.415393 radius decades when principal supports and the eta slope bound are retained, 16.322970 when retaining the eta slope bound alone, and 4.281770 from fixed stages alone. Thus the 3-decade target cannot be reached within this five-length-only scope. Please independently check these bounds and the support-versus-estimate classification.
 >
 > My recommendation is option B: a later core-only B.15 diagnostic using the aggressive compressed datum, with the original relaxed datum as control. Please assess whether this is scientifically worthwhile or whether actual moment/stress compatibility should come first, then supply a narrowly scoped next prompt. Near-identical local data do not demonstrate a globally matched, dynamically concentrating or physically realizable flow. All models remain NOT theorem-admissible; no B.15 solve, time integration or stress realization was attempted.
+
+## Exchange 006: fifth prompt and authorization
+
+Received after fourth-milestone publication `9104a7c`. Supplied artifact:
+[FIFTH_PROMPT.md](../FIFTH_PROMPT.md), preserved unchanged, SHA-256
+`b2a3c244095e59cb6627322c850f157962a6f3a67ec6402aef3bedc05c57f231`.
+No separate web-chat transcript was supplied.
+
+Summary, not quotation: the prompt authorizes a core-only nonlinear B.15
+diagnostic with aggressive and relaxed pressure data, explicit real-axis swirl
+normalization, residual/refinement and branch checks, then a review stop.
+Global matching, stress realization and time integration remain excluded.
+
+Asked to archive/publish the receipt, execute the milestone and stop for review,
+the user replied verbatim:
+
+> yes, please.
+
+This entry records authorization, not solver success. The unchanged prompt
+and receipt are published before numerical implementation. Later findings
+will be appended separately, retaining unsuccessful checks as well as results.
