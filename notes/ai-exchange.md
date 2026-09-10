@@ -64,3 +64,55 @@ a statement in the supplied prompt, not as newly performed local verification.
   not a validation result for the proposed third milestone.
 - Future implementation results and review decisions should be appended with
   their actual date and relevant commit IDs, leaving this receipt record intact.
+
+## Exchange 002: authorization and third-milestone result
+
+Recorded: 2026-09-10 UTC (following the September 9 receipt).
+
+### User authorization
+
+After the archival commit `2865550` and a request for confirmation before
+execution, the user replied verbatim:
+
+> yes, please.
+
+This authorized following the unchanged [THIRD_PROMPT.md](../THIRD_PROMPT.md).
+It did not authorize a nonlinear solve. No new web-ChatGPT response has been
+received or independently inferred for this entry.
+
+### Locally verified result, not a forwarded quotation
+
+Completed the full scheduled-pressure evaluator, two eta derivatives,
+Z_star, and first explicit axial-correction diagnostic. Five relaxed tuples
+pass schedule/Q/quadrature/derivative checks; all 61 tests pass. These are
+not theorem-admissible schedules or nonlinear solutions. Baseline maximum
+first correction at Lambda=128 is 0.398812, but the retained geometry still
+spans 140.889 decades in X; the lambda=0.1 variation spans 196.208 decades.
+See the [dated report](experiment-log.md#third-milestone-relaxed-scheduled-pressure-2026-09-10-utc)
+for the actual source equations, full measurements and limitations.
+
+Decision: stop for review before (B.15). The new source and report are local
+changes, not yet committed or pushed. No additional scientific direction is
+attributed to the other assistant until the user supplies it.
+
+## Exchange 003: third-milestone handoff and publication authorization
+
+Following the result above, the user requested a handoff for the other AI and
+explicitly authorized adding, committing, and pushing the milestone. The
+unpublished status in Exchange 002 describes the state at that earlier report.
+Git history records the subsequent publication commit. The following outgoing
+message is prepared for relay; no response from the other AI is recorded yet.
+
+### Copilot to Web ChatGPT
+
+> The third milestone is complete. Please review the [dated report](https://github.com/rharriszzz/navier-stokes-physical-approximation/blob/master/notes/experiment-log.md#third-milestone-relaxed-scheduled-pressure-2026-09-10-utc), its linked equation map and numerical method, and the reference summary and plots.
+>
+> Implemented the full Appendix A scheduled pressure integral (A.21), including all scheduled intervals and both infinite ends, its first two eta derivatives, Z_star, and the first explicit axial correction from (B.13). Only the pressure-preserving angular bumps are omitted from the scheduled integral. Their realization and moment closure at relaxed parameters remain unchecked.
+>
+> All results are explicitly relaxed-hierarchy, NOT theorem-admissible. Five one-at-a-time cases passed schedule joins, Q stopping, pressure refinement, derivative convergence, and sign/symmetry checks. All 61 tests pass on Daisy; no iMac run is claimed.
+>
+> Baseline: M_d=1, P_star=2, lambda=0.2, h=0.005, j0=0.025, T_f=64, c_o=0.025. Pi0(0)=-13.2584902, compared with -10 from the inner branch alone. At Y=4, max abs(delta U1) is 1.59525, 0.398812, 0.0997030, and 0.0249258 for Lambda=32,128,512,2048. These are explicit first-term diagnostics, not nonlinear profile errors.
+>
+> The central limitation is geometry: the baseline still spans 140.889 decades in X (about 70.44 in radius at fixed q). Reducing lambda to 0.1 increases this to 196.208 decades in X without materially improving pressure or the correction. Lowering P_star to 1 makes the first correction smaller but does not shorten the schedule. The earlier exact-hierarchy necessary bound is retained separately, not treated as a solved schedule.
+>
+> Please independently review the schedule/Q interpretation and derivative validation. Then recommend a narrowly scoped next milestone: is a core-only nonlinear B.15 diagnostic scientifically worthwhile despite the global scale separation, or should we first study explicitly modified schedule lengths and identify which matching, pressure, and stress conditions those changes would sacrifice? No nonlinear solve, full momentum residual, time integration, or dimensionalization has been attempted. Please do not treat a small first correction as evidence of dynamical concentration or physical realizability.

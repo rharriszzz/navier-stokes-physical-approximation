@@ -118,3 +118,37 @@ on a chosen smoothing length or on quadrature. The baseline h=0.005 and all
 suggested h values violate that necessary condition. Evaluating this bound at
 a smaller illustrative h is not a certificate that the full schedule exists
 for that tuple; all other admissibility conditions remain to be checked.
+
+## Third milestone: relaxed scheduled pressure
+
+Authorization: [THIRD_PROMPT.md](../THIRD_PROMPT.md). All new numerical
+results are **relaxed-hierarchy, not theorem-admissible**. Direct PDF reading
+for implementation: pp. 129-130, 133-134, 144, 147; same verified digest above.
+The first two milestone sections are historical records, not claims about
+which routines exist after this milestone.
+
+| Implemented quantity | Paper source | Code location |
+| --- | --- | --- |
+| Flat radial step and its derivatives | (A.5), p. 129 | `relaxed_schedule.smooth_step` |
+| Stage slopes, lengths, and amplitude continuity | Section A.2, (A.7)-(A.12), pp. 129-130 | `RelaxedSchedule` |
+| Q'+(1+l)Q=-l-h and terminal Q_p | Section A.2, (A.13), p. 130 | `RelaxedSchedule` Q construction |
+| Complete pressure integral, including both infinite ends | (A.21), Lemma A.5, pp. 133-134 | `RelaxedSchedule.pressure` |
+| Pressure eta derivatives under the integral | Derived from (A.21), proof of Lemma A.5 | `RelaxedSchedule.pressure` |
+| Z_star and negative root of H_star | (B.1), p. 144 | `relaxed_schedule.axial_diagnostic` |
+| delta U1=-Y Z_star/(2 L Lambda) | (B.12)-(B.13), pp. 146-147 | `relaxed_schedule.first_axial_correction` |
+
+Write J=log(1+eta^2), E=exp(a-vartheta J), and G=E^2. At each radial
+quadrature point the differentiated integrands are exactly
+`G_eta=-2 vartheta J_eta G` and
+`G_etaeta=(4 vartheta^2 J_eta^2-2 vartheta J_etaeta) G`, where
+`J_eta=2 eta/(1+eta^2)` and `J_etaeta=2(1-eta^2)/(1+eta^2)^2`.
+These are derivatives of the prescribed schedule, not a pressure surrogate.
+
+For the terminal collar, (A.12)-(A.13) simplify to
+`Q_p=integral_0^3 exp((1-h)v) f_o'(v) dv / f_o(0)`.
+After the release transitions, a positive Q_start greater than Q_p gives
+`T_hold=log(Q_start/Q_p)/(1-h)`. The whole release Q solution must be
+independently checked; omitting the angular bumps does NOT justify computing
+the initial Q from the uncorrected scheduled swirl. The prescribed initial
+value `(lambda-h)/(1-lambda)` is retained from the moment-corrected construction,
+whose realization is not certified in this relaxed experiment.

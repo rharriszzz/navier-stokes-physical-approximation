@@ -1,0 +1,2134 @@
+{
+  "label": "Relaxed hierarchy / NOT theorem-admissible",
+  "config": {
+    "model": "relaxed_hierarchy_not_theorem_admissible_scheduled_pressure",
+    "baseline": {
+      "axial_reduction": 1.0,
+      "pressure_amplitude": 2.0,
+      "outer_decay": 0.2,
+      "h": 0.005,
+      "interpolation_length": 64.0,
+      "terminal_coefficient": 0.025
+    },
+    "variations": [
+      {
+        "name": "P_star_1",
+        "updates": {
+          "pressure_amplitude": 1.0
+        }
+      },
+      {
+        "name": "P_star_5",
+        "updates": {
+          "pressure_amplitude": 5.0
+        }
+      },
+      {
+        "name": "M_d_2",
+        "updates": {
+          "axial_reduction": 2.0
+        }
+      },
+      {
+        "name": "lambda_0p1",
+        "updates": {
+          "outer_decay": 0.1
+        }
+      }
+    ],
+    "axial_offset": 0.025,
+    "eta_points": 513,
+    "radial_parameters": [
+      32,
+      128,
+      512,
+      2048
+    ],
+    "scaled_radius": 4.0,
+    "rtol": 1e-10,
+    "atol": 1e-12,
+    "refined_rtol": 1e-12,
+    "refined_atol": 1e-14,
+    "finite_difference_steps": [
+      0.004,
+      0.002,
+      0.001
+    ]
+  },
+  "environment": {
+    "date_utc": "2026-09-10T00:33:36.948753+00:00",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+    "executable": "/home/rharris/git/navier-stokes-physical-approximation/.venv/bin/python",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "machine": "daisy",
+    "architecture": "x86_64",
+    "python_address_bits": 64,
+    "cpu": "Intel(R) Core(TM) i7-14700F",
+    "memory": {
+      "MemTotal": "7983812 kB",
+      "MemAvailable": "4875732 kB"
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Ti, 610.60, 8188 MiB",
+    "compute_backend": "CPU",
+    "packages": {
+      "PyYAML": "6.0.3",
+      "Pygments": "2.21.0",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "fonttools": "4.64.0",
+      "iniconfig": "2.3.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.1",
+      "nsblowup": "0.1.0",
+      "numpy": "2.5.3",
+      "packaging": "26.3",
+      "pillow": "12.3.0",
+      "pip": "25.0.1",
+      "pluggy": "1.6.0",
+      "pyparsing": "3.3.2",
+      "pypdf": "6.18.0",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "scipy": "1.18.1",
+      "six": "1.17.0"
+    },
+    "git_commit": "28655507d647dcc31aa81e30ee4c9cb15b17f3cb",
+    "git_status": "M notes/equation-map.md\n M notes/numerical-method.md\n M src/nsblowup/io.py\n M tests/test_environment.py\n M tests/test_workflow.py\n?? configs/relaxed_not_theorem_admissible.yaml\n?? scripts/relaxed_pressure.py\n?? src/nsblowup/relaxed_schedule.py\n?? tests/test_relaxed_schedule.py",
+    "source_sha256": {
+      "configs/nondimensional.yaml": "5e28c30f5247ca14bc6e646317731435504ab5b57036de00886bfc3167303ff9",
+      "configs/relaxed_not_theorem_admissible.yaml": "ac30fb3298566c40e2673c8c2bf6efc968d7137bf87d0d02a64abcee8d79f4f1",
+      "pyproject.toml": "f933e8a9534746b995c99ea29494214c24c7b6842044af6936799be72a19ff17",
+      "scripts/environment.py": "eae24485a70ed3c40f7314693d7ccbcec4cb792a29a3d920ca2d16d8c239a25f",
+      "scripts/plot_profiles.py": "909137c387649c9d10455cd3d10812b7ada648686c893d794f98d0e2486f2e87",
+      "scripts/relaxed_pressure.py": "912e660bb8ef114e68fdc9259afcd06d775bb693baa9f42e154683648d0ec80a",
+      "src/nsblowup/__init__.py": "cb1badb5f801bde80b0be9fdc4a7aace3779ddc0e485da0fbd2dd6a762db36f7",
+      "src/nsblowup/coordinates.py": "fc7bdd9869b7b714043f83104b386a46ead2f2e0f14ba2f526dc442404a256e4",
+      "src/nsblowup/io.py": "2352f674e0b8baaab1a834aaf4316a63dd8b5a160ffd6a295e3fbd683c510269",
+      "src/nsblowup/operators_axisymmetric.py": "fa306fab9a20f1e53d8db1952f28ae76cc95deabc8d9a3cc021d4cad9fc848cd",
+      "src/nsblowup/profiles.py": "4a32113d159f080db629c926e0251b019a51a9f02ff46e405fe035758cf12b2a",
+      "src/nsblowup/relaxed_schedule.py": "466aaa71eb6d722ef16c4e46b9a35492dcc8bb6c7a9499bb3dc63d2d89e6bbcc",
+      "tests/test_coordinates.py": "5001254f333519e90858483f2b5c8739068fc55d569309b8db6c133512247160",
+      "tests/test_environment.py": "2c6cf229e98ce525b3e502730ad90f4abe94b31549cd809e4047296fd3481720",
+      "tests/test_operators.py": "27ad7b2c81f7ea3d035f49e01b78518c02b09404c2df3ffd49d27ecab4f0981c",
+      "tests/test_profiles.py": "d4bd99ff14567f935362b17f08952f5a2758521c47c91ecd005d246460f05c66",
+      "tests/test_relaxed_schedule.py": "395516194a1f0b4df696eb06a1000d746960dfb97c6697b349f6f123fd5b50b7",
+      "tests/test_workflow.py": "d0a3290f6a656f69856b7310c917d68b0e1716a601a1a76d771990a700c25141"
+    }
+  },
+  "float_dtype": "float64",
+  "equations": [
+    "A.5-A.13 schedule (pressure-preserving angular bumps omitted)",
+    "A.21",
+    "B.1",
+    "B.12-B.13 first explicit term"
+  ],
+  "records": [
+    {
+      "name": "baseline",
+      "label": "Relaxed hierarchy / NOT theorem-admissible",
+      "parameters": {
+        "axial_reduction": 1.0,
+        "pressure_amplitude": 2.0,
+        "outer_decay": 0.2,
+        "h": 0.005,
+        "interpolation_length": 64.0,
+        "terminal_coefficient": 0.025
+      },
+      "T_d": 12.718281828459045,
+      "T_w": 96.56627474604602,
+      "requirements": {
+        "algebraically_satisfied": [
+          "T_d=exp(M_d)+10",
+          "0<h<0.01",
+          "0<h<lambda<1",
+          "P_star>0",
+          "0<j0<=0.05 (checked by axial diagnostic)",
+          "T_f slope bound",
+          "c_o positivity and slope bound",
+          "convergent infinite ends"
+        ],
+        "geometrically_satisfied": [
+          "all twelve finite intervals retained and ordered",
+          "four reserved T_w patches fit",
+          "axial reduction zero for final eleven units",
+          "Q hold reaches Q_p with positive length"
+        ],
+        "intentionally_relaxed": {
+          "P_star>exp(T_d)": {
+            "satisfied": false,
+            "log_P_star": 0.6931471805599453,
+            "required_log_P_star_exceeds": 12.718281828459045
+          },
+          "h<exp(-T_d)": {
+            "satisfied": false,
+            "log_h": -5.298317366548036,
+            "required_log_h_below": -12.718281828459045
+          },
+          "sufficiently_large_M_d_and_small_lambda_then_h": "not imposed; finite compression authorized"
+        },
+        "not_checked": [
+          "existence of pressure-preserving angular moment bumps at relaxed parameters",
+          "axial pulse moment closure",
+          "stress cone",
+          "inner/exterior matching",
+          "complex analytic neighborhoods",
+          "sigma_star and C0(Lambda)",
+          "nonlinear B.15 or B.13 asymptotic remainder",
+          "physical dimensionalization"
+        ]
+      },
+      "log_radial_span": 324.4090994624671,
+      "log10_X_outer_over_X_R": 140.88908177575263,
+      "validation": {
+        "checks": {
+          "joins_logE_first_second_y": true,
+          "positive_log_swirl_representation": true,
+          "positive_ordered_lengths": true,
+          "infinite_tail_converges": true,
+          "q_event": true,
+          "pressure_refinement": true,
+          "derivative_convergence": true,
+          "pressure_even_and_strict_derivative_sign": true,
+          "interpolation_slope": true,
+          "terminal_slope": true
+        },
+        "join_max_errors": [
+          2.842170943040401e-14,
+          0.0,
+          0.0
+        ],
+        "q_checks": [
+          {
+            "stage": "release_down",
+            "initial": 0.24375,
+            "final": 0.7401730528655753,
+            "integrating_factor_error": 3.0520030946945553e-13,
+            "function_evaluations": 698
+          },
+          {
+            "stage": "release_up",
+            "initial": 21.82747617172676,
+            "final": 13.575521179204909,
+            "integrating_factor_error": 2.0943247136528953e-12,
+            "function_evaluations": 617
+          },
+          {
+            "stage": "terminal_collar",
+            "initial": 0.000919549105438356,
+            "final": 1.296879163984174e-17,
+            "integrating_factor_error": 7.676252469963907e-18,
+            "function_evaluations": 1817
+          }
+        ],
+        "q_initial": 0.24375,
+        "q_before_stopping_hold": 13.575521179204909,
+        "q_target": 0.000919549105438356,
+        "q_target_quad_error": 3.691926811132794e-13,
+        "q_stop_length": 9.648136048746913,
+        "q_terminal": 1.296879163984174e-17,
+        "span_refinement_difference": 0.0,
+        "quadrature_absolute_differences": [
+          3.5349501104064984e-13,
+          3.6770586575585185e-13,
+          1.4139800441625994e-12
+        ],
+        "quadrature_relative_differences": [
+          2.6661784645362453e-14,
+          2.679055987866181e-14,
+          2.6661784645362453e-14
+        ],
+        "max_stage_log_integral_refinement_difference": 3.410605131648481e-13,
+        "derivative_finite_differences": [
+          {
+            "step": 0.004,
+            "absolute_error": [
+              0.0004244175050764909,
+              0.0012727872187880962
+            ],
+            "relative_error": [
+              3.0922517941922187e-05,
+              2.3999475004468835e-05
+            ],
+            "observed_order": null
+          },
+          {
+            "step": 0.002,
+            "absolute_error": [
+              0.00010610597505333885,
+              0.00031819836637936305
+            ],
+            "relative_error": [
+              7.730745970858781e-06,
+              5.999898197953025e-06
+            ],
+            "observed_order": [
+              1.9999782615876585,
+              1.9999929193951547
+            ]
+          },
+          {
+            "step": 0.001,
+            "absolute_error": [
+              2.6526592414199968e-05,
+              7.95439368275197e-05
+            ],
+            "relative_error": [
+              1.9326936802908776e-06,
+              1.4998679240877377e-06
+            ],
+            "observed_order": [
+              1.999994634690483,
+              2.000102557342914
+            ]
+          }
+        ],
+        "pressure_evenness_error": 0.0,
+        "min_eta_times_pressure_derivative_nonzero_grid": 0.0008091969797191464,
+        "interpolation_slope_range": [
+          -0.28664339756999313,
+          -0.19999999999999996
+        ],
+        "terminal_log_factor_derivative_range": [
+          -4.336808689942018e-18,
+          0.0005000033504739499
+        ],
+        "finite_stage_sampled_log_amplitude_range": [
+          -239.13331729367013,
+          0.7307668553265106
+        ],
+        "stage_integrals": [
+          {
+            "name": "infinite_inner",
+            "log_integral_eta0": 2.995732273553991,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "inner_slope_transition",
+            "log_integral_eta0": 1.3443523792238108,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.14388110398346e-13
+          },
+          {
+            "name": "axial_reduction",
+            "log_integral_eta0": 0.9862913652630785,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "power_slope_transition",
+            "log_integral_eta0": -12.224260236260934,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.230715507415305e-14
+          },
+          {
+            "name": "intermediate_power",
+            "log_integral_eta0": -13.268459703960541,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "axial_pulse_swirl_interval",
+            "log_integral_eta0": -148.46124434842494,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "profile_interpolation",
+            "log_integral_eta0": -239.46124434842494,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.5136798955679146e-13
+          },
+          {
+            "name": "angular_bump_interval_unbumped",
+            "log_integral_eta0": -330.44753870954486,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_down",
+            "log_integral_eta0": -398.4267150755156,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 1.451190549890096e-13
+          },
+          {
+            "name": "release_hold",
+            "log_integral_eta0": -401.0060710838241,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_up",
+            "log_integral_eta0": -464.54515653664043,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 6.475764201202224e-14
+          },
+          {
+            "name": "q_stopping_hold",
+            "log_integral_eta0": -465.502276135589,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "terminal_collar",
+            "log_integral_eta0": -475.2963344303696,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.4553132850629017e-14
+          },
+          {
+            "name": "infinite_outer",
+            "log_integral_eta0": -478.2765849181934,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          }
+        ],
+        "representation": "Log amplitude and log-sum-exp positive moments; tiny contributions retained as logs, tails analytic, no physical radius formed."
+      },
+      "max_abs_pressure_and_derivatives": [
+        13.258490222714206,
+        13.725202736383379,
+        53.033960890856825
+      ],
+      "max_abs_z_star": 25.477697609918103,
+      "eta_grid_refinement_z_max_difference": 0.0,
+      "eta0": -0.005561716315493002,
+      "root_iterations": 6,
+      "root_residual": 5.421010862427522e-17,
+      "root_pressure_and_derivatives": [
+        -13.257670019278303,
+        -0.2949324755522126,
+        53.01919806621409
+      ],
+      "root_z_star": 0.4424784841734801,
+      "corrections_Y4": [
+        {
+          "Lambda": 32,
+          "max_abs": 1.5952481207191038,
+          "root_abs": 0.027654913815250818,
+          "relative_max": 0.396334936824622,
+          "eta_grid_refinement_max_difference": 4.240693939339124e-06
+        },
+        {
+          "Lambda": 128,
+          "max_abs": 0.39881203017977596,
+          "root_abs": 0.0069137284538127045,
+          "relative_max": 0.0990837342061555,
+          "eta_grid_refinement_max_difference": 1.060173484834781e-06
+        },
+        {
+          "Lambda": 512,
+          "max_abs": 0.09970300754494399,
+          "root_abs": 0.0017284321134531761,
+          "relative_max": 0.024770933551538876,
+          "eta_grid_refinement_max_difference": 2.6504337120869526e-07
+        },
+        {
+          "Lambda": 2048,
+          "max_abs": 0.024925751886235997,
+          "root_abs": 0.00043210802836329403,
+          "relative_max": 0.006192733387884719,
+          "eta_grid_refinement_max_difference": 6.626084280217381e-08
+        }
+      ],
+      "runtime_seconds": 1.4917970790011168,
+      "stages": [
+        {
+          "name": "inner_slope_transition",
+          "start": 0.0,
+          "length": 1.0,
+          "log_start_eta0": 0.6931471805599453,
+          "log_end_eta0": 0.4931471805598793
+        },
+        {
+          "name": "axial_reduction",
+          "start": 1.0,
+          "length": 12.718281828459045,
+          "log_start_eta0": 0.4931471805598793,
+          "log_end_eta0": -5.865993733669643
+        },
+        {
+          "name": "power_slope_transition",
+          "start": 13.718281828459045,
+          "length": 1.0,
+          "log_start_eta0": -5.865993733669643,
+          "log_end_eta0": -6.465993733669665
+        },
+        {
+          "name": "intermediate_power",
+          "start": 14.718281828459045,
+          "length": 96.56627474604602,
+          "log_start_eta0": -6.465993733669665,
+          "log_end_eta0": -74.06238605590187
+        },
+        {
+          "name": "axial_pulse_swirl_interval",
+          "start": 111.28455657450506,
+          "length": 65.0,
+          "log_start_eta0": -74.06238605590187,
+          "log_end_eta0": -119.56238605590187
+        },
+        {
+          "name": "profile_interpolation",
+          "start": 176.28455657450507,
+          "length": 64.0,
+          "log_start_eta0": -119.56238605590187,
+          "log_end_eta0": -165.05553323646183
+        },
+        {
+          "name": "angular_bump_interval_unbumped",
+          "start": 240.28455657450507,
+          "length": 48.28313737302301,
+          "log_start_eta0": -165.05553323646183,
+          "log_end_eta0": -198.85372939757792
+        },
+        {
+          "name": "release_down",
+          "start": 288.5676939475281,
+          "length": 1.0,
+          "log_start_eta0": -198.85372939757792,
+          "log_end_eta0": -199.953729397578
+        },
+        {
+          "name": "release_hold",
+          "start": 289.5676939475281,
+          "length": 21.193269466192145,
+          "log_start_eta0": -199.953729397578,
+          "log_end_eta0": -231.74363359686623
+        },
+        {
+          "name": "release_up",
+          "start": 310.7609634137202,
+          "length": 1.0,
+          "log_start_eta0": -231.74363359686623,
+          "log_end_eta0": -232.74613359686612
+        },
+        {
+          "name": "q_stopping_hold",
+          "start": 311.7609634137202,
+          "length": 9.648136048746913,
+          "log_start_eta0": -232.74613359686612,
+          "log_end_eta0": -237.6184423014833
+        },
+        {
+          "name": "terminal_collar",
+          "start": 321.4090994624671,
+          "length": 3.0,
+          "log_start_eta0": -237.6184423014833,
+          "log_end_eta0": -239.13331729367013
+        }
+      ]
+    },
+    {
+      "name": "P_star_1",
+      "label": "Relaxed hierarchy / NOT theorem-admissible",
+      "parameters": {
+        "axial_reduction": 1.0,
+        "pressure_amplitude": 1.0,
+        "outer_decay": 0.2,
+        "h": 0.005,
+        "interpolation_length": 64.0,
+        "terminal_coefficient": 0.025
+      },
+      "T_d": 12.718281828459045,
+      "T_w": 96.56627474604602,
+      "requirements": {
+        "algebraically_satisfied": [
+          "T_d=exp(M_d)+10",
+          "0<h<0.01",
+          "0<h<lambda<1",
+          "P_star>0",
+          "0<j0<=0.05 (checked by axial diagnostic)",
+          "T_f slope bound",
+          "c_o positivity and slope bound",
+          "convergent infinite ends"
+        ],
+        "geometrically_satisfied": [
+          "all twelve finite intervals retained and ordered",
+          "four reserved T_w patches fit",
+          "axial reduction zero for final eleven units",
+          "Q hold reaches Q_p with positive length"
+        ],
+        "intentionally_relaxed": {
+          "P_star>exp(T_d)": {
+            "satisfied": false,
+            "log_P_star": 0.0,
+            "required_log_P_star_exceeds": 12.718281828459045
+          },
+          "h<exp(-T_d)": {
+            "satisfied": false,
+            "log_h": -5.298317366548036,
+            "required_log_h_below": -12.718281828459045
+          },
+          "sufficiently_large_M_d_and_small_lambda_then_h": "not imposed; finite compression authorized"
+        },
+        "not_checked": [
+          "existence of pressure-preserving angular moment bumps at relaxed parameters",
+          "axial pulse moment closure",
+          "stress cone",
+          "inner/exterior matching",
+          "complex analytic neighborhoods",
+          "sigma_star and C0(Lambda)",
+          "nonlinear B.15 or B.13 asymptotic remainder",
+          "physical dimensionalization"
+        ]
+      },
+      "log_radial_span": 324.4090994624671,
+      "log10_X_outer_over_X_R": 140.88908177575263,
+      "validation": {
+        "checks": {
+          "joins_logE_first_second_y": true,
+          "positive_log_swirl_representation": true,
+          "positive_ordered_lengths": true,
+          "infinite_tail_converges": true,
+          "q_event": true,
+          "pressure_refinement": true,
+          "derivative_convergence": true,
+          "pressure_even_and_strict_derivative_sign": true,
+          "interpolation_slope": true,
+          "terminal_slope": true
+        },
+        "join_max_errors": [
+          2.842170943040401e-14,
+          0.0,
+          0.0
+        ],
+        "q_checks": [
+          {
+            "stage": "release_down",
+            "initial": 0.24375,
+            "final": 0.7401730528655753,
+            "integrating_factor_error": 3.0520030946945553e-13,
+            "function_evaluations": 698
+          },
+          {
+            "stage": "release_up",
+            "initial": 21.82747617172676,
+            "final": 13.575521179204909,
+            "integrating_factor_error": 2.0943247136528953e-12,
+            "function_evaluations": 617
+          },
+          {
+            "stage": "terminal_collar",
+            "initial": 0.000919549105438356,
+            "final": 1.296879163984174e-17,
+            "integrating_factor_error": 7.676252469963907e-18,
+            "function_evaluations": 1817
+          }
+        ],
+        "q_initial": 0.24375,
+        "q_before_stopping_hold": 13.575521179204909,
+        "q_target": 0.000919549105438356,
+        "q_target_quad_error": 3.691926811132794e-13,
+        "q_stop_length": 9.648136048746913,
+        "q_terminal": 1.296879163984174e-17,
+        "span_refinement_difference": 0.0,
+        "quadrature_absolute_differences": [
+          8.79296635503124e-14,
+          9.103828801926284e-14,
+          3.4994229736184934e-13
+        ],
+        "quadrature_relative_differences": [
+          2.652780582804908e-14,
+          2.6531713889496004e-14,
+          2.6393827010735703e-14
+        ],
+        "max_stage_log_integral_refinement_difference": 3.410605131648481e-13,
+        "derivative_finite_differences": [
+          {
+            "step": 0.004,
+            "absolute_error": [
+              0.00010610437626912272,
+              0.00031819702673807626
+            ],
+            "relative_error": [
+              3.0922517941922187e-05,
+              2.399949175155305e-05
+            ],
+            "observed_order": null
+          },
+          {
+            "step": 0.002,
+            "absolute_error": [
+              2.6526493430267806e-05,
+              7.955047976970775e-05
+            ],
+            "relative_error": [
+              7.730745873791462e-06,
+              5.999965187093725e-06
+            ],
+            "observed_order": [
+              1.9999782797021513,
+              1.999977818455572
+            ]
+          },
+          {
+            "step": 0.001,
+            "absolute_error": [
+              6.631648325594597e-06,
+              1.9887760560166612e-05
+            ],
+            "relative_error": [
+              1.9326937450024244e-06,
+              1.5000019026370939e-06
+            ],
+            "observed_order": [
+              1.999994568270857,
+              1.9999897992922695
+            ]
+          }
+        ],
+        "pressure_evenness_error": 0.0,
+        "min_eta_times_pressure_derivative_nonzero_grid": 0.0002022992449297866,
+        "interpolation_slope_range": [
+          -0.28664339756999313,
+          -0.19999999999999996
+        ],
+        "terminal_log_factor_derivative_range": [
+          -4.336808689942018e-18,
+          0.0005000033504739499
+        ],
+        "finite_stage_sampled_log_amplitude_range": [
+          -239.82646447423008,
+          0.03761967476656545
+        ],
+        "stage_integrals": [
+          {
+            "name": "infinite_inner",
+            "log_integral_eta0": 1.6094379124341003,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "inner_slope_transition",
+            "log_integral_eta0": -0.041941981896079866,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.1438722282444974e-13
+          },
+          {
+            "name": "axial_reduction",
+            "log_integral_eta0": -0.40000299585681215,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "power_slope_transition",
+            "log_integral_eta0": -13.610554597380824,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.230715507415305e-14
+          },
+          {
+            "name": "intermediate_power",
+            "log_integral_eta0": -14.654754065080432,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "axial_pulse_swirl_interval",
+            "log_integral_eta0": -149.84753870954484,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "profile_interpolation",
+            "log_integral_eta0": -240.84753870954484,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.5136798955679146e-13
+          },
+          {
+            "name": "angular_bump_interval_unbumped",
+            "log_integral_eta0": -331.83383307066475,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_down",
+            "log_integral_eta0": -399.81300943663547,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 1.451190549890096e-13
+          },
+          {
+            "name": "release_hold",
+            "log_integral_eta0": -402.392365444944,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_up",
+            "log_integral_eta0": -465.9314508977603,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 6.475764201202224e-14
+          },
+          {
+            "name": "q_stopping_hold",
+            "log_integral_eta0": -466.8885704967089,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "terminal_collar",
+            "log_integral_eta0": -476.6826287914895,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.4553132850629017e-14
+          },
+          {
+            "name": "infinite_outer",
+            "log_integral_eta0": -479.6628792793133,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          }
+        ],
+        "representation": "Log amplitude and log-sum-exp positive moments; tiny contributions retained as logs, tails analytic, no physical radius formed."
+      },
+      "max_abs_pressure_and_derivatives": [
+        3.3146225556785507,
+        3.4313006840958438,
+        13.258490222714203
+      ],
+      "max_abs_z_star": 10.948611146044293,
+      "eta_grid_refinement_z_max_difference": 0.00010546845769177082,
+      "eta0": -0.005561716315493002,
+      "root_iterations": 6,
+      "root_residual": 5.421010862427522e-17,
+      "root_pressure_and_derivatives": [
+        -3.3144175048195765,
+        -0.07373311888805316,
+        13.254799516553526
+      ],
+      "root_z_star": 0.10957683932785049,
+      "corrections_Y4": [
+        {
+          "Lambda": 32,
+          "max_abs": 0.6856061095538839,
+          "root_abs": 0.006848554576432702,
+          "relative_max": 0.1703369216282941,
+          "eta_grid_refinement_max_difference": 1.2739453954302427e-05
+        },
+        {
+          "Lambda": 128,
+          "max_abs": 0.17140152738847098,
+          "root_abs": 0.0017121386441081754,
+          "relative_max": 0.04258423040707353,
+          "eta_grid_refinement_max_difference": 3.1848634885756066e-06
+        },
+        {
+          "Lambda": 512,
+          "max_abs": 0.042850381847117744,
+          "root_abs": 0.00042803466102704385,
+          "relative_max": 0.010646057601768382,
+          "eta_grid_refinement_max_difference": 7.962158721439017e-07
+        },
+        {
+          "Lambda": 2048,
+          "max_abs": 0.010712595461779436,
+          "root_abs": 0.00010700866525676096,
+          "relative_max": 0.0026615144004420955,
+          "eta_grid_refinement_max_difference": 1.9905396803597541e-07
+        }
+      ],
+      "runtime_seconds": 1.4791991210004198,
+      "stages": [
+        {
+          "name": "inner_slope_transition",
+          "start": 0.0,
+          "length": 1.0,
+          "log_start_eta0": 0.0,
+          "log_end_eta0": -0.200000000000066
+        },
+        {
+          "name": "axial_reduction",
+          "start": 1.0,
+          "length": 12.718281828459045,
+          "log_start_eta0": -0.200000000000066,
+          "log_end_eta0": -6.559140914229588
+        },
+        {
+          "name": "power_slope_transition",
+          "start": 13.718281828459045,
+          "length": 1.0,
+          "log_start_eta0": -6.559140914229588,
+          "log_end_eta0": -7.15914091422961
+        },
+        {
+          "name": "intermediate_power",
+          "start": 14.718281828459045,
+          "length": 96.56627474604602,
+          "log_start_eta0": -7.15914091422961,
+          "log_end_eta0": -74.75553323646182
+        },
+        {
+          "name": "axial_pulse_swirl_interval",
+          "start": 111.28455657450506,
+          "length": 65.0,
+          "log_start_eta0": -74.75553323646182,
+          "log_end_eta0": -120.25553323646182
+        },
+        {
+          "name": "profile_interpolation",
+          "start": 176.28455657450507,
+          "length": 64.0,
+          "log_start_eta0": -120.25553323646182,
+          "log_end_eta0": -165.74868041702177
+        },
+        {
+          "name": "angular_bump_interval_unbumped",
+          "start": 240.28455657450507,
+          "length": 48.28313737302301,
+          "log_start_eta0": -165.74868041702177,
+          "log_end_eta0": -199.54687657813787
+        },
+        {
+          "name": "release_down",
+          "start": 288.5676939475281,
+          "length": 1.0,
+          "log_start_eta0": -199.54687657813787,
+          "log_end_eta0": -200.64687657813795
+        },
+        {
+          "name": "release_hold",
+          "start": 289.5676939475281,
+          "length": 21.193269466192145,
+          "log_start_eta0": -200.64687657813795,
+          "log_end_eta0": -232.43678077742618
+        },
+        {
+          "name": "release_up",
+          "start": 310.7609634137202,
+          "length": 1.0,
+          "log_start_eta0": -232.43678077742618,
+          "log_end_eta0": -233.43928077742606
+        },
+        {
+          "name": "q_stopping_hold",
+          "start": 311.7609634137202,
+          "length": 9.648136048746913,
+          "log_start_eta0": -233.43928077742606,
+          "log_end_eta0": -238.31158948204325
+        },
+        {
+          "name": "terminal_collar",
+          "start": 321.4090994624671,
+          "length": 3.0,
+          "log_start_eta0": -238.31158948204325,
+          "log_end_eta0": -239.82646447423008
+        }
+      ]
+    },
+    {
+      "name": "P_star_5",
+      "label": "Relaxed hierarchy / NOT theorem-admissible",
+      "parameters": {
+        "axial_reduction": 1.0,
+        "pressure_amplitude": 5.0,
+        "outer_decay": 0.2,
+        "h": 0.005,
+        "interpolation_length": 64.0,
+        "terminal_coefficient": 0.025
+      },
+      "T_d": 12.718281828459045,
+      "T_w": 96.56627474604602,
+      "requirements": {
+        "algebraically_satisfied": [
+          "T_d=exp(M_d)+10",
+          "0<h<0.01",
+          "0<h<lambda<1",
+          "P_star>0",
+          "0<j0<=0.05 (checked by axial diagnostic)",
+          "T_f slope bound",
+          "c_o positivity and slope bound",
+          "convergent infinite ends"
+        ],
+        "geometrically_satisfied": [
+          "all twelve finite intervals retained and ordered",
+          "four reserved T_w patches fit",
+          "axial reduction zero for final eleven units",
+          "Q hold reaches Q_p with positive length"
+        ],
+        "intentionally_relaxed": {
+          "P_star>exp(T_d)": {
+            "satisfied": false,
+            "log_P_star": 1.6094379124341003,
+            "required_log_P_star_exceeds": 12.718281828459045
+          },
+          "h<exp(-T_d)": {
+            "satisfied": false,
+            "log_h": -5.298317366548036,
+            "required_log_h_below": -12.718281828459045
+          },
+          "sufficiently_large_M_d_and_small_lambda_then_h": "not imposed; finite compression authorized"
+        },
+        "not_checked": [
+          "existence of pressure-preserving angular moment bumps at relaxed parameters",
+          "axial pulse moment closure",
+          "stress cone",
+          "inner/exterior matching",
+          "complex analytic neighborhoods",
+          "sigma_star and C0(Lambda)",
+          "nonlinear B.15 or B.13 asymptotic remainder",
+          "physical dimensionalization"
+        ]
+      },
+      "log_radial_span": 324.4090994624671,
+      "log10_X_outer_over_X_R": 140.88908177575263,
+      "validation": {
+        "checks": {
+          "joins_logE_first_second_y": true,
+          "positive_log_swirl_representation": true,
+          "positive_ordered_lengths": true,
+          "infinite_tail_converges": true,
+          "q_event": true,
+          "pressure_refinement": true,
+          "derivative_convergence": true,
+          "pressure_even_and_strict_derivative_sign": true,
+          "interpolation_slope": true,
+          "terminal_slope": true
+        },
+        "join_max_errors": [
+          2.842170943040401e-14,
+          0.0,
+          0.0
+        ],
+        "q_checks": [
+          {
+            "stage": "release_down",
+            "initial": 0.24375,
+            "final": 0.7401730528655753,
+            "integrating_factor_error": 3.0520030946945553e-13,
+            "function_evaluations": 698
+          },
+          {
+            "stage": "release_up",
+            "initial": 21.82747617172676,
+            "final": 13.575521179204909,
+            "integrating_factor_error": 2.0943247136528953e-12,
+            "function_evaluations": 617
+          },
+          {
+            "stage": "terminal_collar",
+            "initial": 0.000919549105438356,
+            "final": 1.296879163984174e-17,
+            "integrating_factor_error": 7.676252469963907e-18,
+            "function_evaluations": 1817
+          }
+        ],
+        "q_initial": 0.24375,
+        "q_before_stopping_hold": 13.575521179204909,
+        "q_target": 0.000919549105438356,
+        "q_target_quad_error": 3.691926811132794e-13,
+        "q_stop_length": 9.648136048746913,
+        "q_terminal": 1.296879163984174e-17,
+        "span_refinement_difference": 0.0,
+        "quadrature_absolute_differences": [
+          2.1316282072803006e-12,
+          2.2737367544323206e-12,
+          8.526512829121202e-12
+        ],
+        "quadrature_relative_differences": [
+          2.5723932924168822e-14,
+          2.650582929057945e-14,
+          2.5723932924168822e-14
+        ],
+        "max_stage_log_integral_refinement_difference": 3.410605131648481e-13,
+        "derivative_finite_differences": [
+          {
+            "step": 0.004,
+            "absolute_error": [
+              0.002652609410546347,
+              0.007954921782470592
+            ],
+            "relative_error": [
+              3.092251798643339e-05,
+              2.3999480027800965e-05
+            ],
+            "observed_order": null
+          },
+          {
+            "step": 0.002,
+            "absolute_error": [
+              0.0006631623341348813,
+              0.001988775094673656
+            ],
+            "relative_error": [
+              7.73074585488534e-06,
+              6.000004710239252e-06
+            ],
+            "observed_order": [
+              1.9999782853070478,
+              1.9999676103673354
+            ]
+          },
+          {
+            "step": 0.001,
+            "absolute_error": [
+              0.0001657912191745936,
+              0.0004971611512019081
+            ],
+            "relative_error": [
+              1.932693873638626e-06,
+              1.4999027577066986e-06
+            ],
+            "observed_order": [
+              1.999994468719766,
+              2.000094662920632
+            ]
+          }
+        ],
+        "pressure_evenness_error": 0.0,
+        "min_eta_times_pressure_derivative_nonzero_grid": 0.005057481123244663,
+        "interpolation_slope_range": [
+          -0.28664339756999313,
+          -0.19999999999999996
+        ],
+        "terminal_log_factor_derivative_range": [
+          -4.336808689942018e-18,
+          0.0005000033504739499
+        ],
+        "finite_stage_sampled_log_amplitude_range": [
+          -238.21702656179593,
+          1.6470575872006659
+        ],
+        "stage_integrals": [
+          {
+            "name": "infinite_inner",
+            "log_integral_eta0": 4.828313737302301,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "inner_slope_transition",
+            "log_integral_eta0": 3.176933842972121,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.1438051141017737e-13
+          },
+          {
+            "name": "axial_reduction",
+            "log_integral_eta0": 2.8188728290113882,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "power_slope_transition",
+            "log_integral_eta0": -10.391678772512623,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.230714453540676e-14
+          },
+          {
+            "name": "intermediate_power",
+            "log_integral_eta0": -11.435878240212231,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "axial_pulse_swirl_interval",
+            "log_integral_eta0": -146.62866288467663,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "profile_interpolation",
+            "log_integral_eta0": -237.62866288467663,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.5134513681963277e-13
+          },
+          {
+            "name": "angular_bump_interval_unbumped",
+            "log_integral_eta0": -328.6149572457965,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_down",
+            "log_integral_eta0": -396.59413361176723,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 1.451190549890096e-13
+          },
+          {
+            "name": "release_hold",
+            "log_integral_eta0": -399.17348962007577,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_up",
+            "log_integral_eta0": -462.71257507289204,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 6.475764201202224e-14
+          },
+          {
+            "name": "q_stopping_hold",
+            "log_integral_eta0": -463.6696946718406,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "terminal_collar",
+            "log_integral_eta0": -473.4637529666212,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.4553132850629017e-14
+          },
+          {
+            "name": "infinite_outer",
+            "log_integral_eta0": -476.444003454445,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          }
+        ],
+        "representation": "Log amplitude and log-sum-exp positive moments; tiny contributions retained as logs, tails analytic, no physical radius formed."
+      },
+      "max_abs_pressure_and_derivatives": [
+        82.86556389196372,
+        85.782517102396,
+        331.46225556785487
+      ],
+      "max_abs_z_star": 127.30799481241814,
+      "eta_grid_refinement_z_max_difference": 0.0,
+      "eta0": -0.005561716315493002,
+      "root_iterations": 6,
+      "root_residual": 5.421010862427522e-17,
+      "root_pressure_and_derivatives": [
+        -82.86043762048939,
+        -1.8433279722013287,
+        331.36998791383803
+      ],
+      "root_z_star": 2.772789998092888,
+      "corrections_Y4": [
+        {
+          "Lambda": 32,
+          "max_abs": 7.9706742744345815,
+          "root_abs": 0.17329942848697766,
+          "relative_max": 1.9802917452011382,
+          "eta_grid_refinement_max_difference": 0.0
+        },
+        {
+          "Lambda": 128,
+          "max_abs": 1.9926685686086454,
+          "root_abs": 0.043324857121744415,
+          "relative_max": 0.49507293630028454,
+          "eta_grid_refinement_max_difference": 0.0
+        },
+        {
+          "Lambda": 512,
+          "max_abs": 0.49816714215216135,
+          "root_abs": 0.010831214280436104,
+          "relative_max": 0.12376823407507113,
+          "eta_grid_refinement_max_difference": 0.0
+        },
+        {
+          "Lambda": 2048,
+          "max_abs": 0.12454178553804034,
+          "root_abs": 0.002707803570109026,
+          "relative_max": 0.030942058518767784,
+          "eta_grid_refinement_max_difference": 0.0
+        }
+      ],
+      "runtime_seconds": 1.6049508020005305,
+      "stages": [
+        {
+          "name": "inner_slope_transition",
+          "start": 0.0,
+          "length": 1.0,
+          "log_start_eta0": 1.6094379124341003,
+          "log_end_eta0": 1.4094379124340342
+        },
+        {
+          "name": "axial_reduction",
+          "start": 1.0,
+          "length": 12.718281828459045,
+          "log_start_eta0": 1.4094379124340342,
+          "log_end_eta0": -4.949703001795488
+        },
+        {
+          "name": "power_slope_transition",
+          "start": 13.718281828459045,
+          "length": 1.0,
+          "log_start_eta0": -4.949703001795488,
+          "log_end_eta0": -5.54970300179551
+        },
+        {
+          "name": "intermediate_power",
+          "start": 14.718281828459045,
+          "length": 96.56627474604602,
+          "log_start_eta0": -5.54970300179551,
+          "log_end_eta0": -73.14609532402771
+        },
+        {
+          "name": "axial_pulse_swirl_interval",
+          "start": 111.28455657450506,
+          "length": 65.0,
+          "log_start_eta0": -73.14609532402771,
+          "log_end_eta0": -118.64609532402771
+        },
+        {
+          "name": "profile_interpolation",
+          "start": 176.28455657450507,
+          "length": 64.0,
+          "log_start_eta0": -118.64609532402771,
+          "log_end_eta0": -164.13924250458766
+        },
+        {
+          "name": "angular_bump_interval_unbumped",
+          "start": 240.28455657450507,
+          "length": 48.28313737302301,
+          "log_start_eta0": -164.13924250458766,
+          "log_end_eta0": -197.93743866570375
+        },
+        {
+          "name": "release_down",
+          "start": 288.5676939475281,
+          "length": 1.0,
+          "log_start_eta0": -197.93743866570375,
+          "log_end_eta0": -199.03743866570383
+        },
+        {
+          "name": "release_hold",
+          "start": 289.5676939475281,
+          "length": 21.193269466192145,
+          "log_start_eta0": -199.03743866570383,
+          "log_end_eta0": -230.82734286499203
+        },
+        {
+          "name": "release_up",
+          "start": 310.7609634137202,
+          "length": 1.0,
+          "log_start_eta0": -230.82734286499203,
+          "log_end_eta0": -231.82984286499192
+        },
+        {
+          "name": "q_stopping_hold",
+          "start": 311.7609634137202,
+          "length": 9.648136048746913,
+          "log_start_eta0": -231.82984286499192,
+          "log_end_eta0": -236.7021515696091
+        },
+        {
+          "name": "terminal_collar",
+          "start": 321.4090994624671,
+          "length": 3.0,
+          "log_start_eta0": -236.7021515696091,
+          "log_end_eta0": -238.21702656179593
+        }
+      ]
+    },
+    {
+      "name": "M_d_2",
+      "label": "Relaxed hierarchy / NOT theorem-admissible",
+      "parameters": {
+        "axial_reduction": 2.0,
+        "pressure_amplitude": 2.0,
+        "outer_decay": 0.2,
+        "h": 0.005,
+        "interpolation_length": 64.0,
+        "terminal_coefficient": 0.025
+      },
+      "T_d": 17.389056098930652,
+      "T_w": 96.56627474604602,
+      "requirements": {
+        "algebraically_satisfied": [
+          "T_d=exp(M_d)+10",
+          "0<h<0.01",
+          "0<h<lambda<1",
+          "P_star>0",
+          "0<j0<=0.05 (checked by axial diagnostic)",
+          "T_f slope bound",
+          "c_o positivity and slope bound",
+          "convergent infinite ends"
+        ],
+        "geometrically_satisfied": [
+          "all twelve finite intervals retained and ordered",
+          "four reserved T_w patches fit",
+          "axial reduction zero for final eleven units",
+          "Q hold reaches Q_p with positive length"
+        ],
+        "intentionally_relaxed": {
+          "P_star>exp(T_d)": {
+            "satisfied": false,
+            "log_P_star": 0.6931471805599453,
+            "required_log_P_star_exceeds": 17.389056098930652
+          },
+          "h<exp(-T_d)": {
+            "satisfied": false,
+            "log_h": -5.298317366548036,
+            "required_log_h_below": -17.389056098930652
+          },
+          "sufficiently_large_M_d_and_small_lambda_then_h": "not imposed; finite compression authorized"
+        },
+        "not_checked": [
+          "existence of pressure-preserving angular moment bumps at relaxed parameters",
+          "axial pulse moment closure",
+          "stress cone",
+          "inner/exterior matching",
+          "complex analytic neighborhoods",
+          "sigma_star and C0(Lambda)",
+          "nonlinear B.15 or B.13 asymptotic remainder",
+          "physical dimensionalization"
+        ]
+      },
+      "log_radial_span": 329.0798737329387,
+      "log10_X_outer_over_X_R": 142.91757326763414,
+      "validation": {
+        "checks": {
+          "joins_logE_first_second_y": true,
+          "positive_log_swirl_representation": true,
+          "positive_ordered_lengths": true,
+          "infinite_tail_converges": true,
+          "q_event": true,
+          "pressure_refinement": true,
+          "derivative_convergence": true,
+          "pressure_even_and_strict_derivative_sign": true,
+          "interpolation_slope": true,
+          "terminal_slope": true
+        },
+        "join_max_errors": [
+          2.842170943040401e-14,
+          0.0,
+          0.0
+        ],
+        "q_checks": [
+          {
+            "stage": "release_down",
+            "initial": 0.24375,
+            "final": 0.7401730528655753,
+            "integrating_factor_error": 3.0520030946945553e-13,
+            "function_evaluations": 698
+          },
+          {
+            "stage": "release_up",
+            "initial": 21.82747617172676,
+            "final": 13.575521179204909,
+            "integrating_factor_error": 2.0943247136528953e-12,
+            "function_evaluations": 617
+          },
+          {
+            "stage": "terminal_collar",
+            "initial": 0.000919549105438356,
+            "final": 1.296879163984174e-17,
+            "integrating_factor_error": 7.676252469963907e-18,
+            "function_evaluations": 1817
+          }
+        ],
+        "q_initial": 0.24375,
+        "q_before_stopping_hold": 13.575521179204909,
+        "q_target": 0.000919549105438356,
+        "q_target_quad_error": 3.691926811132794e-13,
+        "q_stop_length": 9.648136048746913,
+        "q_terminal": 1.296879163984174e-17,
+        "span_refinement_difference": 0.0,
+        "quadrature_absolute_differences": [
+          3.481659405224491e-13,
+          3.6415315207705135e-13,
+          1.3926637620897964e-12
+        ],
+        "quadrature_relative_differences": [
+          2.625984682519496e-14,
+          2.6531712507103515e-14,
+          2.625984682519496e-14
+        ],
+        "max_stage_log_integral_refinement_difference": 3.410605131648481e-13,
+        "derivative_finite_differences": [
+          {
+            "step": 0.004,
+            "absolute_error": [
+              0.000424417526522447,
+              0.0012727882336847074
+            ],
+            "relative_error": [
+              3.0922517893278806e-05,
+              2.3999492890744002e-05
+            ],
+            "observed_order": null
+          },
+          {
+            "step": 0.002,
+            "absolute_error": [
+              0.00010610598029003881,
+              0.00031820204581123335
+            ],
+            "relative_error": [
+              7.730745949599896e-06,
+              5.999967264121203e-06
+            ],
+            "observed_order": [
+              1.999978263285481,
+              1.9999773875140499
+            ]
+          },
+          {
+            "step": 0.001,
+            "absolute_error": [
+              2.652659720681072e-05,
+              7.95467280809703e-05
+            ],
+            "relative_error": [
+              1.932693928774454e-06,
+              1.4999204773714988e-06
+            ],
+            "observed_order": [
+              1.9999944452380343,
+              2.0000686152922027
+            ]
+          }
+        ],
+        "pressure_evenness_error": 0.0,
+        "min_eta_times_pressure_derivative_nonzero_grid": 0.0008091970218810623,
+        "interpolation_slope_range": [
+          -0.28664339756999313,
+          -0.19999999999999996
+        ],
+        "terminal_log_factor_derivative_range": [
+          -4.336808689942018e-18,
+          0.0005000033504739499
+        ],
+        "finite_stage_sampled_log_amplitude_range": [
+          -241.46870442890594,
+          0.7307668553265106
+        ],
+        "stage_integrals": [
+          {
+            "name": "infinite_inner",
+            "log_integral_eta0": 2.995732273553991,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "inner_slope_transition",
+            "log_integral_eta0": 1.3443523792238108,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.14388110398346e-13
+          },
+          {
+            "name": "axial_reduction",
+            "log_integral_eta0": 0.9862943330635554,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "power_slope_transition",
+            "log_integral_eta0": -16.895034506732543,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.230678490529716e-14
+          },
+          {
+            "name": "intermediate_power",
+            "log_integral_eta0": -17.939233974432153,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "axial_pulse_swirl_interval",
+            "log_integral_eta0": -153.13201861889655,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "profile_interpolation",
+            "log_integral_eta0": -244.13201861889655,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.5136798966267057e-13
+          },
+          {
+            "name": "angular_bump_interval_unbumped",
+            "log_integral_eta0": -335.11831298001647,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_down",
+            "log_integral_eta0": -403.0974893459872,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 1.451190549890096e-13
+          },
+          {
+            "name": "release_hold",
+            "log_integral_eta0": -405.6768453542957,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_up",
+            "log_integral_eta0": -469.21593080711204,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 6.475764201202224e-14
+          },
+          {
+            "name": "q_stopping_hold",
+            "log_integral_eta0": -470.1730504060606,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "terminal_collar",
+            "log_integral_eta0": -479.9671087008412,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.4553132850629017e-14
+          },
+          {
+            "name": "infinite_outer",
+            "log_integral_eta0": -482.947359188665,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          }
+        ],
+        "representation": "Log amplitude and log-sum-exp positive moments; tiny contributions retained as logs, tails analytic, no physical radius formed."
+      },
+      "max_abs_pressure_and_derivatives": [
+        13.258490913526652,
+        13.725203451513133,
+        53.03396365410661
+      ],
+      "max_abs_z_star": 25.477698620040936,
+      "eta_grid_refinement_z_max_difference": 0.0,
+      "eta0": -0.005561716315493002,
+      "root_iterations": 6,
+      "root_residual": 5.421010862427522e-17,
+      "root_pressure_and_derivatives": [
+        -13.25767071004802,
+        -0.29493249091919804,
+        53.01920082869471
+      ],
+      "root_z_star": 0.44247850730055793,
+      "corrections_Y4": [
+        {
+          "Lambda": 32,
+          "max_abs": 1.5952481839664416,
+          "root_abs": 0.02765491526069363,
+          "relative_max": 0.39633495253824635,
+          "eta_grid_refinement_max_difference": 4.240679998268604e-06
+        },
+        {
+          "Lambda": 128,
+          "max_abs": 0.3988120459916104,
+          "root_abs": 0.006913728815173407,
+          "relative_max": 0.09908373813456159,
+          "eta_grid_refinement_max_difference": 1.060169999567151e-06
+        },
+        {
+          "Lambda": 512,
+          "max_abs": 0.0997030114979026,
+          "root_abs": 0.0017284322037933518,
+          "relative_max": 0.024770934533640397,
+          "eta_grid_refinement_max_difference": 2.6504249989178774e-07
+        },
+        {
+          "Lambda": 2048,
+          "max_abs": 0.02492575287447565,
+          "root_abs": 0.00043210805094833795,
+          "relative_max": 0.006192733633410099,
+          "eta_grid_refinement_max_difference": 6.626062497294694e-08
+        }
+      ],
+      "runtime_seconds": 1.650388567999471,
+      "stages": [
+        {
+          "name": "inner_slope_transition",
+          "start": 0.0,
+          "length": 1.0,
+          "log_start_eta0": 0.6931471805599453,
+          "log_end_eta0": 0.4931471805598793
+        },
+        {
+          "name": "axial_reduction",
+          "start": 1.0,
+          "length": 17.389056098930652,
+          "log_start_eta0": 0.4931471805598793,
+          "log_end_eta0": -8.201380868905447
+        },
+        {
+          "name": "power_slope_transition",
+          "start": 18.389056098930652,
+          "length": 1.0,
+          "log_start_eta0": -8.201380868905447,
+          "log_end_eta0": -8.80138086890547
+        },
+        {
+          "name": "intermediate_power",
+          "start": 19.389056098930652,
+          "length": 96.56627474604602,
+          "log_start_eta0": -8.80138086890547,
+          "log_end_eta0": -76.39777319113767
+        },
+        {
+          "name": "axial_pulse_swirl_interval",
+          "start": 115.95533084497667,
+          "length": 65.0,
+          "log_start_eta0": -76.39777319113767,
+          "log_end_eta0": -121.89777319113767
+        },
+        {
+          "name": "profile_interpolation",
+          "start": 180.9553308449767,
+          "length": 64.0,
+          "log_start_eta0": -121.89777319113767,
+          "log_end_eta0": -167.39092037169763
+        },
+        {
+          "name": "angular_bump_interval_unbumped",
+          "start": 244.9553308449767,
+          "length": 48.28313737302301,
+          "log_start_eta0": -167.39092037169763,
+          "log_end_eta0": -201.18911653281373
+        },
+        {
+          "name": "release_down",
+          "start": 293.2384682179997,
+          "length": 1.0,
+          "log_start_eta0": -201.18911653281373,
+          "log_end_eta0": -202.2891165328138
+        },
+        {
+          "name": "release_hold",
+          "start": 294.2384682179997,
+          "length": 21.193269466192145,
+          "log_start_eta0": -202.2891165328138,
+          "log_end_eta0": -234.07902073210204
+        },
+        {
+          "name": "release_up",
+          "start": 315.43173768419183,
+          "length": 1.0,
+          "log_start_eta0": -234.07902073210204,
+          "log_end_eta0": -235.08152073210192
+        },
+        {
+          "name": "q_stopping_hold",
+          "start": 316.43173768419183,
+          "length": 9.648136048746913,
+          "log_start_eta0": -235.08152073210192,
+          "log_end_eta0": -239.9538294367191
+        },
+        {
+          "name": "terminal_collar",
+          "start": 326.0798737329387,
+          "length": 3.0,
+          "log_start_eta0": -239.9538294367191,
+          "log_end_eta0": -241.46870442890594
+        }
+      ]
+    },
+    {
+      "name": "lambda_0p1",
+      "label": "Relaxed hierarchy / NOT theorem-admissible",
+      "parameters": {
+        "axial_reduction": 1.0,
+        "pressure_amplitude": 2.0,
+        "outer_decay": 0.1,
+        "h": 0.005,
+        "interpolation_length": 64.0,
+        "terminal_coefficient": 0.025
+      },
+      "T_d": 12.718281828459045,
+      "T_w": 138.15510557964276,
+      "requirements": {
+        "algebraically_satisfied": [
+          "T_d=exp(M_d)+10",
+          "0<h<0.01",
+          "0<h<lambda<1",
+          "P_star>0",
+          "0<j0<=0.05 (checked by axial diagnostic)",
+          "T_f slope bound",
+          "c_o positivity and slope bound",
+          "convergent infinite ends"
+        ],
+        "geometrically_satisfied": [
+          "all twelve finite intervals retained and ordered",
+          "four reserved T_w patches fit",
+          "axial reduction zero for final eleven units",
+          "Q hold reaches Q_p with positive length"
+        ],
+        "intentionally_relaxed": {
+          "P_star>exp(T_d)": {
+            "satisfied": false,
+            "log_P_star": 0.6931471805599453,
+            "required_log_P_star_exceeds": 12.718281828459045
+          },
+          "h<exp(-T_d)": {
+            "satisfied": false,
+            "log_h": -5.298317366548036,
+            "required_log_h_below": -12.718281828459045
+          },
+          "sufficiently_large_M_d_and_small_lambda_then_h": "not imposed; finite compression authorized"
+        },
+        "not_checked": [
+          "existence of pressure-preserving angular moment bumps at relaxed parameters",
+          "axial pulse moment closure",
+          "stress cone",
+          "inner/exterior matching",
+          "complex analytic neighborhoods",
+          "sigma_star and C0(Lambda)",
+          "nonlinear B.15 or B.13 asymptotic remainder",
+          "physical dimensionalization"
+        ]
+      },
+      "log_radial_span": 451.7860995437621,
+      "log10_X_outer_over_X_R": 196.2082100324491,
+      "validation": {
+        "checks": {
+          "joins_logE_first_second_y": true,
+          "positive_log_swirl_representation": true,
+          "positive_ordered_lengths": true,
+          "infinite_tail_converges": true,
+          "q_event": true,
+          "pressure_refinement": true,
+          "derivative_convergence": true,
+          "pressure_even_and_strict_derivative_sign": true,
+          "interpolation_slope": true,
+          "terminal_slope": true
+        },
+        "join_max_errors": [
+          2.842170943040401e-14,
+          0.0,
+          0.0
+        ],
+        "q_checks": [
+          {
+            "stage": "release_down",
+            "initial": 0.10555555555555556,
+            "final": 0.6018463654048203,
+            "integrating_factor_error": 6.716849298982197e-14,
+            "function_evaluations": 713
+          },
+          {
+            "stage": "release_up",
+            "initial": 21.689149484266007,
+            "final": 13.491411791356809,
+            "integrating_factor_error": 2.1014301410104963e-12,
+            "function_evaluations": 617
+          },
+          {
+            "stage": "terminal_collar",
+            "initial": 0.000919549105438356,
+            "final": 1.296879163984174e-17,
+            "integrating_factor_error": 7.928278144719996e-18,
+            "function_evaluations": 1817
+          }
+        ],
+        "q_initial": 0.10555555555555556,
+        "q_before_stopping_hold": 13.491411791356809,
+        "q_target": 0.000919549105438356,
+        "q_target_quad_error": 3.691926811132794e-13,
+        "q_stop_length": 9.641889879646701,
+        "q_terminal": 1.296879163984174e-17,
+        "span_refinement_difference": 5.684341886080802e-14,
+        "quadrature_absolute_differences": [
+          3.5349501104064984e-13,
+          3.659295089164516e-13,
+          1.4139800441625994e-12
+        ],
+        "quadrature_relative_differences": [
+          2.6661784060852087e-14,
+          2.666113629958274e-14,
+          2.6661784060852087e-14
+        ],
+        "max_stage_log_integral_refinement_difference": 2.8421709430404007e-13,
+        "derivative_finite_differences": [
+          {
+            "step": 0.004,
+            "absolute_error": [
+              0.00042441751368471614,
+              0.0012727881530452123
+            ],
+            "relative_error": [
+              3.092251789118741e-05,
+              2.3999492094529098e-05
+            ],
+            "observed_order": null
+          },
+          {
+            "step": 0.002,
+            "absolute_error": [
+              0.00010610597722227055,
+              0.00031820107699331857
+            ],
+            "relative_error": [
+              7.730745959402053e-06,
+              5.999949177324345e-06
+            ],
+            "observed_order": [
+              1.999978261358649,
+              1.999981688636372
+            ]
+          },
+          {
+            "step": 0.001,
+            "absolute_error": [
+              2.652659413904246e-05,
+              7.954487108463582e-05
+            ],
+            "relative_error": [
+              1.9326937635899602e-06,
+              1.499885507410313e-06
+            ],
+            "observed_order": [
+              1.9999945703723099,
+              2.00009790247493
+            ]
+          }
+        ],
+        "pressure_evenness_error": 0.0,
+        "min_eta_times_pressure_derivative_nonzero_grid": 0.0008091969974592954,
+        "interpolation_slope_range": [
+          -0.18664339756999315,
+          -0.09999999999999998
+        ],
+        "terminal_log_factor_derivative_range": [
+          -4.336808689942018e-18,
+          0.0005000033504739499
+        ],
+        "finite_stage_sampled_log_amplitude_range": [
+          -288.0751695166047,
+          0.7307668553265106
+        ],
+        "stage_integrals": [
+          {
+            "name": "infinite_inner",
+            "log_integral_eta0": 2.995732273553991,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "inner_slope_transition",
+            "log_integral_eta0": 1.3443523792238108,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.14388110398346e-13
+          },
+          {
+            "name": "axial_reduction",
+            "log_integral_eta0": 0.9862913652630785,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "power_slope_transition",
+            "log_integral_eta0": -12.207843777266199,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.097556107896215e-14
+          },
+          {
+            "name": "intermediate_power",
+            "log_integral_eta0": -13.014309024133263,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "axial_pulse_swirl_interval",
+            "log_integral_eta0": -178.80043571970458,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "profile_interpolation",
+            "log_integral_eta0": -334.8004357197047,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 4.6621416869463044e-14
+          },
+          {
+            "name": "angular_bump_interval_unbumped",
+            "log_integral_eta0": -412.9867300808245,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_down",
+            "log_integral_eta0": -496.3575818828908,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 1.941731602931563e-13
+          },
+          {
+            "name": "release_hold",
+            "log_integral_eta0": -498.89608416048446,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "release_up",
+            "log_integral_eta0": -562.4351696133008,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 6.478460033969316e-14
+          },
+          {
+            "name": "q_stopping_hold",
+            "log_integral_eta0": -563.3922895831843,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          },
+          {
+            "name": "terminal_collar",
+            "log_integral_eta0": -573.1800388762388,
+            "method": "adaptive quadrature of locally normalized moments",
+            "normalized_quadrature_error": 3.455313297041835e-14
+          },
+          {
+            "name": "infinite_outer",
+            "log_integral_eta0": -576.1602893640626,
+            "method": "analytic",
+            "normalized_quadrature_error": 0.0
+          }
+        ],
+        "representation": "Log amplitude and log-sum-exp positive moments; tiny contributions retained as logs, tails analytic, no physical radius formed."
+      },
+      "max_abs_pressure_and_derivatives": [
+        13.258490513382114,
+        13.725203037283094,
+        53.033962053528455
+      ],
+      "max_abs_z_star": 25.477698034939824,
+      "eta_grid_refinement_z_max_difference": 0.0,
+      "eta0": -0.005561716315493002,
+      "root_iterations": 6,
+      "root_residual": 5.421010862427522e-17,
+      "root_pressure_and_derivatives": [
+        -13.257670309928235,
+        -0.29493248201806244,
+        53.0191992285621
+      ],
+      "root_z_star": 0.4424784939044852,
+      "corrections_Y4": [
+        {
+          "Lambda": 32,
+          "max_abs": 1.5952481473312063,
+          "root_abs": 0.027654914423438825,
+          "relative_max": 0.3963349434363245,
+          "eta_grid_refinement_max_difference": 4.2406880731427066e-06
+        },
+        {
+          "Lambda": 128,
+          "max_abs": 0.3988120368328016,
+          "root_abs": 0.006913728605859706,
+          "relative_max": 0.09908373585908113,
+          "eta_grid_refinement_max_difference": 1.0601720182856766e-06
+        },
+        {
+          "Lambda": 512,
+          "max_abs": 0.0997030092082004,
+          "root_abs": 0.0017284321514649266,
+          "relative_max": 0.024770933964770283,
+          "eta_grid_refinement_max_difference": 2.6504300457141916e-07
+        },
+        {
+          "Lambda": 2048,
+          "max_abs": 0.0249257523020501,
+          "root_abs": 0.00043210803786623164,
+          "relative_max": 0.006192733491192571,
+          "eta_grid_refinement_max_difference": 6.626075114285479e-08
+        }
+      ],
+      "runtime_seconds": 1.6073100390003674,
+      "stages": [
+        {
+          "name": "inner_slope_transition",
+          "start": 0.0,
+          "length": 1.0,
+          "log_start_eta0": 0.6931471805599453,
+          "log_end_eta0": 0.4931471805598793
+        },
+        {
+          "name": "axial_reduction",
+          "start": 1.0,
+          "length": 12.718281828459045,
+          "log_start_eta0": 0.4931471805598793,
+          "log_end_eta0": -5.865993733669643
+        },
+        {
+          "name": "power_slope_transition",
+          "start": 13.718281828459045,
+          "length": 1.0,
+          "log_start_eta0": -5.865993733669643,
+          "log_end_eta0": -6.415993733669654
+        },
+        {
+          "name": "intermediate_power",
+          "start": 14.718281828459045,
+          "length": 138.15510557964276,
+          "log_start_eta0": -6.415993733669654,
+          "log_end_eta0": -89.30905708145531
+        },
+        {
+          "name": "axial_pulse_swirl_interval",
+          "start": 152.87338740810182,
+          "length": 130.0,
+          "log_start_eta0": -89.30905708145531,
+          "log_end_eta0": -167.3090570814553
+        },
+        {
+          "name": "profile_interpolation",
+          "start": 282.87338740810185,
+          "length": 64.0,
+          "log_start_eta0": -167.3090570814553,
+          "log_end_eta0": -206.40220426201526
+        },
+        {
+          "name": "angular_bump_interval_unbumped",
+          "start": 346.87338740810185,
+          "length": 69.07755278982138,
+          "log_start_eta0": -206.40220426201526,
+          "log_end_eta0": -247.84873593590808
+        },
+        {
+          "name": "release_down",
+          "start": 415.9509401979232,
+          "length": 1.0,
+          "log_start_eta0": -247.84873593590808,
+          "log_end_eta0": -248.89873593590818
+        },
+        {
+          "name": "release_hold",
+          "start": 416.9509401979232,
+          "length": 21.193269466192145,
+          "log_start_eta0": -248.89873593590818,
+          "log_end_eta0": -280.6886401351964
+        },
+        {
+          "name": "release_up",
+          "start": 438.14420966411535,
+          "length": 1.0,
+          "log_start_eta0": -280.6886401351964,
+          "log_end_eta0": -281.6911401351963
+        },
+        {
+          "name": "q_stopping_hold",
+          "start": 439.14420966411535,
+          "length": 9.641889879646701,
+          "log_start_eta0": -281.6911401351963,
+          "log_end_eta0": -286.5602945244179
+        },
+        {
+          "name": "terminal_collar",
+          "start": 448.7860995437621,
+          "length": 3.0,
+          "log_start_eta0": -286.5602945244179,
+          "log_end_eta0": -288.0751695166047
+        }
+      ]
+    }
+  ],
+  "exact_hierarchy_bound_reference": {
+    "label": "Conditional exact-hierarchy necessary lower bound; NOT an evaluated schedule or nonlinear error",
+    "h_illustrative": 1e-06,
+    "eta0": -0.005555537737779095,
+    "z_star_lower_bound": 13475962.855866544,
+    "necessary_h_upper_bound": 4.5399929762484854e-05,
+    "necessary_P_star_lower_bound": 22026.465794806718,
+    "correction_lower_bounds_Y4": {
+      "16": 1684495.3570872985,
+      "32": 842247.6785436493,
+      "64": 421123.83927182463,
+      "128": 210561.91963591232
+    }
+  },
+  "plots": [
+    "relaxed_not_theorem_admissible_pressure.png",
+    "relaxed_not_theorem_admissible_correction.png",
+    "relaxed_not_theorem_admissible_log_schedule.png"
+  ],
+  "eta_domain": [
+    -1,
+    1
+  ],
+  "extrema_policy": "sampled grid maxima, doubled eta grid checked; not continuous supremum certificates",
+  "runtime_seconds": 8.461302814001101,
+  "limitations": [
+    "not theorem-admissible",
+    "unbumped scheduled pressure only; relaxed moment-bump realization unchecked",
+    "no nonlinear solve, momentum residual, time integration or physical dimensionalization",
+    "Daisy execution only; iMac not tested"
+  ],
+  "stopping_reason": "scheduled-pressure milestone complete; retained radial spans remain physically extreme; review required before B.15"
+}

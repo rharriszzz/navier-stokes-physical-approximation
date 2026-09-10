@@ -11,4 +11,8 @@ results/*
 results/core-comparison/*
 !results/core-comparison/*.png
 !results/core-comparison/summary.json
+!results/relaxed_not_theorem_admissible_reference/
+results/relaxed_not_theorem_admissible_reference/*
+!results/relaxed_not_theorem_admissible_reference/*.png
+!results/relaxed_not_theorem_admissible_reference/relaxed_not_theorem_admissible_summary.json
 .cache/

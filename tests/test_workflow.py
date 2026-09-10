@@ -29,3 +29,23 @@ def test_profile_workflow(tmp_path):
         assert np.isfinite(record["divergence_linf"])
         if record["observed_order"] is not None:
             assert record["observed_order"] > 1.95
+
+
+def test_relaxed_pressure_workflow(tmp_path):
+    root = Path(__file__).resolve().parents[1]
+    config = yaml.safe_load((root / "configs/relaxed_not_theorem_admissible.yaml").read_text())
+    config["eta_points"] = 65
+    config["variations"] = []
+    config_path = tmp_path / "relaxed.yaml"
+    config_path.write_text(yaml.safe_dump(config))
+    output = tmp_path / "relaxed_not_theorem_admissible"
+    command = [sys.executable, str(root / "scripts/relaxed_pressure.py"), "--config", str(config_path), "--output", str(output)]
+    subprocess.run(command, check=True, cwd=root)
+    summary = json.loads((output / "relaxed_not_theorem_admissible_summary.json").read_text())
+    assert "NOT theorem-admissible" in summary["label"]
+    assert all(summary["records"][0]["validation"]["checks"].values())
+    assert len(summary["plots"]) == 3
+    assert all((output / filename).stat().st_size > 1000 for filename in summary["plots"])
+    assert len(summary["records"][0]["stages"]) == 12
+    assert summary["environment"]["source_sha256"]
+    assert subprocess.run(command, cwd=root, capture_output=True).returncode != 0

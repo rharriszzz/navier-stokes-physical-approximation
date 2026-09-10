@@ -220,3 +220,95 @@ falls back when `/proc` or `nvidia-smi` is absent, but its memory report on
 macOS is empty. A cross-platform memory/architecture metadata enhancement
 remains necessary before a substantive two-machine milestone run; it was not
 added after this source-audit stop.
+
+## Third milestone formulation: relaxed hierarchy
+
+This is a scheduled-pressure and first-correction diagnostic only, explicitly
+not theorem-admissible. No nonlinear (B.15) solution or flow time integration
+is performed. The old comparison model remains unchanged.
+
+Represent each radial stage by its local coordinate, length, log amplitude
+at eta=0, and exponent vartheta of f=(1+eta^2)^(-1). Integrate
+`(log E)'=l-1/2` over smooth unit transitions. Constant-slope stages use exact
+exponentials; the interpolation uses (A.10) directly, and the terminal collar
+uses the exact ratio f_o(y)/f_o(0). Log amplitudes are propagated across joins,
+not enormous physical radii. Pressure integrates each stage's amplitude
+relative to its starting log amplitude and uses analytic exponential integrals
+on constant-slope stages and both infinite ends. This retains small tail
+contributions with their own scales, instead of asking a global quadrature to
+find them against the dominant inner contribution.
+
+Baseline choices: M_d=1, P_star=2, lambda=0.2, h=0.005; j0=0.025 for the
+inner diagnostic. T_d=exp(M_d)+10, T_w=60 log(1/lambda), the 13/lambda
+interval, 30 log(1/lambda) interval, and 4 log(1/h) interval are retained
+literally. No resolved axial or oscillatory pulse is built; only its swirl
+schedule interval is retained. T_f=64 and c_o=0.025 are finite choices to
+be checked against the interpolation slope and terminal f_o'/f_o bounds.
+Both infinite ends and every transition are retained. The omitted angular
+bumps are those explicitly excluded by (A.21); their moment realization and
+stress-cone inequalities are NOT verified at these relaxed parameters.
+
+The linear Q equation is integrated through the release transitions with
+SciPy DOP853. Its constant l=-1 interval and l=-h stopping interval have
+analytic solutions. The stopping length is derived from Q_start and the
+independently integrated terminal Q_p, not guessed. Invalid ordering, a
+negative stopping length, nonpositive terminal factor, or an unsuccessful
+ODE/quadrature call is a failure. A separate integrating-factor formulation
+will check the ODE endpoints and Q=0 at the terminal endpoint.
+
+Pressure and two eta derivatives are evaluated under the same integral.
+Independent centered finite differences at decreasing eta step sizes check
+the derivatives; tighter ODE/quadrature tolerances check numerical convergence.
+The implementation rejects nonfinite normalized integrals; stage scales below
+float64's amplitude range remain represented logarithmically. Positive moments
+are combined with log-sum-exp: contributions below the rounding precision of
+the total cannot change that total, but their individual logarithms are retained.
+The infinite tails approach zero analytically;
+their integrals are evaluated exactly, not truncated at a machine-dependent
+radius. All new calculations are NumPy/SciPy float64 on CPU.
+
+### Implemented tolerances and independent checks
+
+The radial step primitive and unit Q transitions use DOP853 with maximum
+step 0.025; the terminal Q collar uses the same maximum step. Default
+relative/absolute tolerances are 1e-10/1e-12; independent tighter runs use
+1e-12/1e-14. Adaptive vector quadrature integrates the normalized nonnegative
+moments `K_m=integral E^2 vartheta^m dy`, m=0,1,2, stage by stage. The datum
+and derivatives are `-K_0/2`, `J_eta K_1`, and
+`J_etaeta K_1-2 J_eta^2 K_2`. Scalar quadrature independently checks the full
+datum, the step primitive, and integrating-factor Q endpoints in tests.
+
+The radial step derivative has maximum 8 at y=1/2 (checked against the
+explicit derivative on a 10001-point grid). T_f=64 gives worst interpolation
+slope decrement `8 log(2)/64=0.086644`, below 0.1. With c_o=0.025, the
+bound `f_o'/f_o <= 4 c_o h/(1-c_o h)` is below h/4. The run additionally
+samples these slopes and checks C2 joins over the full eta grid. The supplied
+smooth-step formula is flat at the ends; a finite C2 check is not a numerical
+certificate for every smoothness order.
+
+The main eta grid has 513 points on [-1,1], including endpoints. This is a
+pressure-datum domain, not a physical coordinate grid at eta=+/-1. Sampled
+Z_star/correction maxima are compared against 1025 points; neither is a
+continuous supremum certificate. Independent centered eta differences use
+97 interior points on [-0.98,0.98] and steps 0.004, 0.002, 0.001. They
+show second-order convergence for both derivatives, including the second
+derivative computed directly from pressure values.
+
+Stage summary fields `log_start_eta0`, `log_end_eta0`, and
+`log_integral_eta0` refer to **eta=0**, not the negative H_star root. The
+negative root is stored as `eta0`, with separately named `root_pressure`
+or `root_pressure_and_derivatives` and `root_z_star` diagnostics.
+
+Run `python scripts/relaxed_pressure.py` with
+[the relaxed config](../configs/relaxed_not_theorem_admissible.yaml). Every run
+requires a fresh directory and saves three labeled plots, full-grid arrays,
+per-stage logarithmic contributions, Q diagnostics, tolerance/derivative/grid
+checks, the exact-hierarchy bound reference, and source/hardware provenance.
+No time step is used. No broad parameter product or optimization is performed.
+The named reference PNGs and JSON are selected for version control; temporary
+runs and the small reconstructible full-grid array archive remain ignored.
+
+The metadata now includes `architecture` and Python address bits. On macOS
+it queries `sysctl hw.memsize` for total RAM, reports available memory as
+unavailable rather than inventing a value, and queries the CPU brand. A mocked
+macOS branch test is not an actual iMac numerical run.

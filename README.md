@@ -190,9 +190,9 @@ A finite approximation that ultimately fails can still be scientifically valuabl
 
 ## First-pass implementation
 
-The current code implements the paper's **explicit Appendix B comparison**,
+The first-pass code implements the paper's **explicit Appendix B comparison**,
 similarity geometry, and tested cylindrical divergence. It does **not** yet
-implement the nonlinear core, its exterior pressure datum, or its momentum
+implement the nonlinear core or its momentum
 residual. See [first-pass findings](notes/experiment-log.md),
 [equation map](notes/equation-map.md), and
 [numerical method](notes/numerical-method.md) for the exact scope and limitations.
@@ -219,3 +219,30 @@ The selected baseline plots and summary in
 and are published with the repository; temporary runs remain ignored.
 The optional `paper` dependency group adds `pypdf` for reading the source PDF;
 it is not needed for numerical runs. No GPU software is required.
+
+## Relaxed scheduled-pressure experiment
+
+The third milestone additionally implements the complete Appendix A scheduled
+pressure integral (A.21), its first two eta derivatives, Z_star, and the first
+explicit axial correction in (B.13). **This is a relaxed-hierarchy experiment,
+NOT theorem-admissible, and not a nonlinear core solution.** The original
+comparison implementation and published baseline are unchanged.
+
+```bash
+python scripts/relaxed_pressure.py
+```
+
+The [finite-family config](configs/relaxed_not_theorem_admissible.yaml) runs
+five cases, recording stage joins, Q stopping, pressure quadrature refinement,
+derivative convergence, scale separation and CPU provenance. Outputs require
+a new directory. The selected reference
+[summary](results/relaxed_not_theorem_admissible_reference/relaxed_not_theorem_admissible_summary.json),
+[pressure plot](results/relaxed_not_theorem_admissible_reference/relaxed_not_theorem_admissible_pressure.png),
+[first-correction plot](results/relaxed_not_theorem_admissible_reference/relaxed_not_theorem_admissible_correction.png),
+and [log-schedule plot](results/relaxed_not_theorem_admissible_reference/relaxed_not_theorem_admissible_log_schedule.png)
+are explicit version-control exceptions alongside the comparison baseline.
+
+Result: modest first corrections are accessible after pressure-amplitude
+compression, but retained radial schedules still span 141-196 decades in X.
+See the [third-milestone report](notes/experiment-log.md#third-milestone-relaxed-scheduled-pressure-2026-09-10-utc).
+Work stops for scientific review before any nonlinear (B.15) solve.

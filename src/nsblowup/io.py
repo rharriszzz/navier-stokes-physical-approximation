@@ -29,6 +29,11 @@ def environment_info():
     memory = {line.split(":", 1)[0]: line.split(":", 1)[1].strip()
               for line in memory_path.read_text().splitlines()
               if line.startswith(("MemTotal:", "MemAvailable:"))} if memory_path.exists() else {}
+    if platform.system() == "Darwin":
+        cpu = _command(["sysctl", "-n", "machdep.cpu.brand_string"])
+        total = _command(["sysctl", "-n", "hw.memsize"])
+        memory = {"MemTotal": f"{total} bytes" if total.isdecimal() else "unavailable",
+                  "MemAvailable": "unavailable (not sampled)", "source": "sysctl hw.memsize"}
     code_files = [ROOT / "pyproject.toml"]
     for directory in ("src", "scripts", "configs", "tests"):
         code_files.extend(path for path in (ROOT / directory).rglob("*")
@@ -39,6 +44,8 @@ def environment_info():
         "executable": sys.executable,
         "platform": platform.platform(),
         "machine": platform.node(),
+        "architecture": platform.machine(),
+        "python_address_bits": 64 if sys.maxsize > 2**32 else 32,
         "cpu": cpu,
         "memory": memory,
         "gpu": _command(["nvidia-smi", "--query-gpu=name,driver_version,memory.total", "--format=csv,noheader"]),

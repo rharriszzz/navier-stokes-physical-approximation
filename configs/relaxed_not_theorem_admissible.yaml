@@ -1,0 +1,26 @@
+model: relaxed_hierarchy_not_theorem_admissible_scheduled_pressure
+baseline:
+  axial_reduction: 1.0
+  pressure_amplitude: 2.0
+  outer_decay: 0.2
+  h: 0.005
+  interpolation_length: 64.0
+  terminal_coefficient: 0.025
+variations:
+  - name: P_star_1
+    updates: {pressure_amplitude: 1.0}
+  - name: P_star_5
+    updates: {pressure_amplitude: 5.0}
+  - name: M_d_2
+    updates: {axial_reduction: 2.0}
+  - name: lambda_0p1
+    updates: {outer_decay: 0.1}
+axial_offset: 0.025
+eta_points: 513
+radial_parameters: [32, 128, 512, 2048]
+scaled_radius: 4.0
+rtol: 1.0e-10
+atol: 1.0e-12
+refined_rtol: 1.0e-12
+refined_atol: 1.0e-14
+finite_difference_steps: [0.004, 0.002, 0.001]
