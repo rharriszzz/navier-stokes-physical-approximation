@@ -198,6 +198,11 @@ impossible. It does not mandate an engineering project in preference to
 the previous numerical research.
 
 **No new research or visualization is authorized by this note.**
-If a future request is ambiguous, explain the alternatives, ask which
-direction the owner wants, and wait for an answer rather than launching
-numerical work from old handoffs.
+A proposed [physics-first learning roadmap](PHYSICS_FIRST_LEARNING_PLAN.md)
+would examine ordinary vortices, their contraction and measurement, and
+their relation to the mathematical construction. It also records potentially
+interesting [physical and engineering spin-offs](notes/physical-opportunities.md)
+for later consideration. These documents are **options**, not standing
+commands. If a future request is ambiguous, explain the alternatives,
+ask which direction the owner wants, and wait for an answer rather
+than launching numerical work from old handoffs.
