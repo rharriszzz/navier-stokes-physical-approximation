@@ -7,6 +7,14 @@ the outstanding Reynolds-number, scaling and forcing questions. This
 historical project plan remains available but should not be started
 automatically by an ambiguous request; ask for a specific next objective.
 
+**Alternative, optional direction:** The owner also asked for a staged
+[physics-first learning plan](PHYSICS_FIRST_LEARNING_PLAN.md) with a
+[backlog of physically interesting or engineering-useful spin-offs](notes/physical-opportunities.md).
+Record promising side topics even when they are not pursued immediately.
+Substantial spin-off work, a new repository, or any renewed numerical
+campaign requires an explicit owner choice. This does not cancel the
+mathematical plan below.
+
 ## Purpose
 
 Build a transparent numerical research code to investigate physically realizable finite approximations to the recent smooth-forcing Navier–Stokes blowup construction.
