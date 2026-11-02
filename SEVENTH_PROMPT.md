@@ -1,5 +1,14 @@
 # Seventh Milestone Prompt — Endpoint-Stable B.15 Solve at the Same Tuple
 
+**Historical, optional numerical continuation.** The owner has not selected
+this as the next active task. A separately proposed
+[physics-first learning plan](PHYSICS_FIRST_LEARNING_PLAN.md) and
+[physical/engineering opportunities backlog](notes/physical-opportunities.md)
+are available. If the owner's direction is not explicit, ask which
+path to take and **wait for the answer**. Do not run this milestone solely
+because this prompt exists. If it is expressly selected, retain all
+existing technical gates below.
+
 Read, in this order:
 
 1. `README.md`
