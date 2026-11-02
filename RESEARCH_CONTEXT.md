@@ -1,5 +1,14 @@
 # Navier–Stokes Physical Approximation — Research Context
 
+**Later clarification (2026-11-01):** This file preserves the original
+research motivation and working hypotheses. For a more cautious physical
+interpretation, see [PHYSICAL_INTERPRETATION.md](PHYSICAL_INTERPRETATION.md).
+In particular, Reynolds number requires named velocity and length scales;
+`U r ~ nu` is conditional dimensional reasoning, not a verified core
+solution, and large mathematical scale separations are not laboratory
+dimensions. This link does not supersede or erase the historical work, and
+does not authorize further calculations.
+
 ## Purpose of this file
 
 This document preserves the scientific context, conclusions, decisions, and planned workflow from a ChatGPT conversation about the September 2026 finite-time blowup construction for the 3-D incompressible Navier–Stokes equations.
