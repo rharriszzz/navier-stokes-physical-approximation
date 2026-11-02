@@ -11,6 +11,16 @@ engineering questions. The two Navier–Stokes research projects are currently
 omitted from the owner's project index; the repositories and results remain
 public. This document is not an authorization to restart calculations.
 
+**Two possible directions, neither active by default:** The original
+mathematical/numerical program remains in [PROJECT.md](PROJECT.md), with the
+[seventh-milestone proposal](SEVENTH_PROMPT.md) as its optional next task.
+A separate [physics-first learning plan](PHYSICS_FIRST_LEARNING_PLAN.md)
+starts with ordinary vortices and physical mechanisms, and deliberately
+notices interesting [side investigations and engineering opportunities](notes/physical-opportunities.md).
+If the owner has not specified which direction to pursue, **ask and wait
+before beginning technical work**. Merely recording an opportunity does not
+authorize a new experiment or repository.
+
 ## Research goal
 
 The project does **not** attempt to re-prove the mathematical theorem.
@@ -52,16 +62,19 @@ The repository begins with three important guidance files:
 - `README.md` — overview of the project;
 - `RESEARCH_CONTEXT.md` — original scientific context, rationale, fluid choices, hardware, and longer-term questions;
 - `PHYSICAL_INTERPRETATION.md` — later physics-first questions, dimensional checks, and limits of the current results;
-- `PROJECT.md` — implementation plan, numerical stages, testing requirements, and coding-agent instructions;
+- `PHYSICS_FIRST_LEARNING_PLAN.md` — optional staged physical understanding plan with a side-investigation policy;
+- `notes/physical-opportunities.md` — categorized backlog of physically interesting and potentially useful engineering questions;
+- `PROJECT.md` — original numerical implementation plan, historical stages and testing requirements;
 - `INITIAL_PROMPT.md` — suggested first instruction for Codex Local.
 
 New contributors or coding agents should read them in that order:
 
 1. `README.md`
 2. `PHYSICAL_INTERPRETATION.md` (before drawing physical conclusions from plots)
-3. `RESEARCH_CONTEXT.md`
-4. `PROJECT.md`
-5. `INITIAL_PROMPT.md` (historical starting prompt, not an automatic work order)
+3. `PHYSICS_FIRST_LEARNING_PLAN.md` and `notes/physical-opportunities.md` (optional future direction)
+4. `RESEARCH_CONTEXT.md`
+5. `PROJECT.md` (historical numerical research roadmap)
+6. `INITIAL_PROMPT.md` (historical starting prompt, not an automatic work order)
 
 ## Initial computational strategy
 
