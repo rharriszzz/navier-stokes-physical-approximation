@@ -1,5 +1,12 @@
 # Navier–Stokes Blowup Approximation Project
 
+**Interpretation note (2026-11-01):** Read
+[PHYSICAL_INTERPRETATION.md](PHYSICAL_INTERPRETATION.md) before treating
+formal concentration factors as physically realized vortices. It records
+the outstanding Reynolds-number, scaling and forcing questions. This
+historical project plan remains available but should not be started
+automatically by an ambiguous request; ask for a specific next objective.
+
 ## Purpose
 
 Build a transparent numerical research code to investigate physically realizable finite approximations to the recent smooth-forcing Navier–Stokes blowup construction.
