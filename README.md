@@ -2,6 +2,15 @@
 
 Numerical and physical investigation of finite, realizable approximations to the September 2026 smooth-forcing finite-time blowup construction for the three-dimensional incompressible Navier–Stokes equations.
 
+**Physical interpretation and current status:** Start with
+[Reynolds number, vortex size, and the missing physical mechanism](PHYSICAL_INTERPRETATION.md)
+if the numerical work is difficult to interpret. It explains what a
+small-core scaling estimate does and does not imply, distinguishes prescribed
+geometric scales from a realized fluid flow, and records the unresolved
+engineering questions. The two Navier–Stokes research projects are currently
+omitted from the owner's project index; the repositories and results remain
+public. This document is not an authorization to restart calculations.
+
 ## Research goal
 
 The project does **not** attempt to re-prove the mathematical theorem.
@@ -41,16 +50,18 @@ The paper itself is the mathematical source of truth. Exact formulas implemented
 The repository begins with three important guidance files:
 
 - `README.md` — overview of the project;
-- `RESEARCH_CONTEXT.md` — scientific context, rationale, fluid choices, hardware, and longer-term questions;
+- `RESEARCH_CONTEXT.md` — original scientific context, rationale, fluid choices, hardware, and longer-term questions;
+- `PHYSICAL_INTERPRETATION.md` — later physics-first questions, dimensional checks, and limits of the current results;
 - `PROJECT.md` — implementation plan, numerical stages, testing requirements, and coding-agent instructions;
 - `INITIAL_PROMPT.md` — suggested first instruction for Codex Local.
 
 New contributors or coding agents should read them in that order:
 
 1. `README.md`
-2. `RESEARCH_CONTEXT.md`
-3. `PROJECT.md`
-4. `INITIAL_PROMPT.md`
+2. `PHYSICAL_INTERPRETATION.md` (before drawing physical conclusions from plots)
+3. `RESEARCH_CONTEXT.md`
+4. `PROJECT.md`
+5. `INITIAL_PROMPT.md` (historical starting prompt, not an automatic work order)
 
 ## Initial computational strategy
 
